@@ -1,26 +1,26 @@
 Pattern Recognition Letters — Half-Moon V11
 
-PREPARED:
-- Main manuscript
-- Supplementary proofs
-- Threshold addendum
-- Editable LaTeX source
-- Cover letter
-- Highlights
-- Graphical abstract
-- SHA-256 manifest
+PASS:
+- Public GitHub repository and V11 research release
+- Both original research archives preserved
+- Public research-data URL in manuscript
+- Seven-page manuscript
+- Eighteen-page supplement
+- Three-page threshold addendum
+- Independent LaTeX build
+- Figures available for loose-source compilation
+- Journal-upload files and source ZIP
 
-REMAINING BEFORE SUBMISSION:
-- Signed official authorship and formatting form
-- Final competing-interest declaration
-- Confirmed funding/authorship statements
-- Research-data DOI or accessible repository URL
-- Publisher portal requirements verification
-- Final PDF and source-package inspection
+AUTHOR COMPLETION:
+- Official signed authorship/formatting form
+- Funding declaration
+- Competing-interest declaration
+- Originality and submission-history confirmation
 
-Research-data archive:
-Available locally in archive/ and in the draft
-GitHub release v11-submission.
+FINAL CHECK:
+- Confirm publisher portal requirements
+- Review rendered submission files
+- Submit manuscript
 
-No manuscript changes, journal submission,
-public release, or file deletion performed.
+CLEANUP:
+Final operation only, after submission package closure.
