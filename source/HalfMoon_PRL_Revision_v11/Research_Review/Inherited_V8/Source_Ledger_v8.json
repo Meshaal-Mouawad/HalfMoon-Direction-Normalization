@@ -1,0 +1,459 @@
+{
+  "search_date": "2026-11-14",
+  "inherited_records": 21,
+  "new_pivotal_records": 2,
+  "additional_contextual_screen": 1,
+  "records": [
+    {
+      "baseline_record": {
+        "key": "Poblete2026",
+        "title": "Decision-rule alignment in generative latent spaces: The role of radial compatibility",
+        "authors": "Víctor Poblete; José Aillapi; Carlos Duarte; Luis Veas; Felipe Otondo",
+        "year": "2026",
+        "venue": "Pattern Recognition Letters 208:69–85",
+        "primary_locator": "https://doi.org/10.1016/j.patrec.2026.07.024",
+        "inherited_access": "Full publisher article, institutional browser",
+        "inherited_evidence_locations": "§3.2.1 Eqs.10–14; §3.4 Eqs.37–45; §5.4 Table5; §6.2",
+        "supported_claim": "Class-centered geometry is compared with four rules on fixed embeddings; the directional H2 was unsupported; authors propose controlled synthetic experiments.",
+        "comparison_to_current_question": "Decision-rule restriction on complete embeddings differs from deleting radius before fitting.",
+        "fresh_check_access": "Publisher-indexed abstract/introductory text refreshed; direct full-page access returned 403. Detailed H2 attribution is carried from the supplied full-text audit."
+      },
+      "fresh_check": "Publisher-indexed abstract and introduction including hypotheses; direct publisher open returned 403.",
+      "authors_stated_limitation": "The accessible text treats cross-dataset geometry/performance associations descriptively across eight datasets.",
+      "independently_inferred_gap": "Fixed embeddings with changing classifiers do not provide the moving-origin population-loss criterion. This is an inferred difference in question, not a claimed defect.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://www.sciencedirect.com/science/article/pii/S0167865526002540"
+    },
+    {
+      "baseline_record": {
+        "key": "Ahmadian2025",
+        "title": "Improved Contrastive Predictive Coding for Time Series Out-Of-Distribution Detection Applied to Human Activity Data",
+        "authors": "Amirhossein Ahmadian; Fredrik Lindsten",
+        "year": "2025",
+        "venue": "Pattern Recognition Letters 197:132–138",
+        "primary_locator": "https://doi.org/10.1016/j.patrec.2025.07.011",
+        "inherited_access": "Full institutional version of record",
+        "inherited_evidence_locations": "Results comparing CPC-vMF and non-quantized CPC-RBF; Discussion of spherical projection information loss",
+        "supported_claim": "Unit-normalized and radial-scoring representation variants differ in human-activity OOD detection; authors suggest information loss as an explanation.",
+        "comparison_to_current_question": "A representation-and-scoring comparison motivates, rather than computes, the radial-input classification Bayes loss.",
+        "fresh_check_access": "Institutional version-of-record PDF text; relevant methods, results and normalization discussion inspected."
+      },
+      "fresh_check": "Publisher-indexed abstract, introduction and exposed method excerpts; institutional PDF fetch unavailable.",
+      "authors_stated_limitation": "Authors discuss normalization-related information loss as a possible explanation; no new limitation extraction from inaccessible sections.",
+      "independently_inferred_gap": "A kernel/normalization ablation in time-series OOD ranking differs from an all-origin zero-one population-risk lower bound.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://www.sciencedirect.com/science/article/pii/S0167865525002636"
+    },
+    {
+      "baseline_record": {
+        "key": "Oh2025",
+        "title": "Maximizing generalized mean of trace ratios for discriminative feature learning",
+        "authors": "Jiyong Oh",
+        "year": "2025",
+        "venue": "Pattern Recognition Letters 194:26–31",
+        "primary_locator": "https://doi.org/10.1016/j.patrec.2025.04.026",
+        "inherited_access": "Full publisher article, institutional browser",
+        "inherited_evidence_locations": "Gaussian projection illustration; MGMTR objective; Experimental training-only cross-validation",
+        "supported_claim": "Generalized-mean trace ratios are evaluated against projected Bayes-error behavior; the objective is a scatter surrogate.",
+        "comparison_to_current_question": "Linear subspace learning differs from selecting the origin of a nonlinear radial map.",
+        "fresh_check_access": "Publisher-indexed abstract and method excerpts; detailed full-text interpretation carried from the archived audit."
+      },
+      "fresh_check": "Publisher-indexed abstract and exposed method/conclusion excerpts; direct full article returned 403.",
+      "authors_stated_limitation": "Accessible method discussion identifies the computational effort of tuning the generalized-mean parameter.",
+      "independently_inferred_gap": "A learned linear projection and scatter surrogate do not characterize radial input maps over all centers.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://www.sciencedirect.com/science/article/pii/S0167865525001679"
+    },
+    {
+      "baseline_record": {
+        "key": "Meng2026",
+        "title": "Norm×Direction: Restoring the Missing Query Norm in Vision Linear Attention",
+        "authors": "Weikang Meng; Yadan Luo; Liangyu Huo; Yingjian Li; Yaowei Wang; Xin Li; Zheng Zhang",
+        "year": "2026",
+        "venue": "ICML, PMLR 306:87993–88018",
+        "primary_locator": "https://proceedings.mlr.press/v306/meng26g.html",
+        "inherited_access": "Full final conference paper",
+        "inherited_evidence_locations": "Norm×direction decomposition and NaLaFormer method",
+        "supported_claim": "Query norm controls attention sharpness and is restored separately from directional similarity.",
+        "comparison_to_current_question": "Magnitude-aware attention is established; our object is population loss after a raw-input radial map.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Ding2026",
+        "title": "Enhancing Out-of-Distribution Detection with Extended Logit Normalization",
+        "authors": "Yifan Ding; Xixi Liu; Jonas Unger; Gabriel Eilertsen",
+        "year": "2026",
+        "venue": "CVPR:24823–24832",
+        "primary_locator": "https://openaccess.thecvf.com/content/CVPR2026/papers/Ding_Enhancing_Out-of-Distribution_Detection_with_Extended_Logit_Normalization_CVPR_2026_paper.pdf",
+        "inherited_access": "Full accepted conference paper",
+        "inherited_evidence_locations": "Extended logit-normalization construction",
+        "supported_claim": "Normalization uses distances to class decision hyperplanes to address feature collapse in OOD detection.",
+        "comparison_to_current_question": "Decision-aware learned-score normalization differs from the fixed input transform.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Scholkemper2025",
+        "title": "Residual Connections and Normalization Can Provably Prevent Oversmoothing in GNNs",
+        "authors": "Michael Scholkemper; Xinyi Wu; Ali Jadbabaie; Michael T. Schaub",
+        "year": "2025",
+        "venue": "ICLR",
+        "primary_locator": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/6c473e69ba261200dd595d07494c1a73-Abstract-Conference.html",
+        "inherited_access": "Full final conference paper",
+        "inherited_evidence_locations": "pp.1–3; Linearized-network theoretical setup; GraphNormv2",
+        "supported_claim": "Normalization and centering alter graph signal; a learned centering projection is proposed.",
+        "comparison_to_current_question": "Trainable centering is prior capability; graph-wide normalization acts on different mathematical objects.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "September2024",
+        "title": "Extended Deep Adaptive Input Normalization for Preprocessing Time Series Data for Neural Networks",
+        "authors": "Marcus A. K. September; Francesco Sanna Passino; Leonie Goldmann; Anton Hinel",
+        "year": "2024",
+        "venue": "AISTATS, PMLR 238:1891–1899",
+        "primary_locator": "https://proceedings.mlr.press/v238/september24a.html",
+        "inherited_access": "Full final conference paper",
+        "inherited_evidence_locations": "EDAIN transformation stages; Appendix normalizing-flow construction",
+        "supported_claim": "Input shift, scale, outlier and power transformations can be learned with the downstream task.",
+        "comparison_to_current_question": "Trainability alone cannot establish a new center-selection contribution.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Zhuang2026",
+        "title": "Spatial sign based direct sparse linear discriminant analysis for high dimensional data",
+        "authors": "D. Zhuang; Long Feng",
+        "year": "2026",
+        "venue": "Communications in Statistics—Simulation and Computation, online 7 October 2026",
+        "primary_locator": "https://doi.org/10.1080/03610918.2026.2741363",
+        "inherited_access": "Published metadata; full 2025 author preprint",
+        "inherited_evidence_locations": "Spatial-median and sign-covariance estimators; Final linear discriminant applied to unnormalized observation",
+        "supported_claim": "Robust directional summaries estimate a sparse discriminant under elliptical assumptions while retaining location information.",
+        "comparison_to_current_question": "The classifier does not restrict its test input to a common-origin direction.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Shen2025",
+        "title": "A Spatial-Sign based Direct Approach for High Dimensional Sparse Quadratic Discriminant Analysis",
+        "authors": "Anqing Shen; Long Feng",
+        "year": "2025",
+        "venue": "arXiv preprint",
+        "primary_locator": "https://doi.org/10.48550/arXiv.2504.11187",
+        "inherited_access": "Full author preprint; no journal acceptance verified",
+        "inherited_evidence_locations": "Introduction pp.2–3; Method pp.4 onward; covariance trace reconstruction",
+        "supported_claim": "Spatial-sign QDA estimates location, shape and scale, including covariance trace, for elliptical classes.",
+        "comparison_to_current_question": "Scale is retained in the fitted decision rule; direction-only test inputs define a different problem.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Ni2024",
+        "title": "On the Nonlinearity of Layer Normalization",
+        "authors": "Yunhao Ni; Yuxin Guo; Junlong Jia; Lei Huang",
+        "year": "2024",
+        "venue": "ICML, PMLR 235:37957–37998",
+        "primary_locator": "https://proceedings.mlr.press/v235/ni24b.html",
+        "inherited_access": "Full final conference paper",
+        "inherited_evidence_locations": "§4; Appendix D; merging/confusion geometry; Width-three finite-sample representation theorem",
+        "supported_claim": "Affine transformations and repeated normalization can separate arbitrary finite distinct labeled samples.",
+        "comparison_to_current_question": "A finite-sample construction with learned intermediate maps does not compute the population error of a fixed input map.",
+        "fresh_check_access": "Official proceedings abstract and bibliographic record."
+      },
+      "fresh_check": "Official ICML proceedings abstract and bibliographic record; detailed finite-sample theorem record reused from V7.",
+      "authors_stated_limitation": "No new author-stated limitation extracted.",
+      "independently_inferred_gap": "Finite-sample separation by repeated learned affine/normalization layers is different from decision preservation on a continuous population under one fixed input map.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://proceedings.mlr.press/v235/ni24b.html"
+    },
+    {
+      "baseline_record": {
+        "key": "Silva2012",
+        "title": "On signal representations within the Bayes decision framework",
+        "authors": "Jorge F. Silva; Shrikanth S. Narayanan",
+        "year": "2012",
+        "venue": "Pattern Recognition 45(5):1853–1865",
+        "primary_locator": "https://doi.org/10.1016/j.patcog.2011.11.015",
+        "inherited_access": "Full author-hosted paper",
+        "inherited_evidence_locations": "Lemma1 p.1855; Theorems2–3 p.1856; §3.3 p.1857; §§4–5",
+        "supported_claim": "Measurable representation cannot improve Bayes error; representation design trades information/approximation loss against statistical learning error.",
+        "comparison_to_current_question": "The general representation-risk framework is established. The manuscript must establish its specific origin geometry.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Serneels2006",
+        "title": "Spatial Sign Preprocessing: A Simple Way To Impart Moderate Robustness to Multivariate Estimators",
+        "authors": "Sven Serneels; Evert De Nolf; Pierre J. Van Espen",
+        "year": "2006",
+        "venue": "Journal of Chemical Information and Modeling 46(3):1402–1409",
+        "primary_locator": "https://doi.org/10.1021/ci050498u",
+        "inherited_access": "Full subscribed publisher prose; image equations not extracted",
+        "inherited_evidence_locations": "§2; browser capture lines52–71; §3 lines72–80; §4 lines82–162; §6 lines200–210",
+        "supported_claim": "Spatial-sign preprocessing projects centered observations to a unit sphere; a spatial median is proposed for centering; regression robustness and bias are analyzed.",
+        "comparison_to_current_question": "Preprocessing and centering are established. Its substantive target is PLS regression calibration.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Hamsici2008",
+        "title": "Bayes Optimality in Linear Discriminant Analysis",
+        "authors": "Onur C. Hamsici; Aleix M. Martinez",
+        "year": "2008",
+        "venue": "IEEE TPAMI 30(4):647–657",
+        "primary_locator": "https://doi.org/10.1109/TPAMI.2007.70717",
+        "inherited_access": "Complete author manuscript through primary author-paper indexing; key method/proof inspected",
+        "inherited_evidence_locations": "§§2–3; Theorem1 and proof, author manuscript pp.5–6; Equation4 optimization",
+        "supported_claim": "Projected Bayes error for homoscedastic Gaussian classes is optimized within convex regions preserving projected-mean order.",
+        "comparison_to_current_question": "The optimized variable is a linear projection vector, not a radial input origin.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Hamsici2007",
+        "title": "Spherical-Homoscedastic Distributions: The Equivalency of Spherical and Normal Distributions in Classification",
+        "authors": "Onur C. Hamsici; Aleix M. Martinez",
+        "year": "2007",
+        "venue": "JMLR 8:1583–1623",
+        "primary_locator": "https://www.jmlr.org/papers/volume8/hamsici07a/hamsici07a.pdf",
+        "inherited_access": "Full final journal PDF",
+        "inherited_evidence_locations": "Theorem6 p.1595; Theorem9 p.1597; Theorem11 pp.1598–1599; §4 p.1599",
+        "supported_claim": "Under stated spherical homoscedastic conditions, Gaussian and spherical classifier boundaries agree; reducible error is relative to the spherical distribution Bayes baseline.",
+        "comparison_to_current_question": "Both competing models operate on spherical observations; raw-to-direction loss uses a different baseline.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Graf2003",
+        "title": "Classification in a Normalized Feature Space Using Support Vector Machines",
+        "authors": "Arnulf B. A. Graf; Alexander J. Smola; Silvio Borer",
+        "year": "2003",
+        "venue": "IEEE TNN 14(3):597–605",
+        "primary_locator": "https://doi.org/10.1109/TNN.2003.811708",
+        "inherited_access": "Full author-hosted PDF through web extraction",
+        "inherited_evidence_locations": "§II pp.597–599; Eqs.5–10; §IV-A p.601",
+        "supported_claim": "After spherical normalization, the separating hyperplane offset is corrected to bisect spherical angles with its normal fixed.",
+        "comparison_to_current_question": "Changing a classifier offset after normalization differs from changing the shared origin before compression.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Silva2024",
+        "title": "Studying the Interplay between Information Loss and Operation Loss in Representations for Classification",
+        "authors": "Jorge F. Silva; Felipe Tobar; Mario Vicuña; Felipe Cordova",
+        "year": "2024",
+        "venue": "JMLR 25(291):1–71",
+        "primary_locator": "https://www.jmlr.org/papers/v25/21-1551.html",
+        "inherited_access": "Full final journal PDF",
+        "inherited_evidence_locations": "Definitions1–3 p.7; Theorem12 p.11; Theorem14 p.13; Proposition28 pp.23–24; §8 pp.28–39",
+        "supported_claim": "Weak information sufficiency implies preservation of minimum classification error, with a converse under unique Bayes decisions; invariant and scale-invariant cases are studied.",
+        "comparison_to_current_question": "Generic decision sufficiency is prior theory. The inspected models and quantization experiments do not give the specified moving-origin half-annular characterization.",
+        "fresh_check_access": "Official abstract and selected relevant sections in the final JMLR PDF; not a new complete 71-page reading."
+      },
+      "fresh_check": "Final JMLR metadata/abstract and selected sections of the available 71-page PDF; not a new full-document reading.",
+      "authors_stated_limitation": "No author limitation is required for the present gap inference; the paper expressly develops weaker information sufficiency for classification.",
+      "independently_inferred_gap": "General operational sufficiency is established. The candidate advance is its quantitative moving-origin geometric specialization, not sufficiency itself.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://www.jmlr.org/papers/v25/21-1551.html"
+    },
+    {
+      "baseline_record": {
+        "key": "Silva2025",
+        "title": "Understanding encoder–decoder structures in machine learning using information measures",
+        "authors": "Jorge F. Silva; Victor Faraggi; Camilo Ramirez; Alvaro Egaña; Eduardo Pavez",
+        "year": "2025",
+        "venue": "Signal Processing 234:109983",
+        "primary_locator": "https://doi.org/10.1016/j.sigpro.2025.109983",
+        "inherited_access": "Publisher metadata/abstract; complete author preprint arXiv:2405.20452v1",
+        "inherited_evidence_locations": "Author preprint §V Theorem4 Eqs.19–20; §VI Theorem5; §VIII Theorem7; §X and AppendixJ controlled MLP study",
+        "supported_claim": "Conditional mutual-information loss measures optimal cross-entropy degradation; synthetic known models are used to evaluate encoder and decoder effects.",
+        "comparison_to_current_question": "The present target is origin-dependent zero-one loss for radial projection; generic encoder-risk analysis and controlled neural evaluation already have precedents.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Publisher abstract/metadata and author institutional research description; detailed preprint analysis reused from V7.",
+      "authors_stated_limitation": "No new author-stated limitation extracted.",
+      "independently_inferred_gap": "Encoder-loss decomposition is established; our principal loss is zero-one risk with a specified radial map family.",
+      "role": "Fresh focused comparison; inherited details explicitly separated.",
+      "primary_url": "https://www.sciencedirect.com/science/article/abs/pii/S0165168425000970"
+    },
+    {
+      "baseline_record": {
+        "key": "Hurtado2001",
+        "title": "Separating objects in the plane by wedges and strips",
+        "authors": "Ferran Hurtado; Marc Noy; Pedro A. Ramos; Carlos Seara",
+        "year": "2001",
+        "venue": "Discrete Applied Mathematics109:109–138",
+        "primary_locator": "https://doi.org/10.1016/S0166-218X(00)00230-4",
+        "inherited_access": "Full author PDF",
+        "inherited_evidence_locations": "Definition1 p110; Section2.1 p111; Theorem5 p115",
+        "supported_claim": "Wedge separation requires at least one monochromatic convex hull; computes separating-apex regions for finite point sets.",
+        "comparison_to_current_question": "Established geometric obstruction adapted to continuous signed-density risk; current specific half-annular global loss bounds remain the contribution.",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Kingma2015",
+        "title": "Adam: A Method for Stochastic Optimization",
+        "authors": "Diederik P. Kingma; Jimmy Ba",
+        "year": "2015",
+        "venue": "ICLR2015",
+        "primary_locator": "https://arxiv.org/abs/1412.6980",
+        "inherited_access": "Original arXiv conference paper and metadata",
+        "inherited_evidence_locations": "",
+        "supported_claim": "Adam optimizer used with explicitly stated settings.",
+        "comparison_to_current_question": "",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "Orponen2019",
+        "title": "On the dimension and smoothness of radial projections",
+        "authors": "Tuomas Orponen",
+        "year": "2019",
+        "venue": "Analysis & PDE",
+        "primary_locator": "https://msp.org/apde/2019/12-5/apde-v12-n5-p06-s.pdf",
+        "inherited_access": "publisher full text; selected relevant sections inspected",
+        "inherited_evidence_locations": "I; n; t; r; o; d; u; c; t; i; o; n; ;;  ; T; h; e; o; r; e; m; s; 1; .; 1; 1; /; 1; .; 1; 3; ;;  ; R; e; m; a; r; k; 1; .; 1; 4;  ; p; 1; 2; 7; 7; ;;  ; L; e; m; m; a; 3; .; 1;  ; p; p; 1; 2; 8; 9; –; 1; 2; 9; 0",
+        "supported_claim": "Attribute orthogonal projection as radial projection from infinity; distinguish new uniform Bayes-risk convergence from known geometry.",
+        "comparison_to_current_question": "",
+        "fresh_check_access": "Publisher PDF parsed text; selected introductory material and Remark 1.14 inspected."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "baseline_record": {
+        "key": "OehlerGray1995",
+        "title": "Combining Image Compression and Classification Using Vector Quantization",
+        "authors": "Karen L. Oehler; Robert M. Gray",
+        "year": "1995",
+        "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "primary_locator": "https://www.math.ucdavis.edu/~saito/data/vector-quantization/oehler-gray.pdf",
+        "inherited_access": "published PDF copy; sections I–III and exposed examples inspected",
+        "inherited_evidence_locations": "p; u; b; l; i; s; h; e; d;  ; P; D; F;  ; c; o; p; y; ;;  ; s; e; c; t; i; o; n; s;  ; I; –; I; I; I;  ; a; n; d;  ; e; x; p; o; s; e; d;  ; e; x; a; m; p; l; e; s;  ; i; n; s; p; e; c; t; e; d",
+        "supported_claim": "Bayes-risk-aware quantization is established; finite-bit radial claim needs exact geometric sufficiency/minimality.",
+        "comparison_to_current_question": "",
+        "fresh_check_access": "Not newly reverified; preserved baseline source record."
+      },
+      "fresh_check": "Not re-read in full in this revision; inherited V7 record retained.",
+      "authors_stated_limitation": "Not re-extracted; consult the separately preserved V7 source record.",
+      "independently_inferred_gap": "See inherited comparison; a difference of setting is not treated as prior-method failure.",
+      "role": "Methodological context or precedent retained from V7."
+    },
+    {
+      "key": "Gyorfi2023",
+      "title": "Lossless Transformations and Excess Risk Bounds in Statistical Inference",
+      "authors": "László Györfi; Tamás Linder; Harro Walk",
+      "year": 2023,
+      "venue": "Entropy 25(10), 1394",
+      "doi": "10.3390/e25101394",
+      "primary_url": "https://www.mdpi.com/1099-4300/25/10/1394",
+      "author_version": "https://arxiv.org/pdf/2307.16735",
+      "fresh_check": "Publisher identity/selected text and author-version PDF, selected Sections 1–3 and conclusions; PDF screenshot requests returned cache miss.",
+      "question_and_result": "Universal losslessness is characterized by conditional independence; information-based excess-risk upper bounds are derived.",
+      "evidence_location": "Author version Definition 1 and Theorem 1 (pp.2–4), Section 3; final publisher equation (24) and Section 6.",
+      "authors_stated_limitation": "Section 6 leaves a strongly consistent universal test without assumptions as an open problem.",
+      "independently_inferred_gap": "Uniformity over loss functions differs from a strictly positive zero-one-loss lower bound over moving origins; neither implication is inferred solely from the title.",
+      "role": "New pivotal predecessor; added to manuscript bibliography."
+    },
+    {
+      "key": "Dubois2021",
+      "title": "Lossy Compression for Lossless Prediction",
+      "authors": "Yann Dubois; Benjamin Bloem-Reddy; Karen Ullrich; Chris J. Maddison",
+      "year": 2021,
+      "venue": "Advances in Neural Information Processing Systems 34",
+      "doi": "",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html",
+      "fresh_check": "Official proceedings record and selected sections of final PDF, especially Sections 1 and 3; screenshot request returned cache miss.",
+      "question_and_result": "Compression is designed for downstream prediction under specified invariances; the unrestricted single-task case can encode predicted labels.",
+      "evidence_location": "Section 1 (single-task label encoding); Section 3 (predictive distortion and invariant tasks).",
+      "authors_stated_limitation": "No separate limitation passage used; the task-family assumptions are explicit in Section 3.",
+      "independently_inferred_gap": "Our finite code is a common radius comparison appended to exact direction. Its support-wide geometric sufficiency is the contribution, rather than arbitrary one-bit label encoding.",
+      "role": "New pivotal predecessor; added to manuscript bibliography."
+    },
+    {
+      "key": "Liu2024_screened",
+      "title": "Contraction mapping of feature norms for data quality imbalance learning",
+      "authors": "Not independently reconciled from final publisher full text in this pass",
+      "year": 2024,
+      "venue": "Pattern Recognition Letters; contextual screening record",
+      "doi": "10.1016/j.patrec.2024.08.016",
+      "primary_url": "https://github.com/Huiyu-Li/CM-M-Softmax-Loss",
+      "fresh_check": "Author code repository/README inspected; final journal full text unavailable. Earlier differently titled 2020 preprint was not silently substituted.",
+      "question_and_result": "Author repository describes feature-norm contraction in softmax objectives for mixed-quality images.",
+      "evidence_location": "Author repository Introduction and Usage.",
+      "authors_stated_limitation": "Not extracted from inaccessible journal paper.",
+      "independently_inferred_gap": "Contextual evidence that learned norm handling is established; no full-text novelty claim is based on this screening record.",
+      "role": "2024 target-journal screening only; not added as citation padding."
+    }
+  ]
+}

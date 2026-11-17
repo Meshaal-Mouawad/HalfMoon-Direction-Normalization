@@ -1,0 +1,56 @@
+{
+  "source_preservation": {
+    "experimental_sections.tex": true,
+    "one_bit.tex": true,
+    "one_bit_experiment.tex": true,
+    "one_bit_experiment_supplement.tex": true,
+    "projection_limit_supplement.tex": true,
+    "constructive_global_floor_supplement.tex": true,
+    "supplement_theory.tex": true,
+    "supplement_tables.tex": true,
+    "Supplement.tex": true,
+    "main_theory_before_interval_paragraph_unchanged": true,
+    "original_threshold_proposition_and_proof_unchanged": true,
+    "bibliography_unchanged": true,
+    "original_supplement_pdf_byte_identical": true,
+    "approved_declaration_unchanged_and_once": true
+  },
+  "protected_file_count": 9,
+  "figure_assets": {
+    "Fig2_Origin_Loss.png": true,
+    "Fig2_One_Bit_Recovery.pdf": true,
+    "Density_Control.pdf": true,
+    "Fig2_Origin_Loss.svg": true,
+    "Graphical_Abstract.png": true,
+    "Neural_Error_and_Oracle_Floors_h.pdf": true,
+    "Fig1_Geometry.pdf": true,
+    "Fig1_Geometry.png": true,
+    "Graphical_Abstract.svg": true,
+    "Fig1_Geometry.svg": true,
+    "Fig2_One_Bit_Recovery.png": true,
+    "Graphical_Abstract.pdf": true,
+    "Origin_Contrast_Intervals_h.pdf": true,
+    "Fig2_Origin_Loss.pdf": true,
+    "Fig2_One_Bit_Recovery.svg": true
+  },
+  "tables": {
+    "experimental_sections.tex": {
+      "count": 2,
+      "unchanged": true
+    },
+    "one_bit_experiment.tex": {
+      "count": 1,
+      "unchanged": true
+    },
+    "supplement_tables.tex": {
+      "count": 1,
+      "unchanged": true
+    },
+    "one_bit_experiment_supplement.tex": {
+      "count": 1,
+      "unchanged": true
+    }
+  },
+  "table_count": 5,
+  "reference_entries": 23
+}

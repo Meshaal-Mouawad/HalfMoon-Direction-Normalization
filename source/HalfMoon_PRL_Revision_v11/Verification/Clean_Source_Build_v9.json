@@ -1,0 +1,175 @@
+{
+  "Manuscript": {
+    "pages": 7,
+    "all_normalized_text_equal": true,
+    "all_pixels_equal": true,
+    "page_checks": [
+      {
+        "page": 1,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 2,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 3,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 4,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 5,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 6,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 7,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      }
+    ],
+    "missing_glyphs": false,
+    "unresolved_citations_references": false,
+    "overfull_boxes": [
+      "Overfull \\hbox (123.62721pt too wide) detected at line 31"
+    ]
+  },
+  "Threshold_Addendum": {
+    "pages": 3,
+    "all_normalized_text_equal": true,
+    "all_pixels_equal": true,
+    "page_checks": [
+      {
+        "page": 1,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 2,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      },
+      {
+        "page": 3,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": true
+      }
+    ],
+    "missing_glyphs": false,
+    "unresolved_citations_references": false,
+    "overfull_boxes": []
+  },
+  "Supplement": {
+    "pages": 18,
+    "all_normalized_text_equal": true,
+    "all_pixels_equal": false,
+    "page_checks": [
+      {
+        "page": 1,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 2,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 3,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 4,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 5,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 6,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 7,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 8,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 9,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 10,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 11,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 12,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 13,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 14,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 15,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 16,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 17,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      },
+      {
+        "page": 18,
+        "normalized_text_equal": true,
+        "rendered_pixels_equal_100dpi": false
+      }
+    ],
+    "missing_glyphs": false,
+    "unresolved_citations_references": false,
+    "overfull_boxes": []
+  },
+  "interpretation": "Clean extraction rebuild passed. All ten changed article/addendum pages match delivered text and pixels. All 18 unchanged supplement pages match normalized text; delivered supplement retains original V8 bytes."
+}

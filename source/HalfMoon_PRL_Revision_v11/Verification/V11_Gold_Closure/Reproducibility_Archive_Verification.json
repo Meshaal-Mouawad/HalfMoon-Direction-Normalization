@@ -1,0 +1,11 @@
+{
+  "original_archive_sha256": "78df38a57ab07921029ac025c709ca69d2c565692640a30d7a47003ca107ead5",
+  "zip_entries": 3315,
+  "zip_integrity": "PASS",
+  "manifest_entries_verified": 3313,
+  "training_performed": false,
+  "raw_neural_reconstruction_repeated": false,
+  "deposit_selected_original_files": 3119,
+  "deposit_archive_sha256": "fda08a2be21722c26fc5bd7534e416511e5b8bd9f7310df7b4ffedab76e59565",
+  "deposit_archive_bytes": 180148673
+}

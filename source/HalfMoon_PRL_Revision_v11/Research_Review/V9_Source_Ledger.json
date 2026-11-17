@@ -1,0 +1,53 @@
+[
+  {
+    "key": "Poblete2026",
+    "source": "1-s2.0-S0167865526002540-main.pdf",
+    "sha256": "d417ed12b0329b1955fdb86227b00d2e15c28b3d4c84dd69684c2f2185f97e48",
+    "access": "Primary full text retrieved separately; relevant sections read",
+    "locations": "Sections 3.5, 5.3, 6-7; Table 5 and Figure 5, PDF pages 14-15",
+    "supported_change": "Distinguish class-centered descriptor from decision rule; preserve unsupported general directional H2."
+  },
+  {
+    "key": "Ahmadian2025",
+    "source": "https://liu.diva-portal.org/smash/get/diva2%3A1994850/FULLTEXT01.pdf",
+    "access": "Search-indexed primary Table 3 and methods text; PDF fetch timed out",
+    "locations": "Table 3; Section 5.3; publisher Section 3 excerpt",
+    "supported_change": "Separate normalization and quantization ablations; represent information-loss explanation as authors interpretation.",
+    "table3_AUROC": {
+      "normalized": [
+        61.6,
+        68.2
+      ],
+      "RBF_without_quantization": [
+        74.6,
+        83.4
+      ]
+    }
+  },
+  {
+    "key": "Dubois2021",
+    "source": "https://proceedings.neurips.cc/paper_files/paper/2021/file/7535bbb91c8fde347ad861f293126633-Paper.pdf",
+    "access": "Primary PDF relevant sections read",
+    "locations": "Figure 2(b), Definition 1, Section 3.2",
+    "supported_change": "Unit direction is a maximal invariant for scaling; conditional label law is invariant on each equivalence class."
+  },
+  {
+    "key": "Gyorfi2023",
+    "source": "https://www.mdpi.com/1099-4300/25/10/1394",
+    "access": "Primary full-text HTML inspected",
+    "locations": "Theorem 1 and excess-risk upper-bound section",
+    "supported_change": "Inherited attribution retained; distinguishes universal losslessness and upper bounds from present positive lower certificates."
+  },
+  {
+    "key": "Silva2024",
+    "source": "https://www.jmlr.org/papers/v25/21-1551.html",
+    "access": "Publisher abstract checked; V8 detailed source assessment inherited",
+    "supported_change": "No new theorem-level claim added."
+  },
+  {
+    "key": "Oh2025",
+    "source": "https://www.sciencedirect.com/science/article/pii/S0167865525001679",
+    "access": "Publisher abstract and indexed methods excerpt; V8 detailed assessment inherited",
+    "supported_change": "Existing related-work comparison retained."
+  }
+]

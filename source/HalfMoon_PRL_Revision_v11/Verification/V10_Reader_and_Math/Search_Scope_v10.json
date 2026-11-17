@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-15",
+  "year_priority": [
+    2026,
+    2025,
+    2024
+  ],
+  "foundation_years": [
+    2023,
+    2021
+  ],
+  "screening_register_records": 14,
+  "target_journal_records": 11,
+  "external_records": 3,
+  "representative_queries_actually_run": [
+    "site:sciencedirect.com/journal/pattern-recognition-letters 2026 normalization radial classification geometry",
+    "Pattern Recognition Letters 2026 normalization Bayes",
+    "Pattern Recognition Letters 2026 November representation",
+    "Pattern Recognition Letters 2024 2025 radial projection",
+    "Task-Driven learned image compression with explainability preservation",
+    "A flexible non-monotonic discretization method for pre-processing in supervised learning",
+    "classification radial normalization Bayes 2024 2025 2026",
+    "direction normalization origin classification loss",
+    "one-bit radius classification normalization"
+  ],
+  "direct_journal_guide": "HTTP 403",
+  "journal_guidance_basis": "Archived journal guide plus freshly opened official authorship-and-formatting PDF, Sections 2.1 and 3.3",
+  "coverage": "Targeted relevant frontier screen; not a complete issue-by-issue or worldwide systematic review. Access levels recorded per item; selected excerpts are not counted as full-text reading."
+}

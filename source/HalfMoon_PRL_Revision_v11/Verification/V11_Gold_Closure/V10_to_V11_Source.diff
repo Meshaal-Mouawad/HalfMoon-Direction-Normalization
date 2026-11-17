@@ -1,0 +1,22 @@
+--- V10/theory_main.tex
++++ V11/theory_main.tex
+@@ -96,7 +96,7 @@
+ For the half-annuli, circle tangencies and boundary intersections partition directions into finitely many cells. Radial support order is fixed inside a cell, so one representative ray determines whether opposite preferences coexist. Exact radial primitives then reduce Bayes risk to one angular integral. Ball arithmetic and a bounded-variation truncation bound certify its value. Supplementary Sections~\ref{supp:finite}--\ref{supp:bv} give the finite preservation test, integration formulas and error bounds. At equal priors, the density ratio $f_i^R/f_i^A\in[5/6,5/4]$ also gives $\Delta_R(c)\geq(5/6)\Delta_A(c)$.
+ 
+ \paragraph{One bit repairs the disjoint midpoint representation.}
+-At $h=0.5$, direction alone has positive loss at every origin. At the midpoint $c=(1/2,1/4)$, append the single radial bit $q=\mathbf1\{\|x-c\|>4/5\}$. For $q=0$, the sign of $9u_1+10u_2$ determines the class; for $q=1$, the sign of $u_2-u_1$ determines it. Positive signs identify class~0. Figure~\ref{fig:bit-repair} shows how the radial bit assigns observations to the two angular rules. Both rules separate the complete class supports, giving zero Bayes risk under either sampling law and any positive priors. Supplementary Section~\ref{supp:one-bit} proves the separating inequalities. Since zero additional radial bits leave the positive direction-only floor, one bit is the minimal radial addition at this geometry.
++At $h=0.5$, direction alone has positive loss at every origin. At the midpoint $c=(1/2,1/4)$, append the single radial bit $q=\mathbf1\{\|x-c\|>4/5\}$. For $q=0$, the sign of $9u_1+10u_2$ determines the class; for $q=1$, the sign of $u_2-u_1$ determines it. Positive signs identify class~0. Figure~\ref{fig:bit-repair} shows how the radial bit assigns observations to the two angular rules. Together, the two rules correctly label the complete class supports under their respective bit conditions, giving zero Bayes risk under either sampling law and any positive priors. Supplementary Section~\ref{supp:one-bit} proves the separating inequalities. Since zero additional radial bits leave the positive direction-only floor, one bit is the minimal radial addition at this geometry.
+ 
+ \paragraph{Certified thresholds and radius-error tolerance.}
+ With the same angular rules, recovery is exact precisely for $\alpha\leq t\leq\beta$, where $\alpha\approx0.7433034374$ and $\beta\approx0.8120914734$ (Threshold Addendum, Proposition~1). If the measured radius is $\widehat r=r+e$, $|e|\leq\varepsilon$, every support label is preserved for every admissible error function exactly when
+--- V10/Manuscript.tex
++++ V11/Manuscript.tex
+@@ -52,7 +52,7 @@
+ \section{Conclusion}
+ Changing the normalization origin cannot eliminate classification loss for the proved half-moon configurations. The distant-origin limit and signed-density certificates establish this claim over the entire origin plane. At $h=0.5$, one common-threshold radius bit restores zero Bayes risk over a certified operating interval and achieves the minimum additional radial budget. The same interval determines the largest bounded radius error the fixed decoder tolerates and the threshold maximizing that tolerance. The paired neural studies measure how learned errors relate to these population limits. Together, the results provide a way to diagnose loss before classifier training and to retain precisely the radial information needed for recovery in the constructed geometry.
+ \section*{Data availability}
+-The supplementary research package contains the generators, frozen protocols, numerical certificates, trained weights, predictions and analysis code. The Threshold Addendum and verification scripts provide the threshold-interval and radius-error proofs with reproducible checks.
++The accompanying research-data archive contains the generators, frozen protocols, numerical certificates, trained weights, predictions and analysis code. It also includes the Threshold Addendum and reproducible checks for the threshold interval and radius-error guarantee.
+ \section*{Declaration of generative AI and AI-assisted technologies in the preparation process}
+ During preparation of this work, the author used Elsevier LeapSpace and other tools to support literature discovery, manuscript organization, language refinement, and consistency checking. The author takes responsibility for the content of the article.
+ \bibliographystyle{unsrtnat}

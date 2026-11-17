@@ -1,0 +1,31 @@
+{
+  "elsarticle.zip": {
+    "source_url": "https://assets.ctfassets.net/o78em1y1w4i4/4MpsJHO0MOJ2xZuwGTAbOZ/7bc64af36477c5d6cfce335a1f872363/elsarticle.zip",
+    "size_bytes": 1430199,
+    "sha256": "0b093093e84db49f99bcc9a7c3f69ed1fb61b0147c6d296427aff7963e7f50f6"
+  },
+  "elsevier-logo-3p.pdf": {
+    "source_url": "https://assets.ctfassets.net/o78em1y1w4i4/3ubcaE6PKedY0pzbelNA1t/ee84f4b9999339bbe1269d48297fc3de/elsevier-logo-3p.pdf",
+    "size_bytes": 1496269,
+    "sha256": "e74c837045d7baa1c7b8eb8a5079b02aa28db8a58e114c1b27ddc69a9f9d6fa6"
+  },
+  "prletters.sty": {
+    "source_url": "https://raw.githubusercontent.com/shachen/PLDS/master/Draft/prletters.sty",
+    "size_bytes": 6936,
+    "sha256": "3fb15a483f1c5e48d47e76ce058a1a4a4e7227f4906bb2027dfa2429d2f3eff4"
+  },
+  "elsevier-logo.eps": {
+    "source_url": "https://raw.githubusercontent.com/shachen/PLDS/master/Draft/elsevier-logo.eps",
+    "size_bytes": 41666,
+    "sha256": "ef11a87162c9e0433dc223a26d985c4852849a52a7b219ffede3b6d4b9b72acd"
+  },
+  "elsarticle.cls": {
+    "source": "Generated with official elsarticle.ins from official elsarticle.dtx",
+    "sha256": "01addb492c5d075b320636ac3a30d8a5762fa937220dea07a5e107042d25384d",
+    "version": "3.4 (2024/04/04)"
+  },
+  "elsevier-logo.pdf": {
+    "source": "Ghostscript EPS-to-PDF conversion of unchanged mirrored Elsevier EPS; -dEPSCrop",
+    "sha256": "0e37939a0e9ef403ead65093da40b68a616e68b81a9bdaaa40006aeb05d688b8"
+  }
+}

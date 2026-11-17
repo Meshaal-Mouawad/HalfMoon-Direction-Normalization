@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\R}{\mathbb R}
+\numberwithin{equation}{section}
+\title{Threshold Addendum:\\Exact threshold interval and radius-error tolerance}
+\author{Meshaal Mouawad\\Department of Electrical and Computer Engineering\\Mississippi State University\\\texttt{mm4922@msstate.edu}}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+The one-bit decoder in \emph{Global loss bounds and one-bit recovery for direction-normalized half-moons} remains exact for a nonzero interval of common radius thresholds. We derive the maximal interval for its fixed pair of angular rules and prove failure of that decoder outside the interval. The interval also determines the sharp tolerance to bounded radius-measurement error and the threshold that maximizes that tolerance.
+\end{abstract}
+\section{Setting and result}
+At vertical displacement $h=1/2$, let
+\begin{align}
+S_0&=\{(x,y):16/25<x^2+y^2<36/25,\ y>0\},\nonumber\\
+S_1&=(1,1/2)-S_0,\qquad c=(1/2,1/4).
+\end{align}
+These open supports are disjoint. For $v=(x,y)-c$, put $r=\|v\|$ and $u=v/r$. The midpoint is outside both supports, so $r>0$. For any threshold $t\geq0$, retain $q_t=\mathbf1\{r>t\}$ and apply the fixed decoder
+\begin{equation}
+D_t(u,q_t)=
+\begin{cases}
+0,&q_t=0\ \text{and}\ 9u_1+10u_2>0,\\
+0,&q_t=1\ \text{and}\ u_2-u_1>0,\\
+1,&\text{otherwise}.
+\end{cases}\label{eq:decoder}
+\end{equation}
+\begin{proposition}[Sharp threshold interval for the fixed decoder]\label{prop:interval}
+The decoder \eqref{eq:decoder} correctly labels every point of $S_0\cup S_1$ if and only if
+\begin{equation}
+\alpha\leq t\leq\beta,\qquad
+\alpha=\frac{\sqrt{221}}{20},\quad
+\beta=\sqrt{\frac{29761+440\sqrt{1671}}{72400}}.
+\label{eq:interval}
+\end{equation}
+Numerically, $\alpha\approx0.7433034374$ and $\beta\approx0.8120914734$. Thus every threshold in $[0.75,0.81]$, including the experimental value $t=0.8$, gives zero Bayes risk when appended to exact direction. This holds for any positive class priors and any class-conditional densities supported on the respective sets. For $t<\alpha$ or $t>\beta$, this fixed decoder misclassifies an open subset of a class support, hence has positive error whenever its class density is positive almost everywhere.
+\end{proposition}
+\section{Proof}
+Reflection about $c$ sends $S_0$ to $S_1$, preserves $r$ and reverses both linear decision scores. It suffices to show that both selected scores are strictly positive for class~0 and to construct strict counterexamples outside the interval.
+
+\paragraph{Near-rule error points are farther than $\beta$.}
+For class~0 the near score is nonpositive exactly when $9x+10y\leq7$. Write $(x,y)=s(\cos\theta,\sin\theta)$, where $4/5<s<6/5$ and $0<\theta<\pi$. The squared distance to the midpoint is
+\begin{equation}
+F(s,\theta)=s^2+\frac5{16}-s\left(\cos\theta+\frac12\sin\theta\right),
+\qquad
+\partial_s F\geq\frac85-\frac{\sqrt5}{2}>0.
+\label{eq:radial}
+\end{equation}
+If $s(9\cos\theta+10\sin\theta)\leq7$, replacing $s$ by $4/5$ preserves that inequality. The feasible angles on the inner semicircle satisfy
+\[
+9\cos\theta+10\sin\theta\leq35/4.
+\]
+Since the left side starts at $9$, increases to its unique maximum, and then decreases to $-9$, the feasible interval is $[\theta_*,\pi]$, with $\theta_*>\pi/2$. On this interval $\cos\theta+(1/2)\sin\theta$ strictly decreases. Consequently $F(4/5,\theta)$ is minimized at $\theta_*$. Its corresponding point is the upper-half-plane intersection
+\begin{equation}
+x_*^2+y_*^2=\frac{16}{25},\quad 9x_*+10y_*=7,\qquad
+x_*=\frac{63-2\sqrt{1671}}{181},\quad
+y_* =\frac{350+9\sqrt{1671}}{905}.
+\end{equation}
+Direct substitution gives
+\begin{equation}
+F(4/5,\theta_*)=(x_*-1/2)^2+(y_*-1/4)^2
+=\frac{29761+440\sqrt{1671}}{72400}=\beta^2.
+\end{equation}
+The strict inner-radius inequality and \eqref{eq:radial} imply $r>\beta$ at every near-rule error point in $S_0$. Therefore no such point is assigned to the near rule when $t\leq\beta$.
+
+\paragraph{Far-rule error points are nearer than $\alpha$.}
+The far score is nonpositive exactly when $x-y\geq1/4$. Consider the compact convex cap
+\[
+C=\{(x,y):y\geq0,\ x-y\geq1/4,\ x^2+y^2\leq36/25\}.
+\]
+Its boundary consists of an outer-circle arc and two straight segments. The noncircular vertex $(1/4,0)$ has squared distance $1/8$ from $c$. On the arc, $(x,y)=(6/5)(\cos\theta,\sin\theta)$ with $0\leq\theta<\pi/4$. Since $\cos\theta+(1/2)\sin\theta\geq1$ there,
+\begin{equation}
+r^2=\frac{701}{400}-x-\frac12y\leq\frac{221}{400}=\alpha^2.
+\end{equation}
+Equality on the arc occurs only at $(6/5,0)$. Convexity of the squared distance bounds each straight segment by its endpoint values and bounds the cap by its boundary. The unique maximizer $(6/5,0)$ is outside $S_0$; thus every far-rule error point in $S_0$ satisfies $r<\alpha$. It cannot enter the far bin $r>t$ when $t\geq\alpha$. Together with the near-rule result and reflection, this proves sufficiency, including both endpoints.
+
+\paragraph{Both endpoints are sharp.}
+For $t<\alpha$, points of $S_0$ sufficiently close to $(6/5,0)$ have $r>t$ and $x-y>1/4$. They therefore enter the far bin with a strictly negative score. For $t>\beta$, approach $(x_*,y_*)$ from $s>4/5$ and $\theta>\theta_*$. Increasing $\theta$ sufficiently relative to the radial increment ensures $9x+10y<7$, because $\partial_\theta(9\cos\theta+10\sin\theta)<0$ at $\theta_*$. By continuity, such interior points also have $r<t$. They enter the near bin with a strictly negative score. In each case all relevant inequalities are strict at the constructed point, so an open neighborhood shares its error. This proves necessity.\hfill$\square$
+
+
+\clearpage
+\begin{corollary}[Sharp bounded-radius-error guarantee]\label{cor:radius-error}
+Retain the setting and exact direction in Proposition~\ref{prop:interval}. Let $t\in[\alpha,\beta]$, $\varepsilon\geq0$, $\widehat r(x)=r(x)+e(x)$ with $|e(x)|\leq\varepsilon$, and $\widehat q_t(x)=\mathbf1\{\widehat r(x)>t\}$. The fixed decoder \eqref{eq:decoder}, applied to $(u,\widehat q_t)$, correctly labels every support point for every such error function if and only if
+\begin{equation}
+\alpha+\varepsilon\leq t\leq\beta-\varepsilon.
+\label{eq:error-margin}
+\end{equation}
+Thus the largest guaranteed absolute radius error at threshold $t$ is
+\begin{equation}
+\varepsilon_{\max}(t)=\min\{t-\alpha,\beta-t\}.
+\end{equation}
+Its unique maximum occurs at
+\begin{equation}
+\begin{split}
+t_\star&=(\alpha+\beta)/2\approx0.7776974554,\\
+\varepsilon_\star&=(\beta-\alpha)/2\approx0.0343940180.
+\end{split}
+\end{equation}
+At the experimental threshold $t=0.8$, the guaranteed tolerance is $\beta-0.8\approx0.0120914734$. Errors and tolerances are measured in the coordinate units of the radius.
+\end{corollary}
+\begin{proof}
+For each support point,
+\[
+\widehat q_t(x)=\mathbf1\{r(x)>t-e(x)\}.
+\]
+Condition~\eqref{eq:error-margin} places every effective threshold $t-e(x)$ in $[\alpha,\beta]$. Proposition~\ref{prop:interval} gives the correct decision at every support point for every threshold in that interval, so it applies pointwise even when $e$ varies with $x$.
+
+If $t-\varepsilon<\alpha$, the admissible constant error $e(x)=\varepsilon$ gives an effective threshold below $\alpha$. If $t+\varepsilon>\beta$, the admissible constant error $e(x)=-\varepsilon$ gives one above $\beta$. The endpoint constructions in the proposition's proof supply an open misclassified subset in either case. This establishes necessity and sharpness, including equality in~\eqref{eq:error-margin}. The two affine margins $t-\alpha$ and $\beta-t$ agree only at their midpoint; their minimum is uniquely maximized there.
+\end{proof}
+
+\section{Consequence and reproducible checks}
+The threshold is a geometric design parameter with a certified operating interval. The all-origin loss theorem in the main article excludes zero additional radial bits at $h=1/2$. Proposition~\ref{prop:interval} supplies one-bit recovery throughout \eqref{eq:interval}; the minimum additional radial budget remains one bit.
+
+The inherited V8 script \texttt{verify\_threshold\_interval.py} checks the endpoint identities symbolically, checks an interior grid of 482,482 constructed points at six thresholds, and constructs strict error points immediately outside both endpoints. When supplied the original archive, at the same six thresholds it replays the ten unchanged test arrays (500,000 observations in total) from \texttt{HalfMoon\_PRL\_Reproducibility\_v3.zip}; the preserved V8 record reports zero decoder errors in each replay. These computations check the implementation of the separately proved result. The neural experiments in the main article use $t=0.8$. The V9 script \texttt{verify\_radius\_error.py} checks the exact tolerance identities, worst-bin decisions on a constructed interior grid, and strict counterexamples beyond each guaranteed error margin. Its fresh output is separate from the inherited V8 replay record.
+
+\paragraph{Limitations.}
+The interval is maximal for the fixed angular rules in \eqref{eq:decoder}, at the specified midpoint and geometry. Optimal recovery intervals over alternative decoders or other centers are separate questions. The radius-error corollary permits bounded error only in the radius measurement; it retains the fixed midpoint and exact direction. Replaying existing observations supplies no additional independent neural-training replicates.
+\end{document}

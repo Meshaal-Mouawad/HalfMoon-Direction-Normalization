@@ -1,0 +1,53 @@
+\documentclass[10 pt,a 4 paper]{article}
+\usepackage[margin=24 mm]{geometry}
+\usepackage[T 1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,longtable,graphicx,microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{xurl}
+\graphicspath{{../Figures/}}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\title{Supplementary material: Global loss bounds and one-bit recovery for direction-normalized half-moons}
+\author{Meshaal Mouawad}
+\date{}
+\begin{document}
+\maketitle
+\noindent This supplement supplies complete proofs, numerical certification, experimental details and additional results for the main article. The accompanying reproducibility archive contains machine-readable outputs and the exact implementation. Manuscript displacement $h$ corresponds to the archived generator's gap parameter through $h=-g$.
+\input{supplement_theory}
+\input{projection_limit_supplement}
+\input{constructive_global_floor_supplement}
+\input{one_bit}
+\section{Numerical evaluation and independent checks}
+The 18 directional conditions comprise two sampling densities, three displacements and three fixed origins. Adaptive angular quadrature splits at geometric events and evaluates exact radial primitives. The rigorous reference uses 96-bit Arb arithmetic with analytic bounded-variation truncation bounds. The largest propagated loss-interval width is $9.99\times 10^{-5}$ in probability, approximately $0.010$ percentage points. Table~\ref{tab:oracles} gives the population risks. Exact separating-strip controls have zero loss.
+
+A separate outer-disk-minus-inner-disk formula agreed with angular densities to $8.88\times 10^{-16}$. Independent checks reproduced representative complete Arb sums and both nonzero raw-risk certificates, and verified 120 radial integrals including 12 collinear cases. Fresh Monte Carlo evaluation used 200,000 observations per class for each density--displacement pair; the largest absolute standardized difference from integrated risk was $2.73$. All primary adaptive risks lie within the certified intervals. The $31\times 31$ origin grids use midpoint angular quadrature checked by grid refinement; their maximum checked refinement difference was $2.36\times 10^{-5}$. Exact raw-coordinate, affine, radius-restoration, translation, identical-class and concentric-class controls accompany these checks.
+\input{supplement_tables}
+\section{Frozen training and analysis protocol}
+Each replicate pairs a dataset seed and a network initialization. Random streams use NumPy SeedSequence with entropy components $[641203,\mathrm{phase},\mathrm{geometry},\mathrm{seed},\mathrm{split}]$. Development and final phases have codes 101 and 202; training, validation and test splits have codes 0,1 and 2. Initializations use $[641203,\mathrm{phase},9,\mathrm{seed}]$. A shared $3\times 64$ hidden-weight array and a shared 64-element output array are sampled from $N(0,0.1^2)$; hidden biases and the output bias start at zero. Two-input conditions use the first two input rows, and width 15 uses the first 15 units. This pairs initializations without using test information.
+
+Area-uniform generation samples squared radius uniformly on $(a^2,b^2)$ and angle uniformly on $(0,\pi)$, then reflects/translates the lower class. Training and validation each contain 1,000 observations per class; each test set contains 25,000 per class. The main width 64 networks have 257 parameters for two inputs and 321 for direction plus radius. Width 15 networks have 61 and 76 parameters, respectively. The matched architectural factor is hidden width. Conditioning computes each feature's mean and standard deviation on the training split only and applies the same invertible affine map to validation and test observations.
+
+The separate development run completed 48 fits and selected 24 models without test data. The final design completed 420 fits and selected 210 models. All candidate histories retain 81 validation checkpoints, including initialization. Checkpoint selection is lexicographic by validation error, validation MSE, update number and learning rate. All candidates execute 4,000 full-batch Adam updates even when the selected checkpoint is earlier. The network source, training protocol, analysis source, selections and oracle companion were frozen before final test release. Full-batch gradients independently matched central finite differences to maximum absolute error $2.71\times 10^{-10}$.
+
+The primary six-contrast family compares midpoint-minus-zero and upper-minus-zero direction errors at each displacement. Seed differences, rather than individual test observations, are the inference units. The Bonferroni interval is $\bar d\pm t_{9,1-0.05/12}s_d/\sqrt{10}$. Pointwise Student-$t$ and 10,000 whole-seed percentile-bootstrap intervals are also retained. A common bootstrap index matrix preserves pairing across conditions and geometries. Secondary comparisons retain signed excess estimates, with no clipping. Deterministic integration enclosures, class-stratified test Monte Carlo standard errors, between-seed variation and model-minus-empirical-oracle differences are stored separately.
+
+An independent completion audit reconstructed every selected neural score array bitwise exactly, all 420 candidate validation minima, all 210 selections and their validation values, the six primary contrasts, 10,000 bootstrap resamples, 84 aggregate rows, 12 diagnostics, 60 primary seed differences and 18 secondary contrasts. Independent ray integration reproduced all 150 empirical Bayes decision arrays, with maximum density-difference discrepancy $6.05\times 10^{-12}$. Training took 1,268.01 seconds; neural evaluation 11.61 seconds and paired oracle evaluation 5.72 seconds on the recorded CPU runtime.
+\section{Additional experimental results}
+\input{experimental_sections}
+\HalfMoonOriginContrastTable
+\begin{figure}[htbp]\centering\includegraphics[width=\textwidth]{Fig2_Origin_Loss.pdf}\caption{Area-uniform representation loss across a $31\times31$ origin grid for each displacement. D0, DM and DA are the prespecified neural origins. Grid values use midpoint angular quadrature checked by refinement; marked origins also have rigorous risk enclosures.}\label{fig:originmap}\end{figure}
+Table~\ref{tab:diagnostic-supp} reports the capacity, conditioning and radius-retention contrasts. Figure~\ref{fig:neural-supp} displays each seed's error alongside its population floor. Figure~\ref{fig:contrast-supp} compares the learned contrasts and deterministic population contrasts. Figure~\ref{fig:density-supp} shows that changing the sampling measure changes loss even on identical supports. All tested positive density-loss differences range from approximately 0.0813 to 0.2278 percentage points, with their propagated integration intervals excluding zero.
+\begin{figure}[htbp]\centering\includegraphics[width=\textwidth]{Neural_Error_and_Oracle_Floors_h.pdf}\caption{All ten seed outcomes for the 15 primary conditions. Horizontal bars are population Bayes risks; diamonds are neural means.}\label{fig:neural-supp}\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=\textwidth]{Origin_Contrast_Intervals_h.pdf}\caption{Six primary learned origin contrasts with simultaneous 95\% paired-$t$ intervals and the corresponding population Bayes-risk differences.}\label{fig:contrast-supp}\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=\textwidth]{Density_Control.pdf}\caption{Sampling density and representation loss. (A) Radius distributions for uniform-area and uniform-radius sampling. (B) Change in population loss after replacing uniform area by uniform radius; error bars propagate certified integration intervals. This figure retains the archived gap notation $g=-h$.}\label{fig:density-supp}\end{figure}
+\input{one_bit_experiment_supplement}
+\section{Reproduction and provenance}
+The archive contains \texttt{research/neural}, \texttt{research/oracles}, \texttt{research/literature}, and the analytical proofs. The neural folder preserves generated observations, all candidate training histories and optimizer checkpoints, selected weights, test scores, analysis tables, frozen manifests, independent audit records and SHA-256 checksums. The oracle folder contains exact radial integration, finite sign tests, Arb certificates, origin grids and structural controls. The literature folder contains bibliographic metadata and original audit notes. Source articles are identified through their publication links.
+
+Run the documented analysis command against the saved test results to regenerate tables. The independent completion-audit script reconstructs predictions and statistics from saved weights and observations. The release and completion audits verify protocol, data, model and output hashes; the training runner resumes saved optimizer checkpoints. The README states environment versions, clean rerun options and build order for the article and supplement. Reproducing training can vary in wall time across hardware; the completed audit establishes exact prediction and analysis reconstruction in the recorded environment.
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}

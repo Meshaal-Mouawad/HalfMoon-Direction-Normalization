@@ -1,0 +1,11 @@
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+__pycache__/
+.pytest_cache/
+.venv/
