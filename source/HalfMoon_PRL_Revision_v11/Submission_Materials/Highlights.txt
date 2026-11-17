@@ -1,5 +1,0 @@
-- Distant-origin Bayes risk converges uniformly to orthogonal-projection risk.
-- Connected decision regions yield explicit loss bounds over every origin.
-- One radial bit restores midpoint half-moon decisions over an exact interval.
-- The sharp interval gives a maximal bounded-radius-error guarantee.
-- One-bit networks make three errors across 500,000 test observations.

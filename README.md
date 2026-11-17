@@ -1,21 +1,37 @@
-# Half-Moon Direction Normalization
+# Global loss bounds and one-bit recovery for direction-normalized half-moons
 
-Research by Dr. Meshaal Mouawad.
+Author: Meshaal Mouawad
+Target journal: Pattern Recognition Letters (Elsevier)
 
-Target journal: Pattern Recognition Letters (Elsevier).
+## Journal submission
 
-## Research package
+The final prepared files are in:
 
-- `source/`: V11 manuscript materials, LaTeX,
-  figures, supplementary files and included code.
-- `archive/`: original V11 research archives.
-- `checksums/`: SHA-256 file manifest.
-- `submission/`: journal submission staging folder.
+submission/PRL_V11_Final/Journal_Upload/
 
-The research-data archive is distributed through
-the versioned GitHub Release assets.
+Editable LaTeX and figures are also available under
+submission/PRL_V11_Final/.
 
-## Reproducibility
+## Research data
 
-Use the instructions supplied in the V11 research
-package. The original research files are preserved.
+Public research-data and revision archives:
+
+https://github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/releases/tag/v11-submission
+
+## Provenance
+
+The research originated from Project 1:
+Half-Moon Pattern Classification, completed for ECE 8493
+at Mississippi State University on February 18, 2026.
+
+The original MATLAB implementation is preserved locally
+with its associated data and the original coursework.
+
+The available materials do not establish code authorship
+by Dr. Du.
+
+## Status
+
+Technical package prepared.
+Final author forms and publisher declarations pending.
+No journal submission has been made.

@@ -10,3 +10,17 @@ __pycache__/
 .pytest_cache/
 .venv/
 /archive/HalfMoon_PRL_Research_Data_v11.zip
+
+# Local research evidence and historical archives
+/source/
+/archive/
+/checksums/
+/_local_evidence/
+/_local_cleanup/
+
+# Generated LaTeX intermediates
+*.aux
+*.log
+*.out
+*.abs
+*.blg

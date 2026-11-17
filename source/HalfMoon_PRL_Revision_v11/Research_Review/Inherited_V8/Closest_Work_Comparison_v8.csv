@@ -1,9 +1,0 @@
-Study,Venue,Established capability,Question answered here,Decision
-Poblete et al. (2026),Pattern Recognition Letters,Fixed embedding geometry and classifier choice,Moving-origin information loss at the population level,"Implicit, supported within inspected scope"
-Ahmadian & Lindsten (2025),Pattern Recognition Letters,Normalization/kernel effects in time-series OOD scoring,Exact zero-one loss over all normalization origins,"Implicit, supported within inspected scope"
-Oh (2025),Pattern Recognition Letters,Discriminative linear projection design,Unbounded radial-origin family and projection boundary,"Implicit, supported within inspected scope"
-"Silva & Narayanan (2012); Silva et al. (2024, 2025)",Pattern Recognition; JMLR; Signal Processing,Representation risk and decision/information sufficiency,Explicit geometric all-origin floor and constructive radius code,General sufficiency gap closed; specialization retained
-Györfi et al. (2023),Entropy,Losslessness for all losses; information-based upper bounds,Positive lower certificates uniformly over moving origins,New central comparison
-Oehler & Gray (1995); Dubois et al. (2021),IEEE TPAMI; NeurIPS,Decision-aware quantization and predictive compression,Restricted common radial threshold with exact support-wide decoding,Generic one-bit claim rejected; constrained construction retained
-Hurtado et al. (2001); Orponen (2019),Discrete Applied Mathematics; Analysis & PDE,Wedge geometry; radial projections viewed from infinity,Probability-mass cancellation and uniform Bayes-risk convergence,Geometric facts credited; risk statement distinguished
-Ni et al. (2024),ICML,Finite-sample expressive power of affine-normalization networks,Continuous-population preservation for a fixed input map,"Different mathematical question, not a method failure"
