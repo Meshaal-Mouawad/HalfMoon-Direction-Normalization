@@ -1,0 +1,60 @@
+\documentclass[a4paper,fleqn]{cas-dc}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{amsmath,amssymb,booktabs,microtype}
+\usepackage{graphicx,xr,xurl}
+\hypersetup{pdfauthor={Meshaal Mouawad},pdfsubject={Half-moon classification and representation loss},pdfcreator={LaTeX3; cas-dc.cls; hyperref.sty}}
+\externaldocument{Supplement_labels}
+\graphicspath{{../Figures/}}
+\newcommand{\R}{\mathbb R}
+% Use the publisher's nologo title option to keep the submission source flat.
+\ExplSyntaxOn
+\keys_set:nn { stm / mktitle } { nologo = true }
+\ExplSyntaxOff
+\input{narrative_sections}
+\begin{document}
+\let\WriteBookmarks\relax
+\renewcommand{\printorcid}{}
+\shorttitle{Global loss bounds and one-bit recovery}
+\shortauthors{M. Mouawad}
+\title[mode=title]{Global loss bounds and one-bit recovery for direction-normalized half-moons}
+\author[1]{Meshaal Mouawad}
+\cormark[1]
+\ead{mm4922@msstate.edu}
+\affiliation[1]{organization={Department of Electrical and Computer Engineering, Mississippi State University},addressline={216 Simrall Hall, 406 Hardy Road},city={Mississippi State},state={MS},postcode={39762},country={USA}}
+\cortext[1]{Corresponding author.}
+\begin{abstract}
+Direction normalization suppresses scale variation by retaining an observation's direction and discarding its distance from a chosen origin. When distance distinguishes classes, this compression can remove information that no classifier can recover. We investigate whether changing the origin prevents that loss and how little radial information restores the decision when it cannot. For absolutely continuous binary populations in dimension at least two, we prove that directional Bayes risk converges uniformly at distant origins to orthogonal-projection risk. This limit yields a criterion for unavoidable loss over every origin; planar signed-density regions provide computable lower certificates. A specified half-moon family exhibits positive global loss throughout a proved range of disjoint configurations and in an overlapping configuration. For one disjoint configuration, a shared near/far radius bit restores every class decision. Its exact threshold interval also gives a sharp radius-error tolerance. Controlled neural studies comprise 500 candidate fits and 250 selected evaluations. In the repair experiment, direction-only error is $10.8724\%$; one-bit networks make three errors across 500,000 observations ($0.0006\%$). The results connect geometric information loss, a minimal radial repair and its measurement accuracy.
+\end{abstract}
+\begin{keywords}
+Direction normalization \sep Bayes risk \sep Half-moon classification \sep Spatial sign \sep Radial quantization \sep Neural networks
+\end{keywords}
+\maketitle
+% Keep short multi-line mathematical definitions on a single page.
+\interdisplaylinepenalty=10000
+\hypersetup{pdfauthor={Meshaal Mouawad},pdfsubject={Half-moon classification and representation loss},pdfcreator={LaTeX3; cas-dc.cls; hyperref.sty}}
+\HalfMoonIntroduction
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{Fig1_Geometry.pdf}
+\caption{Half-moon geometry and the effect of radial removal. Blue and orange indicate the two class supports; crosses mark the illustrated origin. The vertical displacement between class centers is $h$. (A) At $h=0$, the sign of the vertical direction preserves the label. (B) At $h=0.5$, one illustrated ray crosses both labels; the theorem establishes positive loss for every origin. Colored ray segments are exact support intersections. (C) At $h=1$, the original classes overlap, and normalization adds further ambiguity. The diagrams explain the mechanism; population risks are computed separately.}\label{fig:geometry}
+\end{figure*}
+\HalfMoonBackground
+\input{theory_main}
+\begin{figure*}[t]
+\centering\includegraphics[width=.84\textwidth]{Fig2_One_Bit_Recovery.pdf}
+\caption{Exact one-bit recovery at $h=0.5$. The same radius threshold, $0.8$ about $c=(0.5,0.25)$, applies to every direction. (A) Inside the threshold, $9u_1+10u_2$ separates the two classes. (B) Outside it, $u_2-u_1$ separates them. Blue denotes class 0 and orange class 1. Each panel shows the portion of the original supports assigned to that radial code; the dashed line is its angular decision boundary. Direction together with the bit determines the class.}\label{fig:bit-repair}
+\end{figure*}
+\input{experimental_sections}
+\HalfMoonExperiments
+\input{one_bit_experiment}
+\HalfMoonDiscussion
+\subsection{Limitations}
+The half-moon results use two-dimensional half-annular supports and exact direction normalization. The general projection-limit theorem covers absolutely continuous binary populations; the explicit global certificates require connected signed-density cores and are conservative lower bounds. The one-bit construction, fixed-decoder threshold interval and radius-error guarantee use $h=0.5$, the fixed midpoint and exact direction. Neural inference uses ten replicates per experiment, equal priors, area-uniform sampling and one hidden-layer learner with a fixed training budget. The radius-uniform comparison concerns population risks. Learned excess combines finite-sample, approximation and optimization effects.
+\section{Conclusion}
+Changing the normalization origin cannot eliminate classification loss for the proved half-moon configurations. The distant-origin limit and signed-density certificates establish this claim over the entire origin plane. At $h=0.5$, one common-threshold radius bit restores zero Bayes risk over a certified operating interval and achieves the minimum additional radial budget. The same interval determines the largest bounded radius error the fixed decoder tolerates and the threshold maximizing that tolerance. The paired neural studies measure how learned errors relate to these population limits. Together, the results provide a way to diagnose loss before classifier training and to retain precisely the radial information needed for recovery in the constructed geometry.
+\section*{Data availability}
+The accompanying research-data archive contains the generators, frozen protocols, numerical certificates, trained weights, predictions and analysis code. It also includes the Threshold Addendum and reproducible checks for the threshold interval and radius-error guarantee.
+\section*{Declaration of generative AI and AI-assisted technologies in the preparation process}
+During preparation of this work, the author used Elsevier LeapSpace and other tools to support literature discovery, manuscript organization, language refinement, and consistency checking. The author takes responsibility for the content of the article.
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}

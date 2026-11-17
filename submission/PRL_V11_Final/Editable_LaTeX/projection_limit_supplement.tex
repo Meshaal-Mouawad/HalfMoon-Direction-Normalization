@@ -1,0 +1,106 @@
+% New supplementary fragment; independent of the quantitative core-bound theorem.
+\section{Distant origins, linear projections and a global loss criterion}
+\label{supp:projection-boundary}
+
+An origin moving away from a bounded population views it through increasingly parallel rays. The geometric interpretation of orthogonal projections as radial projections from infinity is established \citep{Orponen2019}. We prove uniform convergence of the corresponding Bayes risks, including for unbounded absolutely continuous populations, and use it to characterize a positive global loss floor.
+
+Let $f_0,f_1$ be probability densities on $\mathbb R^n$, $n\geq2$, with positive priors summing to one. Write $d=\pi_0f_0-\pi_1f_1\in L^1(\mathbb R^n)$. For a measurable representation $F$, denote the pushforward signed measure by $F_\#d$ and its total variation norm by $\|F_\#d\|_{\rm TV}$. Our norm convention is the integral of the absolute signed density, rather than half that integral. Binary Bayes risk satisfies
+\begin{equation}
+ R_F^*=\frac{1-\|F_\#d\|_{\rm TV}}2,
+ \qquad
+ \Delta_F=\frac{\|d\|_1-\|F_\#d\|_{\rm TV}}2.
+ \label{supp:eq:signed-push-risk}
+\end{equation}
+Pushforward contracts this norm: $\|F_\#(d-g)\|_{\rm TV}\leq\|d-g\|_1$.
+
+Fix $p\in\mathbb R^n$. For a unit vector $e$, let $P_e x=x-(e^\top x)e$ be the orthogonal projection onto $e^\perp$. Translating its output by $-P_ep$ leaves its Bayes risk unchanged.
+
+\paragraph{Theorem S1 (uniform projection limit).}
+For the populations above,
+\begin{equation}
+ \lim_{R\to\infty}\sup_{e\in\mathbb S^{n-1}}
+ \left|R^*_{T_{p+Re}}-R^*_{P_e}\right|=0.
+ \label{supp:eq:uniform-projection-limit}
+\end{equation}
+
+\emph{Proof.}
+First let $g$ be a smooth signed density supported in $B(p,M)$ and take $R>M$. Use coordinates $x=p+se+t$, where $t\in e^\perp$, and write $g_e(s,t)=g(p+se+t)$. The direction $u=T_{p+Re}(x)$ satisfies $e^\top u<0$ and determines
+\[
+ z=-R\frac{P_eu}{e^\top u}
+   =\frac{t}{1-s/R}\in e^\perp.
+\]
+Conversely, $z$ determines $u$ in this hemisphere. Thus this slope representation and direction have pushforward signed measures with identical total variation norms. With $k=n-1$ and $a_s=1-s/R>0$, the slope and projection signed densities are
+\begin{align*}
+ Q_{R,e}g(z)&=\int a_s^k g_e(s,a_sz)\,ds,\\
+ Q_{\infty,e}g(z)&=\int g_e(s,z)\,ds.
+\end{align*}
+For a smooth function $w$ on $\mathbb R^k$, differentiating the dilation $D_aw(z)=a^kw(az)$ and integrating its derivative gives
+\[
+ \|D_aw-w\|_1
+ \leq |\log a|\,\|kw+t^\top\nabla w\|_1.
+\]
+Indeed, the derivative's $L^1$ norm is $a^{-1}\|kw+t^\top\nabla w\|_1$ after a change of variables. On the support, $|s|,\|t\|\leq M$, and
+$|\log(1-s/R)|\leq M/(R-M)$. Integrating over $s$ yields the uniform bound
+\begin{equation}
+ \|Q_{R,e}g-Q_{\infty,e}g\|_1
+ \leq\frac{M}{R-M}
+ \bigl((n-1)\|g\|_1+M\|\nabla g\|_1\bigr).
+ \label{supp:eq:smooth-projection-bound}
+\end{equation}
+The difference between the two signed-pushforward norms is at most this quantity.
+
+For arbitrary $d\in L^1$, choose $g\in C_c^\infty$ with $\|d-g\|_1<\varepsilon$. Applying pushforward contraction to the two representations gives
+\begin{align*}
+ &\left|\|(T_{p+Re})_\#d\|_{\rm TV}
+                  -\|(P_e)_\#d\|_{\rm TV}\right|\\
+ &\qquad\leq 2\varepsilon
+ +\left|\|(T_{p+Re})_\#g\|_{\rm TV}
+                  -\|(P_e)_\#g\|_{\rm TV}\right|.
+\end{align*}
+The last term tends to zero uniformly in $e$ by~\eqref{supp:eq:smooth-projection-bound}. Take the supremum, then $R\to\infty$ and $\varepsilon\to0$, and apply~\eqref{supp:eq:signed-push-risk}.\hfill$\square$
+
+\paragraph{Theorem S2 (exact global-floor criterion).}
+Put $\Delta_\infty(e)=R^*_{P_e}-R_X^*$. Then
+\begin{equation}
+ \inf_{c\in\mathbb R^n}\Delta(c)>0
+ \quad\Longleftrightarrow\quad
+ \begin{cases}
+ \Delta(c)>0&\text{for every }c\in\mathbb R^n,\\
+ \Delta_\infty(e)>0&\text{for every }e\in\mathbb S^{n-1}.
+ \end{cases}
+ \label{supp:eq:global-criterion}
+\end{equation}
+
+\emph{Proof.}
+Finite-origin continuity follows from translation continuity in $L^1$ and pushforward contraction. The scalar function $e\mapsto\Delta_\infty(e)$ is continuous by $L^1$ continuity of rotations and contraction under projection. Its value is independent of the orthonormal basis used on $e^\perp$. Map $c-p$ to $(c-p)/(1+\|c-p\|)$, identifying finite origins with the open unit ball. Complete the boundary with the values $\Delta_\infty(e)$. The uniform limit~\eqref{supp:eq:uniform-projection-limit} makes the extension continuous on the closed unit ball. Positivity throughout this compact set is equivalent to a strictly positive minimum. The finite origins are dense in the completed domain, so their loss infimum equals this minimum.\hfill$\square$
+
+\paragraph{Corollary S1 (connected planar winner regions).}
+In $n=2$, suppose connected open sets $U_+,U_-$ satisfy $d>0$ almost everywhere on $U_+$, $d<0$ almost everywhere on $U_-$, and
+\[
+ U_+\cap\operatorname{int}\operatorname{conv}(U_-)\ne\varnothing,
+ \qquad
+ U_-\cap\operatorname{int}\operatorname{conv}(U_+)\ne\varnothing.
+\]
+Then $\inf_c\Delta(c)>0$.
+
+\emph{Proof.}
+The planar wedge-separation argument in Supplementary Section~\ref{supp:geometry}, adapted from \citet{Hurtado2001}, gives $\Delta(c)>0$ for every finite origin. The images $P_e(U_+)$ and $P_e(U_-)$ are open intervals because each set is open and connected. A point of $U_+\cap\operatorname{int}\operatorname{conv}(U_-)$ projects into the interior of both intervals, since projection commutes with convex hull. Their overlap is therefore a nonempty open interval. By Fubini's theorem, almost every line with projected coordinate in this interval carries both positive and negative signed mass. The projection cancellation identity, obtained from~\eqref{supp:eq:signed-push-risk}, gives $\Delta_\infty(e)>0$. Apply~\eqref{supp:eq:global-criterion}.\hfill$\square$
+
+The half-moon sets in Supplementary Sections~\ref{supp:geometry}--\ref{supp:overlap} meet these conditions. Consequently, the global positive-infimum conclusion holds for every fixed $0<h\leq\sqrt{3/5}$ and at $h=1$, with arbitrary positive priors and arbitrary densities positive almost everywhere on the respective supports. Each population has its own positive loss floor.
+
+\paragraph{An explicit rate for bounded variation.}
+Suppose additionally that $d$ is supported in the closed ball $B(p,M)$ and has bounded variation $|Dd|(\mathbb R^n)$. Mollify $d$, apply~\eqref{supp:eq:smooth-projection-bound} on $B(p,M+\varepsilon)$, use $\|\nabla d_\varepsilon\|_1\leq|Dd|(\mathbb R^n)$, and let $\varepsilon\downarrow0$. This proves, uniformly in $e$ and for $R>M$,
+\begin{equation}
+ \left|R^*_{T_{p+Re}}-R^*_{P_e}\right|
+ \leq\frac{M}{2(R-M)}
+ \bigl((n-1)\|d\|_1+M|Dd|(\mathbb R^n)\bigr).
+ \label{supp:eq:bv-projection-rate}
+\end{equation}
+For the planar area-uniform half-annuli, a valid radius around $p=(1/2,h/2)$ is $M=6/5+\sqrt{1+h^2}/2$. The support perimeter divided by its area gives
+\[
+ |Dd|(\mathbb R^2)\leq
+ \frac{\pi(a+b)+2(b-a)}{\pi(b^2-a^2)/2}
+ =5+\frac2\pi,
+ \qquad \|d\|_1\leq1.
+\]
+Equation~\eqref{supp:eq:bv-projection-rate} therefore provides a computable bound for replacing distant origins by their limiting projections.
