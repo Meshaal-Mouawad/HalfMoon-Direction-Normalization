@@ -40,6 +40,12 @@ jobs:
           PAGES_SUPP=$(pdfinfo "$EDIT/Supplement.pdf" | awk '/^Pages:/ {print $2}')
           PAGES_ADD=$(pdfinfo "$EDIT/Threshold_Addendum.pdf" | awk '/^Pages:/ {print $2}')
           printf 'Pages: main=%s supplement=%s addendum=%s\n' "$PAGES_MAIN" "$PAGES_SUPP" "$PAGES_ADD"
+          if [ "$PAGES_MAIN" -gt 7 ]; then
+            echo '=== PAGE 7 CONTENTS (LAYOUT DIAGNOSTIC) ==='
+            pdftotext -f 7 -l 7 -layout "$EDIT/Manuscript.pdf" - | tail -85
+            echo '=== PAGE 8 CONTENTS (LAYOUT DIAGNOSTIC) ==='
+            pdftotext -f 8 -l 8 -layout "$EDIT/Manuscript.pdf" - | tail -85
+          fi
           test "$PAGES_MAIN" -le 7 || {
             echo "FAIL: PRL initial main article exceeds seven-page limit"
             exit 1
@@ -47,7 +53,7 @@ jobs:
           test "$PAGES_MAIN" -ge 6
           test "$PAGES_SUPP" -ge 18
           test "$PAGES_ADD" -ge 3
-          grep -Fq "Bayes risks" "$EDIT/theory_main.tex"
+          grep -Fq "Half-moon geometry and the minimum error after normalization" "$EDIT/theory_main.tex"
           grep -Fq "54,362" "$EDIT/one_bit_experiment.tex"
           grep -Fq "10.7479" "$EDIT/experimental_sections.tex"
           grep -Fq "public V11 research release" "$EDIT/Manuscript.tex"
