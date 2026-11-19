@@ -1,0 +1,11 @@
+V12 clean-build verification
+Source: GitHub Actions complete TeX Live
+Main article pages: 7 (limit 7)
+Supplement pages: 18
+Threshold addendum pages: 3
+Build script: PASS
+Source ZIP integrity: PASS
+Submission PDFs copied byte-identically from build: PASS
+Scientific results: frozen unchanged
+Final PDF visual inspection: PENDING
+Editorial portal resubmission: NOT PERFORMED

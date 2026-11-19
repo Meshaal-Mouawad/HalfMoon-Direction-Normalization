@@ -1,14 +1,8 @@
-HALF-MOON PRL SUBMISSION STATUS — 2026-11-19
-Manuscript: PRLETTERS-D-26-03032
-Research author: Meshaal Mouawad
-
-V11: submitted 2026-11-18; returned to author for the mandatory Authorship Confirmation form.
-V12: reader-first REVISED LATEX SOURCE committed on main, editorial and mathematical source checks documented.
-IMPORTANT: Journal_Upload/*.pdf and Journal_Upload/LaTeX_Source.zip are STILL V11 until a clean V12 build passes.
-DO NOT RESUBMIT OLD JOURNAL_UPLOAD FILES AS V12.
-V12 PDF build, seven-page limit, figure inspection and refreshed ZIP are NOT YET VERIFIED.
-The V11 data release and original mathematical/experimental record remain preserved.
-
-The signed Authorship Confirmation form must be uploaded as item type Cover letter.
-After production PASS: inspect the generated submission PDF and explicitly approve in Editorial Manager.
-Do not claim the journal resubmission has occurred.
+V12 revised manuscript for PRLETTERS-D-26-03032
+Main PDF: 7 pages, freshly built.
+Supplement: 18 pages, freshly built.
+Threshold Addendum: 3 pages, freshly built.
+LaTeX Source: rebuilt and ZIP integrity checked.
+Full original research archives preserved in public V11 release.
+Signed authorship confirmation must be uploaded under Cover letter.
+Visual review of generated PDF and editor approval remain author actions.
