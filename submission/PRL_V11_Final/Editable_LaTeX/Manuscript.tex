@@ -35,7 +35,7 @@ Direction normalization \sep Bayes risk \sep Half-moon classification \sep Spati
 \HalfMoonIntroduction
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{Fig1_Geometry.pdf}
-\caption{Half-moon geometry and the effect of radial removal. Blue and orange indicate the two class supports; crosses mark the illustrated origin. The vertical displacement between class centers is $h$. (A) At $h=0$, the sign of the vertical direction preserves the label. (B) At $h=0.5$, one illustrated ray crosses both labels; the theorem establishes positive loss for every origin. Colored ray segments are exact support intersections. (C) At $h=1$, the original classes overlap, and normalization adds further ambiguity. The diagrams explain the mechanism; population risks are computed separately.}\label{fig:geometry}
+\caption{Half-moon geometry and the effect of radial removal. Blue and orange indicate the two class supports; crosses mark the illustrated origin. The vertical displacement between class centers is $h$. (A) At $h=0$, the vertical direction preserves the label (the neural negative control uses $h=-0.25$). (B) At $h=0.5$, one illustrated ray crosses both labels; the theorem establishes positive loss for every origin. Colored ray segments are exact support intersections. (C) At $h=1$, the original classes overlap, and normalization adds further ambiguity. The diagrams explain the mechanism; population risks are computed separately.}\label{fig:geometry}
 \end{figure*}
 \HalfMoonBackground
 \input{theory_main}
