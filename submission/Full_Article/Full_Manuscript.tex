@@ -58,3 +58,71 @@ Studies of projected classification and spherical models characterize decisions 
 A representation can also retain a small task-specific code rather than reconstruct the discarded variable. Bayes-aware quantization and learned threshold research address decision-relevant compression \citep{OehlerGray1995,Senozan2024}. In the present study, the code is deliberately constrained to one common threshold applied to radius and two fixed angular separators. This establishes a precise question: can one bit, used together with direction, recover the correct decision everywhere on the specified supports, and what perturbation of the measured radius can be tolerated?
 
 Taken together, this literature establishes the value of directional representations, the need for decision-aware sufficiency criteria, and mathematical tools for projection and quantization. The specific gap addressed here is an origin-wide population-risk account for nonlinear direction normalization, linked to a minimal and explicitly certified radial decision repair.
+
+
+\section{Study geometry, representations and inferential design}
+\subsection{Why three half-moon arrangements are necessary}
+The half-moon family changes the vertical displacement \(h\) of one band while keeping its width and horizontal displacement fixed. The geometry is deliberately continuous: conclusions about population decisions should not depend on the particular finite points sampled for an experiment. The class supports, their probability densities, and the loss incurred by angular projection are defined formally in the next sections.
+
+Three configurations serve different inferential purposes. The \(h=-0.25\) arrangement is a negative control in which suitable origins can preserve all class decisions after direction normalization. At \(h=0.5\), the supports are disjoint, so full coordinates classify them without Bayes error, yet their arrangement forces directional ambiguity from every origin. At \(h=1\), the original regions overlap, creating intrinsic raw-coordinate ambiguity before any normalization; direction adds another component of error. Comparing the three makes it possible to distinguish a representation defect from a genuinely ambiguous source distribution.
+
+\begin{table}[htbp]\centering
+\caption{Geometry and intended role of each evaluation configuration. The descriptions summarize proved support properties; they are not inferred from a neural classifier's observed accuracy.}
+\label{tab:study-geometry}
+\begin{tabular}{p{23mm}p{55mm}p{62mm}}
+\toprule
+Displacement & Source-space property & Main question\\
+\midrule
+\(h=-0.25\) & Disjoint; decision-preserving origins exist & When can direction retain the optimal label decision?\\
+\(h=0.5\) & Disjoint; no origin eliminates directional loss & How large is preprocessing-induced error when the raw classes are separable?\\
+\(h=1\) & Original supports overlap; direction adds loss & How do original ambiguity and preprocessing loss differ?\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.96\textwidth]{Fig1_Geometry.pdf}
+\caption{The two half-annular class supports under three relative displacements. A shared normalization origin determines which points have the same unit direction; colored rays in the original construction illustrate the geometry of merged decisions. Panel A exhibits an origin preserving the decision, panel B a disjoint arrangement with forced directional overlap, and panel C a configuration with overlapping raw supports. The illustrations motivate, rather than replace, the population-risk proofs.}
+\label{fig:geometry}
+\end{figure}
+
+\subsection{Sampling laws and what their comparison tests}
+The primary experimental distribution samples uniformly with respect to planar area inside each class support, using equal class priors. This means that a region twice as large has twice as much probability within a given class, independent of its radial location. A separate distribution samples the local radius and semicircle angle uniformly; after conversion to planar density, this gives greater density near the inner boundary than the area-uniform law. The two models have identical supports and different probability allocations. Their comparison tests whether the geometric obstruction persists under changes in sampling measure, and how the numerical population risks change.
+
+The frozen neural evaluations use only area-uniform samples. The radius-uniform alternative contributes analytical population-risk results, not an additional neural benchmark. Both are informative: the support geometry establishes qualitative decision-loss conditions whenever class densities are strictly positive on the stated regions, while the exact probability density determines the numerical amount of Bayes error. This distinction is needed to interpret theorems about all origins alongside tables of calculated risks for specified distributions.
+
+\subsection{Representation comparisons and their information content}
+The input representation is the independent variable of the neural evaluation. The full-coordinate condition \(R\) retains the two Cartesian measurements. Three direction-only conditions \(D_0,D_M,D_A\) normalize about the origin, the class-center midpoint, and the upper reference point \((0,3)\). Their values differ because the shared center changes which observations lie on the same ray. The direction-plus-radius condition \(P_A\) retains both quantities about the upper origin. Since the original point can be reconstructed from those two quantities and the known center, it has the same population Bayes risk as \(R\), even though a network fitted to the two feature sets need not have identical learned error.
+
+These controls are designed around an information hierarchy. Raw coordinates and exact direction-plus-radius inputs have the full coordinate information. Direction-only features discard the radial component. The one-bit repair condition, evaluated separately, restores a categorical part of the radius without restoring the continuous variable. Comparing population Bayes risks identifies information loss exactly; comparing trained networks shows how those distinct inputs perform under a fixed fitting protocol.
+
+\input{Full_Theory}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.90\textwidth]{Fig2_One_Bit_Recovery.pdf}
+\caption{Exact one-bit recovery for the disjoint \(h=0.5\) configuration. A shared near/far radius bit about \(c=(0.5,0.25)\) chooses between two angular decision rules. Inside threshold \(0.8\), the rule uses the sign of \(9u_1+10u_2\); outside it uses the sign of \(u_2-u_1\). The same cutoff applies to every direction. The decoder classifies the entire continuous support correctly, while the numerical neural experiment evaluates whether a fitted model learns to use this representation.}
+\label{fig:bit-repair}
+\end{figure}
+
+\section{Experimental methodology and reproducibility}
+\subsection{Separating a representation limit from neural learning}
+The theoretical Bayes risk answers what the best classifier could do \emph{if} the class probabilities were known and the representation were fixed. A neural experiment answers how close a finite-data learner comes to that risk. These are separate measurements: an error forced by discarded radius remains even with unlimited model training, whereas error above the Bayes floor may reflect insufficient training data, architecture approximation or optimization. The empirical design therefore calculates or certifies the population risk independently and compares every trained network with the floor appropriate to its own inputs.
+
+To support paired comparisons, the same sampled observations are transformed into each representation within a given geometry and seed. This reduces variation caused merely by generating different test sets. The study uses ten final dataset/initialization seeds, numbered 1001--1010, for the main experiment. For each seed it generates balanced training, validation and held-out test sets of 2,000, 2,000 and 50,000 observations. Distinct random streams separate dataset construction, train/validation/test splits and geometries. The dataset/initialization seed is the inferential unit; individual test points within one seed are not treated as independent experimental replicates for confidence intervals.
+
+\subsection{Feature construction and controlled training}
+The five input conditions in the main study are raw coordinates \(R\); direction-only features \(D_0,D_M,D_A\); and direction with full radius \(P_A\). Direction is calculated by dividing the centered vector by its norm, with the explicitly specified zero-residual convention. After transformation, every feature is standardized using only its training-set mean and population standard deviation; a constant feature receives unit scale. Because this transformation is invertible on each nonconstant coordinate, it does not change the representation's information content.
+
+The principal learner is a neural network with one hidden layer of 64 hyperbolic-tangent units and a linear output. Training targets are labels \(-1\) and \(+1\), and the fitted loss is mean squared error. Full-batch Adam \citep{Kingma2015} uses \((\beta_1,\beta_2)=(0.9,0.999)\), numerical \(\epsilon=10^{-8}\), and learning rates \(0.001\) and \(0.01\). Each candidate is run for a fixed budget of 4,000 optimizer updates. Validation is performed at initialization and every 50 updates, and the selected checkpoint minimizes validation misclassification error, breaking ties by validation mean squared error, earlier step and lower learning rate.
+
+The hidden-layer width and training protocol are the same across the main conditions; the number of parameters is not identical when feature dimension changes. A two-input model has 257 parameters, and a three-input model has 321. The population-risk comparisons isolate the loss from the representation itself. The empirical comparison of fitted networks retains this parameter-count difference as part of its stated model specification.
+
+\subsection{Candidate selection, test isolation and diagnostic arms}
+The principal factorial design specifies 300 candidates. At \(h=1\), prespecified width-15 and unconditioned width-64 diagnostics add 60 candidate fits each for \(R,D_A,P_A\). The main final experiment therefore comprises 420 candidate fits and 210 selected models. These final fits are distinct from a preceding 48-fit development stage using seeds 101 and 103. Protocols were fixed before generating and evaluating the final test sets, so their reported errors are held-out outcomes rather than checkpoint-selection statistics.
+
+The one-bit repair experiment later adds 80 new candidate fits and 40 selected evaluations using independent random namespaces and ten fresh seeds. Accordingly, the final analytical/empirical report covers 500 candidate fits and 250 selected evaluations across the original and repair experiments. The main study and the repair study are separate evidence streams; their counts are not pooled into a fictitious single factorial comparison.
+
+\subsection{Outcomes and statistical comparisons}
+The primary outcome is test misclassification probability. Accuracy and mean squared error are secondary, while learned excess is the fitted test error minus the representation-specific Bayes risk. Six planned origin contrasts compare \(D_M-D_0\) and \(D_A-D_0\) at each of the three displacements. Paired seed differences are summarized by their means, sample standard deviations and Student-\(t\) intervals with nine degrees of freedom. Simultaneous 95\% intervals use a Bonferroni adjustment across the six contrasts; supplementary analyses retain whole-seed bootstrap sensitivity and pointwise intervals for diagnostics.
+
+The analytical Bayes rule is also evaluated on the identical held-out observations, allowing test-sampling variation to be distinguished from the numerical integration used to calculate the population floor. Across the 15 main conditions, the mean empirical Bayes-rule error differs from the integrated risk by at most \(0.061\) percentage points. This is a consistency check of the population calculations and sampled observations, not evidence that any fitted network attained the true Bayes rule exactly.
