@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=28mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,graphicx,microtype,xurl,setspace}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xr}
+\externaldocument{Supplement_labels}
+\graphicspath{{../Figures/}}
+\newcommand{\R}{\mathbb R}
+\input{experimental_sections}
+\doublespacing
+\begin{document}
+\begin{center}
+{\Large\bfseries Global loss bounds and one-bit recovery for direction-normalized half-moons\par}
+\vspace{1em}
+{\large Meshaal Mouawad\par}
+Department of Electrical and Computer Engineering, Mississippi State University\\
+Mississippi State, MS 39762, USA\\
+Corresponding author: \texttt{mm4922@msstate.edu}
+\end{center}
+\vspace{1em}
+\noindent\textbf{Abstract.}
+Direction normalization retains the orientation of an observation from a shared origin while discarding its distance. If that distance determines the optimal class decision, a classifier trained on the normalized representation cannot recover the lost distinction. We study this mechanism in a continuous half-moon family and determine whether moving the normalization origin can prevent the resulting loss. An exact ray-cancellation identity expresses additional Bayes error through class-preference mass merged by direction. A uniform distant-origin limit to orthogonal-projection risk and geometric criteria establish positive loss over every origin for specified disjoint and overlapping half-moon configurations. Constructive certificates give explicit whole-plane lower bounds. For one disjoint midpoint geometry, adding a common-threshold near/far radius bit restores every class decision, with a sharp threshold interval and measurement-error tolerance. Frozen neural studies contain 500 candidate fits and 250 selected evaluations. In the independent repair experiment, direction-only networks made 54,362 errors among 500,000 observations; the one-bit networks made three. The analysis separates representation loss from learning error and establishes a minimal radial decision repair in the proved geometry.
+
+\medskip\noindent\textbf{Keywords:}
+Direction normalization; Bayes risk; spatial sign; half-moon classification; information preservation; radial quantization; one-bit decoder.
+
+\section{Introduction}
+A preprocessing transformation changes what a classifier can learn before training begins. Many transformations intentionally suppress aspects of an observation, such as measurement scale, that may be irrelevant to a particular task. When an attribute treated as nuisance variation also carries information needed for classification, its removal creates an error that no subsequently trained classifier can avoid. Distinguishing this information-induced error from imperfect model fitting is central to evaluating representations rather than merely comparing the performance of learning algorithms.
+
+Direction normalization provides a concrete instance. Given an observation and a common reference origin, it retains the unit vector pointing from the origin to the observation and discards the distance along that direction. Such a representation is meaningful when orientation, rather than magnitude, should govern the task; related spatial-sign and normalized-feature transformations have established statistical and classification uses \citep{Serneels2006,Graf2003}. Yet two observations on the same ray receive identical features. If those observations require different decisions, a classifier seeing only direction has no variable with which to separate them. Whether this collapse causes a positive population error, rather than an isolated geometric coincidence, depends on the underlying class distributions.
+
+The half-moon problem makes the distinction explicit. Its two labels correspond to thick semicircular regions: the upper half of a ring and a lower half-ring translated horizontally and vertically. Their relative positions produce both separable and overlapping configurations while keeping the geometry analytically tractable. At vertical displacement \(h=0.5\), choose the common midpoint \(c=(0.5,0.25)\). The class-0 observation \(x_0=(1,0.25)\) and class-1 observation \(x_1=(2,0.25)\) belong to their respective half-annuli, yet normalize to the same direction \((1,0)\). Their distances from the midpoint are \(0.5\) and \(1.5\). This constructed example identifies the discarded distinction; a single near/far radius bit at threshold \(0.8\) distinguishes it. A theorem is needed to show that a nonzero population of decisions is lost, and that changing the origin cannot eliminate the loss.
+
+We quantify the effect using \emph{Bayes risk}, the minimum misclassification probability achievable with an optimal decision rule when the class distributions are known. The risk for original coordinates captures ambiguity intrinsic to the task. The risk for direction-only inputs measures what remains achievable after preprocessing. Their difference is the additional error imposed by the representation, regardless of model architecture or optimizer. A trained network may incur further error because of finite samples, approximation and optimization; that excess must be evaluated against its \emph{own} representation-specific Bayes floor.
+
+Three questions structure this study. First, when does direction normalization remove class information, and can any origin, including one arbitrarily far away, avoid that loss? Second, when direction alone is insufficient, how much radial information is necessary for the class decision, and how robust is the resulting code to measurement error? Third, do neural classifiers fitted under a frozen protocol approach the corresponding representation-specific Bayes risks? Each question requires distinct evidence: mathematical identities and geometric proofs, a constructive decision rule and sharp interval, and independent held-out neural evaluations.
+
+We derive an exact ray-cancellation identity for the loss, prove a uniform limit connecting distant normalization origins to linear projection risk, and construct positive whole-plane lower certificates. For a specified disjoint configuration, one common near/far radius bit selects between two angular separators and correctly labels all points in both continuous class supports. We then compare raw, direction-only, radius-preserving, and one-bit representations in controlled studies comprising 500 candidate fits and 250 selected test evaluations. The combined contribution is a population-level explanation of when preprocessing destroys a decision, why choosing a new origin cannot necessarily repair it, and how a minimal additional measurement can do so in an explicitly proved setting.
+
+\section{Research context and relationship to prior work}
+\subsection{Direction and the geometry of normalized features}
+The spatial-sign transformation centers an observation and retains its unit direction, an operation studied in robust multivariate analysis \citep{Serneels2006}. Work on normalized feature spaces also addresses how classification procedures interact with angular feature geometry \citep{Graf2003}. Such methods establish meaningful uses of direction representations. They do not by themselves determine whether a given label decision is invariant to radius about every possible origin.
+
+Recent research in \emph{Pattern Recognition Letters} clarifies why geometry and decision rules must be distinguished. Poblete et al.~\citep{Poblete2026} hold generative posterior-mean embeddings fixed and compare radial, Gaussian probabilistic, linear discriminative and tree-based classifiers across eight datasets. Classifier rankings vary with the dataset; their class-centered radial-compatibility descriptor addresses the fit between a decision-rule assumption and representation geometry. This identifies a compatibility question \emph{within} an existing representation. Our question concerns an earlier step: whether a transformation into direction-only features has erased distinctions even an optimal decision rule would require.
+
+Ahmadian and Lindsten~\citep{Ahmadian2025} investigate time-series out-of-distribution detection with radial-kernel scoring and context quantization. Their separate ablations show that a normalized representation performs differently from an unnormalized radial-kernel configuration on the principal activity datasets. The observed difference makes lost magnitude information a plausible task-specific explanation. Their outcome is novelty-detection performance, whereas the present work measures binary Bayes classification risk under known continuous distributions. The studies are complementary in motivation rather than directly comparable numerical benchmarks.
+
+\subsection{Decision sufficiency and representation error}
+Silva and Narayanan~\citep{Silva2012} treat signal representation in a Bayes-decision framework and distinguish representational approximation from finite-data estimation. Further work on decision sufficiency and lossless transformations establishes when a compressed representation retains the optimal decision for a specified loss \citep{Silva2024,Gyorfi2023,Silva2025}. The general principle is that information about an observation need not be preserved in full: what matters for classification is whether the optimal label can still be determined.
+
+Direction normalization tests that principle on an explicit family of equivalence classes. All points on the same positive ray from an origin have the same unit direction. Dubois et al.~\citep{Dubois2021} identify unit direction as an invariant to positive scaling when the predictive task satisfies the corresponding invariance condition. If the preferred class changes along some of these rays, the direction map violates the decision-sufficiency condition. The present analysis asks how that violation depends on a moving common origin and supplies an exact probability identity for its cost.
+
+\subsection{Projection boundaries and restricted radial recovery}
+Studies of projected classification and spherical models characterize decisions under selected projections or geometric distribution assumptions \citep{Hamsici2007,Hamsici2008,Oh2025}. From increasingly distant origins, rays through a bounded population become nearly parallel, linking radial viewing geometry to orthogonal projections \citep{Orponen2019}. Separability results for planar wedges and strips provide geometric precedents for reasoning about mutually obstructing class regions \citep{Hurtado2001}. These strands motivate the need to handle both finite origins and unbounded sequences of origins before claiming a strictly positive minimum over the entire plane.
+
+A representation can also retain a small task-specific code rather than reconstruct the discarded variable. Bayes-aware quantization and learned threshold research address decision-relevant compression \citep{OehlerGray1995,Senozan2024}. In the present study, the code is deliberately constrained to one common threshold applied to radius and two fixed angular separators. This establishes a precise question: can one bit, used together with direction, recover the correct decision everywhere on the specified supports, and what perturbation of the measured radius can be tolerated?
+
+Taken together, this literature establishes the value of directional representations, the need for decision-aware sufficiency criteria, and mathematical tools for projection and quantization. The specific gap addressed here is an origin-wide population-risk account for nonlinear direction normalization, linked to a minimal and explicitly certified radial decision repair.
