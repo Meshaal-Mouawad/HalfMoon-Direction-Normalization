@@ -82,7 +82,7 @@ Displacement & Source-space property & Main question\\
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.96\textwidth]{Fig1_Geometry.pdf}
-\caption{The two half-annular class supports under three relative displacements. A shared normalization origin determines which points have the same unit direction; colored rays in the original construction illustrate the geometry of merged decisions. Panel A exhibits an origin preserving the decision, panel B a disjoint arrangement with forced directional overlap, and panel C a configuration with overlapping raw supports. The illustrations motivate, rather than replace, the population-risk proofs.}
+\caption{Half-moon class supports and their views from selected origins. Panel A illustrates the decision-preserving case at $h=0$ (the separate experimental negative control uses $h=-0.25$); panel B shows disjoint supports with unavoidable directional loss at $h=0.5$; panel C shows overlapping raw supports at $h=1$. Rays illustrate which positions are merged when distance is discarded. The population-risk theorems establish the corresponding error statements.}
 \label{fig:geometry}
 \end{figure}
 
@@ -132,7 +132,9 @@ The analytical Bayes rule is also evaluated on the identical held-out observatio
 \subsection{Three geometries reveal different sources of error}
 Table~\ref{tab:neural-main} reports the population Bayes risk and mean learned test error for all 15 main geometry--representation conditions. The raw-coordinate risk gives the best achievable decision from the untransformed observation. Each direction-only risk gives the minimum error after deleting radius about its specified origin. The learned excess is the difference between fitted-network error and the corresponding population floor. This decomposition is necessary because two networks with different observed error rates may simply have been trained on features with different attainable information.
 
-\begin{table}[H]
+The negative-displacement case establishes that direction normalization can be decision preserving for a suitable origin. At \(h=-0.25\), raw coordinates \(R\) and directions from the zero and midpoint origins all have zero Bayes risk and zero observed test error in the main study. Directions from the upper origin \(D_A\), by contrast, have population risk \(22.2934\%\) and mean neural test error \(22.528\%\). The same underlying classes and network training budget therefore produce drastically different attainable risks solely because normalization uses a different origin. This is a negative control for any overgeneralized claim that direction normalization always destroys class decisions.
+
+\begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{Population Bayes risk and neural test error. Errors are mean $\pm$ sample SD over ten seeds; excess is mean error minus Bayes risk. Risk and error are percentages; excess is in percentage points. $R$ denotes raw coordinates, $D$ direction, and $P$ direction plus radius; subscripts $0$, $M$ and $A$ identify the zero, midpoint and upper origins.}
@@ -161,8 +163,6 @@ $1$      & $R$   & 6.7157 & $6.790\pm0.103$ & 0.074 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-The negative-displacement case establishes that direction normalization can be decision preserving for a suitable origin. At \(h=-0.25\), raw coordinates \(R\) and directions from the zero and midpoint origins all have zero Bayes risk and zero observed test error in the main study. Directions from the upper origin \(D_A\), by contrast, have population risk \(22.2934\%\) and mean neural test error \(22.528\%\). The same underlying classes and network training budget therefore produce drastically different attainable risks solely because normalization uses a different origin. This is a negative control for any overgeneralized claim that direction normalization always destroys class decisions.
 
 The disjoint \(h=0.5\) case isolates representation loss more sharply. Full coordinates have zero population risk. Direction-only risks vary by origin: \(11.8577\%\) for \(D_0\), \(10.7479\%\) for the midpoint \(D_M\), and \(21.1509\%\) for \(D_A\). Their fitted networks exhibit errors close to these respective floors. The midpoint network averages \(10.835\%\), about \(0.087\) percentage points above the calculated midpoint Bayes risk. Most of its error therefore follows from discarded radius rather than the inability of the trained network to approximate the optimal directional rule. The underlying global theorem is stronger than these finite comparisons: it states that no possible origin eliminates this type of loss in the proved displacement range.
 
@@ -210,7 +210,9 @@ The study treats the paired \(B-D_M\) and \(B-P_M\) differences as their own two
 \subsection{Learned performance and the exact decoder}
 The repaired representation has zero Bayes risk in the proved geometry, and the explicit decoder correctly labels all points in the continuous class supports. The trained network approximates this mapping rather than receiving the decoder's coefficients. On the same 500,000 test observations, direction-only networks make 54,362 errors while the networks with the one-bit feature make three. Raw-coordinate and full-radius models make no observed errors, and the explicit analytic decoder also makes none. Table~\ref{tab:one-bit-neural} records the corresponding errors and seed-level standard deviations, keeping the theoretical floor separate from the empirical count.
 
-\begin{table}[H]
+The mean paired improvement \(B-D_M\) is \(-10.8718\) percentage points, with simultaneous 95\% interval \([-10.9691,-10.7745]\). The difference \(B-P_M\) is \(0.0006\) percentage points, interval \([-0.0010,0.0022]\). Under this fixed learner and evaluation procedure, most of the error associated with discarding radius is recovered by one bit. The three remaining neural mistakes are not contradictions of the exact mathematical decoder: one statement concerns an optimal rule with fixed coefficients on the complete support, and the other concerns the output of a fitted model on finite held-out observations.
+
+\begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{Fresh one-bit experiment at $h=0.5$. Bayes risk and mean $\pm$ sample SD over ten seeds are percentages. Each input is evaluated on the same 500,000 observations, balanced within each seed. $R$ denotes raw coordinates; $D_M$, midpoint direction; $B$, midpoint direction plus one bit; and $P_M$, midpoint direction plus full radius.}
@@ -226,8 +228,6 @@ $P_M$ & 0 & $0.0000\pm0.0000$ & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-The mean paired improvement \(B-D_M\) is \(-10.8718\) percentage points, with simultaneous 95\% interval \([-10.9691,-10.7745]\). The difference \(B-P_M\) is \(0.0006\) percentage points, interval \([-0.0010,0.0022]\). Under this fixed learner and evaluation procedure, most of the error associated with discarding radius is recovered by one bit. The three remaining neural mistakes are not contradictions of the exact mathematical decoder: one statement concerns an optimal rule with fixed coefficients on the complete support, and the other concerns the output of a fitted model on finite held-out observations.
 
 \subsection{Minimality and robustness are distinct results}
 One additional radial bit is sufficient in the midpoint geometry because the constructed classifier uses it to choose between two valid angular decision rules. It is minimal among finite-valued radial codes appended to exact direction because a zero-bit addition leaves the direction-only Bayes floor unchanged. The bit does not identify the label independently of direction; under the equal-prior reflected sampling laws its own Bayes error is \(50\%\). Its value is relational: it supplies the small amount of radial information needed to choose which angular separator applies.
