@@ -5,4 +5,4 @@ Threshold Addendum: 3 pages, freshly built.
 LaTeX Source: rebuilt and ZIP integrity checked.
 Full original research archives preserved in public V11 release.
 Signed authorship confirmation must be uploaded under Cover letter.
-Visual review of generated PDF and editor approval remain author actions.
+Seven-page rendered visual inspection: PASS. Signed authorship confirmation and Editorial Manager final PDF approval remain author actions.
