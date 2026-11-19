@@ -1,0 +1,145 @@
+name: Final Half-Moon manuscript closure after table placement audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/full-article-closure-build.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Verify source preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          base=Path('submission/PRL_V11_Final/Editable_LaTeX')
+          full=Path('submission/Full_Article')
+          a=(base/'theory_main.tex').read_text()
+          b=(full/'Full_Theory.tex').read_text()
+          p=re.compile(r'\\begin\{(?:equation|align)\}.*?\\end\{(?:equation|align)\}',re.S)
+          assert p.findall(a)==p.findall(b), 'Frozen equations changed'
+          assert re.findall(r'\\label\{([^}]+)\}',a)==re.findall(r'\\label\{([^}]+)\}',b), 'Frozen theorem labels changed'
+          ms=(full/'Full_Manuscript.tex').read_text()
+          def body(text,label):
+              for match in re.finditer(r'\\begin\{table\}(?:\[[^\]]*\])?.*?\\end\{table\}',text,re.S):
+                  if '\\label{'+label+'}' in match.group():
+                      return re.sub(r'\\begin\{table\}(?:\[[^\]]*\])?','\\begin{table}',match.group(),count=1)
+              raise AssertionError('Missing table '+label)
+          original_tables=(base/'experimental_sections.tex').read_text()
+          for label in ('tab:neural-main','tab:neural-contrasts'):
+              assert body(original_tables,label)==body(ms,label),'Protected result table changed: '+label
+          original_one=(base/'one_bit_experiment.tex').read_text()
+          assert body(original_one,'tab:one-bit-neural')==body(ms,'tab:one-bit-neural'),'Protected one-bit table changed'
+          bib=(base/'references.bib').read_text()
+          refs=set(re.findall(r'@\w+\s*\{\s*([^,]+)',bib))
+          cites=set(k.strip() for group in re.findall(r'\\cite[tp]?\{([^}]+)\}',ms+'\n'+b) for k in group.split(','))
+          assert cites<=refs,'Missing citations: '+repr(cites-refs)
+          assert 'During preparation of this work, the author used Elsevier LeapSpace' in ms
+          assert 'releases/tag/v11-submission' in ms
+          print('PASS: frozen math, 3 evidence tables, citation keys and AI disclosure')
+          PY
+      - name: Compile complete manuscript and supplementary source
+        uses: xu-cheng/texlive-action@v3
+        with:
+          os: debian
+          scheme: full
+          run: |
+            set -euo pipefail
+            apt-get -qq update
+            DEBIAN_FRONTEND=noninteractive apt-get -qq install -y python3
+            cd submission/PRL_V11_Final/Editable_LaTeX
+            bash build.sh > ../../Full_Article/Supplement_Build.log 2>&1 || {
+              tail -90 ../../Full_Article/Supplement_Build.log
+              exit 1
+            }
+            cp ../../Full_Article/Full_Manuscript.tex ./Full_Manuscript.tex
+            cp ../../Full_Article/Full_Theory.tex ./Full_Theory.tex
+            pdflatex -interaction=nonstopmode -halt-on-error -file-line-error Full_Manuscript.tex > ../../Full_Article/Longform_Build.log 2>&1 || {
+              tail -100 ../../Full_Article/Longform_Build.log
+              exit 1
+            }
+            bibtex Full_Manuscript >> ../../Full_Article/Longform_Build.log 2>&1
+            pdflatex -interaction=nonstopmode -halt-on-error -file-line-error Full_Manuscript.tex >> ../../Full_Article/Longform_Build.log 2>&1
+            pdflatex -interaction=nonstopmode -halt-on-error -file-line-error Full_Manuscript.tex >> ../../Full_Article/Longform_Build.log 2>&1
+            if grep -Ei 'LaTeX Error:|Undefined control sequence|There were undefined references|There were undefined citations|Citation .+ undefined' Full_Manuscript.log; then
+              exit 1
+            fi
+            cp Full_Manuscript.pdf ../../Full_Article/Full_Manuscript.pdf
+      - name: Rebuild and independently test full source ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y poppler-utils rsync zip
+          OUT=submission/Full_Article
+          EDIT=submission/PRL_V11_Final/Editable_LaTeX
+          COUNT=$(pdfinfo "$OUT/Full_Manuscript.pdf" | awk '/^Pages:/ {print $2}')
+          echo "PDF pages: $COUNT"
+          test "$COUNT" -ge 20 && test "$COUNT" -le 35
+          TMP=$(mktemp -d)
+          mkdir -p "$TMP/Manuscript" "$TMP/Figures"
+          rsync -a --include '*/' --include '*.tex' --include '*.bib' --include '*.sty' --include '*.cls' --include '*.py' --include '*.sh' --exclude '*' "$EDIT/" "$TMP/Manuscript/"
+          rsync -a submission/PRL_V11_Final/Figures/ "$TMP/Figures/"
+          rm -f "$OUT/Full_Article_Source.zip"
+          (cd "$TMP" && zip -q -r "$GITHUB_WORKSPACE/$OUT/Full_Article_Source.zip" Manuscript Figures)
+          unzip -tq "$OUT/Full_Article_Source.zip"
+          for f in Manuscript/build.sh Manuscript/Full_Manuscript.tex Manuscript/Full_Theory.tex Manuscript/Supplement.tex Manuscript/references.bib Figures/Fig1_Geometry.pdf Figures/Fig2_One_Bit_Recovery.pdf; do
+             unzip -Z1 "$OUT/Full_Article_Source.zip" | grep -Fx "$f" >/dev/null
+          done
+          printf "PASS: Complete standalone source archive contains sources, build script, bibliography and figures\n"
+          rm -rf "$TMP"
+      - name: Re-render all pages and report source verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=submission/Full_Article/Full_Manuscript.pdf
+          OUT=submission/Full_Article
+          AUDIT="$OUT/Verification/Full_Page_Audit"
+          mkdir -p "$AUDIT/png" "$AUDIT/text"
+          rm -f "$AUDIT"/png/page_*.png "$AUDIT"/text/page_*.txt
+          PAGES=$(pdfinfo "$FILE" | awk '/^Pages:/ {print $2}')
+          printf "page\twords\tlines\tcharacters\n" > "$AUDIT/page_metrics.tsv"
+          for p in $(seq 1 "$PAGES"); do
+             n=$(printf '%02d' "$p")
+             pdftoppm -f "$p" -l "$p" -r 85 -singlefile -png "$FILE" "$AUDIT/png/page_$n"
+             pdftotext -f "$p" -l "$p" -layout "$FILE" "$AUDIT/text/page_$n.txt"
+             test -s "$AUDIT/png/page_$n.png" && test -s "$AUDIT/text/page_$n.txt"
+             printf "%s\t%s\t%s\t%s\n" "$p" "$(wc -w < "$AUDIT/text/page_$n.txt" | tr -d ' ')" "$(wc -l < "$AUDIT/text/page_$n.txt" | tr -d ' ')" "$(wc -m < "$AUDIT/text/page_$n.txt" | tr -d ' ')" >> "$AUDIT/page_metrics.tsv"
+          done
+          cat > "$OUT/PRODUCTION_STATUS.md" <<EOF
+          # Half-Moon full-length article — final production
+          Pages: $PAGES (single-column, 12-point, double-spaced)
+          Full LaTeX compilation: PASS
+          Original theorem equation/label preservation: PASS
+          Three original evidence tables preserved: PASS (float positions adjusted)
+          Citation-key resolution: PASS
+          Source ZIP contents and integrity: PASS
+          All pages generated for full visual audit: $PAGES / $PAGES
+          Original PRL Journal_Upload: unchanged
+          Whole-document visual inspection of rebuilt pages: PENDING
+          Independent external scientific peer review: NOT VERIFIED
+          Full-length article submission: NOT PERFORMED
+          EOF
+          echo "Final pages: $PAGES"
+      - name: Commit final full-length manuscript and audit pages to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/full-article-closure-build.yml
+          rm -f submission/Full_Article/Supplement_Build.log submission/Full_Article/Longform_Build.log
+          git add -A -- submission/Full_Article .github/workflows/full-article-closure-build.yml
+          git diff --cached --quiet && { echo "Nothing updated"; exit 1; }
+          git commit -m "Rebuild and audit full-length article after reader and layout corrections"
+          git push origin HEAD:main
