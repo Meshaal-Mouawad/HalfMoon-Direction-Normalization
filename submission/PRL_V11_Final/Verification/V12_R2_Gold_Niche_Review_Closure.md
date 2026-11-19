@@ -29,3 +29,16 @@ Retain exact mathematical display environments, numerical certificates, theorem 
 
 ## Verification status
 Source corrections M01–M10 implemented; the compilation, final seven-page limit, LaTeX ZIP rebuilding, and visual page inspection remain separate production gates until an actual build confirms them.
+
+## Production closure
+GitHub Actions workflow run 44566956340 completed SUCCESS on 2026-11-19.
+Final compiled main article: **7 pages (PASS)**.
+Supplement: **18 pages (PASS)**.
+Threshold Addendum: **3 pages (PASS)**.
+Original mathematical/display environments, tables, figures, labels, references, AI declaration and key experimental counts: **PASS** against source baseline commit 83d4a4dd98f503049bc8b1abfcbd07a326a8d522.
+New LaTeX ZIP: integrity test **PASS**.
+Journal-upload PDF copies: byte-identical to fresh compiled PDFs **PASS**.
+Single GitHub repository and single branch main: **PASS**. Temporary build workflow deleted after success.
+Published V11 data release: unchanged.
+Rendered PDF visual inspection: **PENDING** (page previews provided as the run artifact V12-R2-Manuscript-Page-Previews).
+Editorial Manager update and resubmission: **NOT PERFORMED**.
