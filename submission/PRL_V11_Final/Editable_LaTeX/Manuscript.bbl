@@ -1,26 +1,9 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{16}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Serneels et~al.(2006)Serneels, {De Nolf}, and {Van
-  Espen}]{Serneels2006}
-Sven Serneels, Evert {De Nolf}, and Pierre~J. {Van Espen}.
-\newblock Spatial sign preprocessing: A simple way to impart moderate
-  robustness to multivariate estimators.
-\newblock \emph{J. Chem. Inf. Model.}, 46\penalty0 (3):\penalty0 1402--1409,
-  2006.
-\newblock \doi{10.1021/ci050498u}.
-
-\bibitem[Graf et~al.(2003)Graf, Smola, and Borer]{Graf2003}
-Arnulf B.~A. Graf, Alexander~J. Smola, and Silvio Borer.
-\newblock Classification in a normalized feature space using support vector
-  machines.
-\newblock \emph{IEEE Trans. Neural Netw.}, 14\penalty0 (3):\penalty0 597--605,
-  2003.
-\newblock \doi{10.1109/TNN.2003.811708}.
 
 \bibitem[Silva and Narayanan(2012)]{Silva2012}
 Jorge~F. Silva and Shrikanth~S. Narayanan.
@@ -42,6 +25,32 @@ L{\'a}szl{\'o} Gy{\"o}rfi, Tam{\'a}s Linder, and Harro Walk.
 \newblock \emph{Entropy}, 25\penalty0 (10):\penalty0 1394, 2023.
 \newblock \doi{10.3390/e25101394}.
 
+\bibitem[Dubois et~al.(2021)Dubois, Bloem-Reddy, Ullrich, and
+  Maddison]{Dubois2021}
+Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris~J. Maddison.
+\newblock Lossy compression for lossless prediction.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34, 2021.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html}.
+
+\bibitem[Serneels et~al.(2006)Serneels, {De Nolf}, and {Van
+  Espen}]{Serneels2006}
+Sven Serneels, Evert {De Nolf}, and Pierre~J. {Van Espen}.
+\newblock Spatial sign preprocessing: A simple way to impart moderate
+  robustness to multivariate estimators.
+\newblock \emph{J. Chem. Inf. Model.}, 46\penalty0 (3):\penalty0 1402--1409,
+  2006.
+\newblock \doi{10.1021/ci050498u}.
+
+\bibitem[Graf et~al.(2003)Graf, Smola, and Borer]{Graf2003}
+Arnulf B.~A. Graf, Alexander~J. Smola, and Silvio Borer.
+\newblock Classification in a normalized feature space using support vector
+  machines.
+\newblock \emph{IEEE Trans. Neural Netw.}, 14\penalty0 (3):\penalty0 597--605,
+  2003.
+\newblock \doi{10.1109/TNN.2003.811708}.
+
 \bibitem[Poblete et~al.(2026)Poblete, Aillapi, Duarte, Veas, and
   Otondo]{Poblete2026}
 V{\'i}ctor Poblete, Jos{\'e} Aillapi, Carlos Duarte, Luis Veas, and Felipe
@@ -57,39 +66,6 @@ Amirhossein Ahmadian and Fredrik Lindsten.
   out-of-distribution detection applied to human activity data.
 \newblock \emph{Pattern Recognit. Lett.}, 197:\penalty0 132--138, 2025.
 \newblock \doi{10.1016/j.patrec.2025.07.011}.
-
-\bibitem[Silva et~al.(2025)Silva, Faraggi, Ramirez, Ega{\~n}a, and
-  Pavez]{Silva2025}
-Jorge~F. Silva, Victor Faraggi, Camilo Ramirez, Alvaro Ega{\~n}a, and Eduardo
-  Pavez.
-\newblock Understanding encoder--decoder structures in machine learning using
-  information measures.
-\newblock \emph{Signal Process.}, 234:\penalty0 109983, 2025.
-\newblock \doi{10.1016/j.sigpro.2025.109983}.
-
-\bibitem[Dubois et~al.(2021)Dubois, Bloem-Reddy, Ullrich, and
-  Maddison]{Dubois2021}
-Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris~J. Maddison.
-\newblock Lossy compression for lossless prediction.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~34, 2021.
-\newblock URL
-  \url{https://proceedings.neurips.cc/paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html}.
-
-\bibitem[Oehler and Gray(1995)]{OehlerGray1995}
-Karen~L. Oehler and Robert~M. Gray.
-\newblock Combining image compression and classification using vector
-  quantization.
-\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 17\penalty0
-  (5):\penalty0 461--473, 1995.
-\newblock \doi{10.1109/34.391396}.
-
-\bibitem[{\c S}enozan and Soylu(2024)]{Senozan2024}
-Hatice {\c S}enozan and Banu Soylu.
-\newblock A flexible non-monotonic discretization method for pre-processing in
-  supervised learning.
-\newblock \emph{Pattern Recognition Letters}, 181:\penalty0 77--85, 2024.
-\newblock \doi{10.1016/j.patrec.2024.03.024}.
 
 \bibitem[Hamsici and Martinez(2007)]{Hamsici2007}
 Onur~C. Hamsici and Aleix~M. Martinez.
@@ -127,6 +103,21 @@ Ferran Hurtado, Marc Noy, Pedro~A. Ramos, and Carlos Seara.
 \newblock \doi{10.1016/S0166-218X(00)00230-4}.
 \newblock URL
   \url{https://pedroramos.web.uah.es/papers/separating-wedges-strips.pdf}.
+
+\bibitem[Oehler and Gray(1995)]{OehlerGray1995}
+Karen~L. Oehler and Robert~M. Gray.
+\newblock Combining image compression and classification using vector
+  quantization.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 17\penalty0
+  (5):\penalty0 461--473, 1995.
+\newblock \doi{10.1109/34.391396}.
+
+\bibitem[{\c S}enozan and Soylu(2024)]{Senozan2024}
+Hatice {\c S}enozan and Banu Soylu.
+\newblock A flexible non-monotonic discretization method for pre-processing in
+  supervised learning.
+\newblock \emph{Pattern Recognition Letters}, 181:\penalty0 77--85, 2024.
+\newblock \doi{10.1016/j.patrec.2024.03.024}.
 
 \bibitem[Kingma and Ba(2015)]{Kingma2015}
 Diederik~P. Kingma and Jimmy Ba.
