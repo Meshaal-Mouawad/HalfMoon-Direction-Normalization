@@ -1,36 +1,35 @@
-6.3    Sensitivity to the sampling law and diagnostic networks
-
-The second sampling law changes probabilities inside the same support geometry. Its
-calculated risk values are preserved in the supplementary population table. For equal
-priors, the ratio of radius-uniform to area-uniform class densities lies between 5/6 and
-5/4, so the signed-risk argument gives a corresponding conservative relation between
-normalization losses. In particular, changing density within the supports does not
-remove the geometric obstruction that causes all-origin loss when both class densities
-remain positive on their respective regions.
-    The prespecified width and conditioning diagnostics delimit how the learned results
-should be interpreted. At h = 1, the paired difference between the direction-plus-radius
-control PA and raw coordinates R is 0.044 percentage points, with a pointwise 95%
-interval of [−0.043, 0.130]. All three width-15 versus width-64 diagnostic intervals
-include zero. Removing affine input conditioning increases DA error by 0.179 percentage
-points, interval [0.053, 0.305]; the corresponding raw and full-radius diagnostic intervals
-include zero. These are measured comparisons under specific model settings. Their
-role is to characterize variation in the fitting procedure while the underlying Bayes-risk
-interpretation remains fixed.
+samples.
+   Four representations clarify the comparison. Raw coordinates R and midpoint
+direction plus continuous radius PM retain full positional information, establishing two
+information-complete controls. Midpoint direction alone DM removes radius and has a
+nonzero Bayes-risk floor. The repaired representation B contains midpoint direction
+and the single near/far bit. The last two comparisons isolate the empirical value of
+the bit relative to direction and the remaining gap relative to full radial information.
+The 80 new candidate fits yield 40 selected models whose final tests are evaluated after
+model selection is frozen.
+   The study treats the paired B − DM and B − PM differences as their own two-
+comparison family, with simultaneous 95% Bonferroni-adjusted intervals. The direction-
+plus-bit and direction-plus-radius networks use three input features and 321 parameters;
+the raw and direction-only controls use two features and 257 parameters. These details
+matter because the evidence combines a change in the information supplied with a
+documented change in input dimensionality.
 
 
+7.2    Learned performance and the exact decoder
 
-7     Independent empirical test of the one-bit repair
+The repaired representation has zero Bayes risk in the proved geometry, and the
+explicit decoder correctly labels all points in the continuous class supports. The trained
+network approximates this mapping rather than receiving the decoder’s coefficients.
+On the same 500,000 test observations, direction-only networks make 54,362 errors
+while the networks with the one-bit feature make three. Raw-coordinate and full-radius
+models make no observed errors, and the explicit analytic decoder also makes none.
+Table 4 records the corresponding errors and seed-level standard deviations, keeping
+the theoretical floor separate from the empirical count.
+   The mean paired improvement B − DM is −10.8718 percentage points, with simul-
+taneous 95% interval [−10.9691, −10.7745]. The difference B − PM is 0.0006 percentage
+points, interval [−0.0010, 0.0022]. Under this fixed learner and evaluation procedure,
 
-7.1    A new evaluation distinct from the original origin study
-
-The one-bit theorem establishes an exact decoder on the continuous h = 0.5 supports.
-The independent neural experiment asks whether a trained network can effectively
-use the restricted feature. Ten new paired dataset/initialization seeds, 2001–2010,
-generate area-uniform, equal-prior observations under a fresh random namespace. The
-same sample sizes, fixed 64-unit architecture, two learning rates, 4,000-update budget,
-feature conditioning and validation-based checkpoint selection are retained from the
-original protocol. The bit cutoff is fixed at 0.8 before generating the repair evaluation
 
 
-                                            22
+                                           22
 

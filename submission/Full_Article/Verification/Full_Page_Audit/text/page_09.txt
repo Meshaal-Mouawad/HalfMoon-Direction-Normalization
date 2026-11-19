@@ -11,15 +11,11 @@ networks shows how those distinct inputs perform under a fixed fitting protocol.
 
       a directional representation
 
-To determine what is lost by retaining direction alone, we first describe the class regions
-and the best possible decision before and after normalization. Each half-moon is a
-thick semicircular ring, bounded by an inner and an outer radius. Class 0 occupies an
-upper half-ring centered at the origin; class 1 occupies a lower half-ring whose center
-is shifted one unit to the right and h units upward. The displacement h controls the
-separation or overlap of the two bands (Fig. 1). An origin c determines the rays along
-which distinct points are merged when their distance is discarded. We calculate the
-class probability merged on each ray and then ask whether any choice of c can avoid
-the resulting minimum classification error.
+The geometric cases introduced in Fig. 1 are formalized by two continuous half-annular
+class supports. The displacement h changes the position of the second support; the
+normalization origin c is a separate choice that determines which observations share a
+direction. These definitions make it possible to distinguish ambiguity in the original
+data from the additional Bayes error created by the representation.
     Let a = 0.8, b = 1.2, m0 = (0, 0) and m1 = (1, h), where h is the upward center
 displacement. The open class supports are
 
@@ -33,6 +29,10 @@ Each support has area H = π(b2 − a2 )/2 = 2π/5. The primary generator draws 
 uniformly over the area of each band, so its density is fiA = 1Si /H. A second law
 draws radius and angle uniformly, giving fiR (x) = 1Si (x)/[π(b − a)∥x − mi ∥]; it tests
 whether the geometric conclusions survive a different allocation of probability within
+the same supports. Neural experiments use equal priors and area-uniform sampling.
+The geometric positivity results apply to any positive priors πi and densities positive
+almost everywhere on the respective supports.
+    The two-point collision in the Introduction demonstrates that normalization is not
 
                                              9
 

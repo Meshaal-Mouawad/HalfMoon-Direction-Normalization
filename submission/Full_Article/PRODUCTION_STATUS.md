@@ -1,11 +1,12 @@
-# Full-length research article production record
-Compiled pages: 32
-Format: 12-point, single-column, double-spaced LaTeX
-Frozen mathematical equations: verified unchanged
-One-bit experimental table: verified unchanged
-Source archive integrity: PASS
-Original PRL seven-page Journal_Upload files: unchanged
-Full-length manuscript: not yet submitted to any other journal
-Representative rendered-page visual inspection: PASS (pages 1, 5, 7, 12, 15, 20, 27 and 32; both scientific figures checked)
-Exhaustive page-by-page visual inspection: NOT VERIFIED
-Full-length journal selection and submission: NOT PERFORMED
+# Half-Moon full-length article — final production
+Pages: 30 (single-column, 12-point, double-spaced)
+Full LaTeX compilation: PASS
+Original theorem equation/label preservation: PASS
+Three original evidence tables preserved: PASS (float positions adjusted)
+Citation-key resolution: PASS
+Source ZIP contents and integrity: PASS
+All pages generated for full visual audit: 30 / 30
+Original PRL Journal_Upload: unchanged
+Whole-document visual inspection of rebuilt pages: PENDING
+Independent external scientific peer review: NOT VERIFIED
+Full-length article submission: NOT PERFORMED

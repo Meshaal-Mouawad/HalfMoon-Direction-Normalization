@@ -1,33 +1,42 @@
-   The disjoint h = 0.5 case isolates representation loss more sharply. Full coordinates
-have zero population risk. Direction-only risks vary by origin: 11.8577% for D0 ,
-10.7479% for the midpoint DM , and 21.1509% for DA . Their fitted networks exhibit
-errors close to these respective floors. The midpoint network averages 10.835%, about
-0.087 percentage points above the calculated midpoint Bayes risk. Most of its error
-therefore follows from discarded radius rather than the inability of the trained network
-to approximate the optimal directional rule. The underlying global theorem is stronger
-than these finite comparisons: it states that no possible origin eliminates this type of
-loss in the proved displacement range.
-   In the overlapping h = 1 configuration, raw-coordinate ambiguity is already present
-before preprocessing. The area-uniform raw-coordinate Bayes risk is approximately
-6.7157%. The three directional features increase that floor to 21.7294%, 20.8548%,
-and 20.5987%. A fitted raw-coordinate model achieves mean error 6.790%, and a
-direction-plus-radius model achieves 6.833%, both near the common full-information
-floor. The comparison distinguishes two errors that would otherwise be conflated: the
-source-space overlap that even a coordinate-perfect classifier cannot eliminate, and the
-additional ambiguity introduced by observing direction alone.
-
-
-6.2    How much does changing the origin change learned error?
-
-The six prespecified paired origin contrasts provide an inferential check on the pattern
-seen in the population-risk table. Every seed contributes a paired difference computed on
-the same held-out observations under two transformations. The simultaneous confidence
-intervals therefore summarize across the ten independent seed-level repetitions rather
 than treating hundreds of thousands of test observations as independent replicates for
 the purpose of inference.
 
+Table 3: Prespecified origin contrasts in percentage points. Intervals are simultaneous
+95% Bonferroni-adjusted paired-t intervals for all six comparisons.
+                            h Contrast   Mean Simultaneous interval
+
+                     −0.25 DM − D0        0.000 [0.000, 0.000]
+
+                              DA − D 0   22.528 [22.341, 22.715]
+
+                        0.5 DM − D0 −1.156 [−1.292, −1.020]
+
+                              DA − D 0    9.379 [9.083, 9.675]
+
+                            1 DM − D0 −1.254 [−1.755, −0.752]
+
+                              DA − D0 −1.445 [−1.879, −1.012]
 
 
 
-                                           20
+   Five nonzero contrasts have simultaneous intervals excluding zero. In the disjoint
+h = 0.5 case, the midpoint lowers fitted error by 1.156 percentage points relative to
+the zero origin, while moving to the upper origin increases it by 9.379 points. In the
+overlapping h = 1 case, both the midpoint and upper-origin transformations reduce
+learned error relative to D0 , by 1.254 and 1.445 points, respectively. For h = −0.25,
+the DM − D0 difference is zero for every seed. These results demonstrate that the
+sign and magnitude of the origin effect are determined by class arrangement, not by a
+universal rule that moving the origin in one direction helps.
+   The population and neural findings are consistent in their ordering, yet they support
+different scopes of inference. Paired neural comparisons establish differences under
+the evaluated origins, model class and finite training protocol. The analytical all-
+origin result establishes the absence of any lossless origin over the specified continuous
+population. Neither is a substitute for the other: a proof over all origins does not
+measure a network’s optimization success, and a finite experiment does not prove a
+universal representation theorem.
+
+
+
+
+                                             20
 

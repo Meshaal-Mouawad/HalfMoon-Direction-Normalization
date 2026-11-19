@@ -1,21 +1,10 @@
-   Finite-origin positivity does not imply a globally positive lower bound. A sequence
-of strictly positive values may converge to zero along increasingly distant centers. This
-distinction is fundamental when the goal is to establish an irreducible error for every
-possible normalization origin. Viewed from afar, rays through a bounded population
-become almost parallel, so their retained differences are associated with projections
-perpendicular to the viewing direction. The statistical statement needed here concerns
-the optimal classification risks of those representations rather than a visual resemblance
-between rays. The uniform theorem below controls all viewing directions simultaneously
-and completes the origin-search problem at infinity.
-
-
 Uniform projection limit at distant origins. Fix a reference point p, a unit
 viewing vector e, and the orthogonal projection Pe onto the hyperplane perpendicular
 to e. For binary populations with densities in dimension n ≥ 2, the optimal risk of
 direction normalization about p + Re approaches the risk of Pe uniformly over e as R
 increases:
                                           ⃓                 ⃓
-                                lim sup ⃓RT∗ p+Re − RP∗ e ⃓ = 0.                       (6)
+                                lim sup ⃓RT∗ p+Re − RP∗ e ⃓ = 0.                        (6)
                                           ⃓                 ⃓
                                 R→∞   e
 
@@ -30,10 +19,8 @@ continuous on a compact domain. Consequently,
                                               ⎨∆(c) > 0         all finite c,
                                               ⎪
                                               ⎪
-                 inf
-                  c
-                     ∆(c) > 0     ⇐⇒          ⎪
-                                                                                       (7)
+                 inf ∆(c) > 0     ⇐⇒                                                    (7)
+                  c                           ⎪
                                               ⎪
                                               ⎩∆∞ (e) > 0
                                               ⎪
@@ -46,9 +33,21 @@ all limiting linear projections lose decisions.
 ping projection intervals in every direction. Equations (6)–(7) therefore strengthen its
 conclusion to
                                                      √︂
-                    inf2 ∆(c) > 0 for 0 < h ≤             3/5 and for h = 1.           (8)
-                    c∈R
+                      inf2 ∆(c) > 0 for 0 < h ≤           3/5 and for h = 1.            (8)
+                      c∈R
 
+
+This holds for every fixed pair of positive priors and densities positive almost everywhere
+on their respective supports. The proof controls signed probability mass in total
+variation, so it establishes convergence of the optimal decision risk. Supplementary
+Section S9 proves the general result and gives an explicit convergence bound for
+bounded-support densities of bounded variation.
+
+
+A numerical lower certificate for the whole plane. A certificate converts the
+qualitative positivity theorem into a numerical lower bound valid for every origin. Such
+a bound can be constructed from two interior regions where one class is favored by a
+fixed probability margin. Their relative positions make conflicting rays unavoidable,
 
 
 

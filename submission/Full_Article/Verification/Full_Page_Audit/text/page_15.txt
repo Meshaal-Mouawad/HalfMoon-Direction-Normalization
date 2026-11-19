@@ -1,9 +1,3 @@
-At the experimentally fixed t = 0.8, the decoder tolerates bounded radius error up to
-β − 0.8 ≈ 0.0120914734 coordinate units. The different threshold t⋆ = (α + β)/2 ≈
-0.7776974554 maximizes that guarantee at (β − α)/2 ≈ 0.0343940180 units (Addendum,
-Corollary 1). The neural experiment uses exact-radius bits at t = 0.8; it does not test
-noisy radius measurements.
-
                   A Near: radius ≤ 0.8                      B Far: radius > 0.8
 
             1.0                                       1.0
@@ -26,9 +20,6 @@ u2 − u1 . The same cutoff applies to every direction. The decoder classifies t
 continuous support correctly, while the numerical neural experiment evaluates whether
 a fitted model learns to use this representation.
 
-
-
-
 5      Experimental methodology and reproducibility
 
 5.1        Separating a representation limit from neural learning
@@ -41,7 +32,13 @@ above the Bayes floor may reflect insufficient training data, architecture appro
 or optimization. The empirical design therefore calculates or certifies the population
 risk independently and compares every trained network with the floor appropriate to
 its own inputs.
-
+    To support paired comparisons, the same sampled observations are transformed into
+each representation within a given geometry and seed. This reduces variation caused
+merely by generating different test sets. The study uses ten final dataset/initialization
+seeds, numbered 1001–1010, for the main experiment. For each seed it generates bal-
+anced training, validation and held-out test sets of 2,000, 2,000 and 50,000 observations.
+Distinct random streams separate dataset construction, train/validation/test splits and
+geometries. The dataset/initialization seed is the inferential unit; individual test points
 
 
                                                 15

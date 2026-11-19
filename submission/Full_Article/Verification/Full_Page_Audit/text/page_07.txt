@@ -31,12 +31,12 @@ observed accuracy.
 
 
 
-Figure 1: The two half-annular class supports under three relative displacements. A
-shared normalization origin determines which points have the same unit direction;
-colored rays in the original construction illustrate the geometry of merged decisions.
-Panel A exhibits an origin preserving the decision, panel B a disjoint arrangement with
-forced directional overlap, and panel C a configuration with overlapping raw supports.
-The illustrations motivate, rather than replace, the population-risk proofs.
+Figure 1: Half-moon class supports and their views from selected origins. Panel A
+illustrates the decision-preserving case at h = 0 (the separate experimental negative
+control uses h = −0.25); panel B shows disjoint supports with unavoidable directional
+loss at h = 0.5; panel C shows overlapping raw supports at h = 1. Rays illustrate
+which positions are merged when distance is discarded. The population-risk theorems
+establish the corresponding error statements.
 
 
 

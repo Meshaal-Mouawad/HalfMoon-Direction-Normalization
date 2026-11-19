@@ -1,8 +1,3 @@
-    The analytical Bayes rule is also evaluated on the identical held-out observations,
-allowing test-sampling variation to be distinguished from the numerical integration used
-to calculate the population floor. Across the 15 main conditions, the mean empirical
-Bayes-rule error differs from the integrated risk by at most 0.061 percentage points.
-This is a consistency check of the population calculations and sampled observations,
 not evidence that any fitted network attained the true Bayes rule exactly.
 
 
@@ -18,9 +13,23 @@ the minimum error after deleting radius about its specified origin. The learned 
 is the difference between fitted-network error and the corresponding population floor.
 This decomposition is necessary because two networks with different observed error
 rates may simply have been trained on features with different attainable information.
+    The negative-displacement case establishes that direction normalization can be
+decision preserving for a suitable origin. At h = −0.25, raw coordinates R and
+directions from the zero and midpoint origins all have zero Bayes risk and zero observed
+test error in the main study. Directions from the upper origin DA , by contrast, have
+population risk 22.2934% and mean neural test error 22.528%. The same underlying
+classes and network training budget therefore produce drastically different attainable
+risks solely because normalization uses a different origin. This is a negative control for
+any overgeneralized claim that direction normalization always destroys class decisions.
+    The disjoint h = 0.5 case isolates representation loss more sharply. Full coordinates
+have zero population risk. Direction-only risks vary by origin: 11.8577% for D0 ,
+10.7479% for the midpoint DM , and 21.1509% for DA . Their fitted networks exhibit
+errors close to these respective floors. The midpoint network averages 10.835%, about
+0.087 percentage points above the calculated midpoint Bayes risk. Most of its error
+therefore follows from discarded radius rather than the inability of the trained network
+to approximate the optimal directional rule. The underlying global theorem is stronger
+than these finite comparisons: it states that no possible origin eliminates this type of
 
 
-
-
-                                          18
+                                           18
 

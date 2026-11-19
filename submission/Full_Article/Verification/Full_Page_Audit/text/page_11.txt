@@ -1,14 +1,3 @@
-The functions Ac (θ) and Bc (θ) are signed decision-mass densities per unit angle,
-not probabilities on individual zero-width rays. Their minimum describes opposing
-preference cancelled at each angle; only integration across angles gives the excess Bayes
-risk ∆(c), a probability. Positive loss therefore requires conflicting preferences on a set
-of directions of positive angular measure. This specializes decision-preservation theory
-[5, 6] to a moving normalization origin; Supplementary Section S1 derives the identity.
-
-
-Theorem 1: loss at every finite origin. A collision seen from one origin might
-disappear when the origin moves. The stronger question is whether some viewpoint
-separates the two half-rings into different sets of directions. Their geometry answers
 that question for the positive displacements below: despite disjoint original class regions,
                                                                       √︂
 every finite viewpoint merges conflicting decisions. For 0 < h ≤           3/5, the supports
@@ -35,6 +24,16 @@ convert the forced angular overlap into positive risk in (3). At h = 1, the same
 uses connected class-exclusive regions to establish additional loss despite the overlap
 already present in raw coordinates. Supplementary Sections S2–S3 provide the explicit
 geometric witnesses, inequalities and complete proofs.
+   Finite-origin positivity does not imply a globally positive lower bound. A sequence
+of strictly positive values may converge to zero along increasingly distant centers. This
+distinction is fundamental when the goal is to establish an irreducible error for every
+possible normalization origin. Viewed from afar, rays through a bounded population
+become almost parallel, so their retained differences are associated with projections
+perpendicular to the viewing direction. The statistical statement needed here concerns
+the optimal classification risks of those representations rather than a visual resemblance
+between rays. The uniform theorem below controls all viewing directions simultaneously
+and completes the origin-search problem at infinity.
+
 
 
                                             11

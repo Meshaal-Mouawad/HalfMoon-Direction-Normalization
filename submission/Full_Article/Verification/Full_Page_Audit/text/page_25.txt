@@ -1,35 +1,33 @@
-preserve every decision. If the measured radius differs from the true radius by at
-most ε, exact recovery is guaranteed when α + ε ≤ t ≤ β − ε. At the experimental
-cutoff t = 0.8, this yields a sharp guarantee of approximately 0.01209147 coordinate
-units. The different threshold t⋆ ≈ 0.77769746 maximizes the guaranteed tolerance at
-approximately 0.03439402 units. These are mathematical statements about a fixed
-decoder and bounded measurement perturbation; the neural experiment uses the
-specified exact-radius bit and does not test noisy-radius performance.
+merges opposite class preferences, replacing the learner with a different classifier cannot
+eliminate the corresponding population loss.
+   Ahmadian and Lindsten [4] provide independent empirical motivation for studying
+normalization-sensitive performance under a radial-kernel anomaly-detection objective.
+Our result identifies and quantifies an explicit geometric mechanism in a different task,
+binary Bayes classification. The experimental scores are not interchangeable, but both
+studies show that removing or retaining magnitude must be judged relative to the
+decisions the representation is intended to support.
+   The broader statistical-risk literature [5–7] establishes decision preservation as a
+criterion for useful representations. The present contribution makes that criterion
+computable for a moving-origin direction map. The ray identity measures the mass
+of opposing decisions lost by normalization, the convex-geometric argument rules out
+lossless finite views, and the uniform projection limit rules out sequences of distant
+origins approaching zero loss. The lower certificates translate these arguments into a
+positive quantitative guarantee for the entire plane. They are intentionally conservative:
+they do not claim that the globally optimal origin actually incurs only the certificate
+value.
 
 
+8.3      Decision recovery from a radial bit
 
-8     Discussion
-
-8.1    The representation, rather than the learner, can determine
-
-       the error floor
-
-A common approach to preprocessing evaluation is to train a model under several feature
-transformations and compare accuracies. The present study shows why that evidence
-alone is insufficient for understanding direction normalization. When preprocessing
-maps class-preference regions requiring different decisions to the same direction, the
-transformed observation cannot carry the information needed for the raw-coordinate
-Bayes rule. The resulting minimum error is imposed before model fitting. If learned
-error is close to that minimum, more elaborate training may change the small excess
-without recovering the missing decisions.
-    The three half-moon arrangements clarify which conclusions are intrinsic to geometry.
-At negative displacement, suitable origins remain decision preserving. At the disjoint
-midpoint displacement, direction-only features have a positive floor for every origin even
-though the original classes can be separated perfectly. At the overlapping displacement,
-raw ambiguity and representational ambiguity coexist. These distinctions permit error
-to be allocated to its correct cause instead of describing every increase in test error as
-a network deficiency.
-
+The one-bit construction distinguishes data reconstruction from decision sufficiency.
+Continuous radius paired with direction reconstructs the original coordinates, preserving
+all information. The near/far bit cannot reconstruct a point and is uninformative
+about its label in isolation under the symmetric prior model. Combined with direction,
+however, it selects one of two angular rules, each correct on its prescribed radial region.
+The repair therefore succeeds not by approximating the lost continuous radius, but by
+preserving precisely the distinction required for the decision in this geometry.
+   The threshold interval makes the constructive result useful beyond an isolated
+nominal cutoff. Its endpoints are proved from the continuous supports, not estimated
 
 
 

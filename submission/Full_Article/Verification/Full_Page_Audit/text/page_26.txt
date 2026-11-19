@@ -1,35 +1,37 @@
-8.2      Relation to contemporary representation and decision
-
-         research
-
-The fixed-embedding comparisons of Poblete et al. [3] concern which downstream rule
-matches existing learned feature geometry. The present all-origin theory concerns
-whether a feature transformation preserves the information required by the optimal
-decision in the first place. This distinction is consequential: once the direction map
-merges opposite class preferences, replacing the learner with a different classifier cannot
-eliminate the corresponding population loss.
-   Ahmadian and Lindsten [4] provide independent empirical motivation for studying
-normalization-sensitive performance under a radial-kernel anomaly-detection objective.
-Our result identifies and quantifies an explicit geometric mechanism in a different task,
-binary Bayes classification. The experimental scores are not interchangeable, but both
-studies show that removing or retaining magnitude must be judged relative to the
-decisions the representation is intended to support.
-   The broader statistical-risk literature [5–7] establishes decision preservation as a
-criterion for useful representations. The present contribution makes that criterion
-computable for a moving-origin direction map. The ray identity measures the mass
-of opposing decisions lost by normalization, the convex-geometric argument rules out
-lossless finite views, and the uniform projection limit rules out sequences of distant
-origins approaching zero loss. The lower certificates translate these arguments into a
-positive quantitative guarantee for the entire plane. They are intentionally conservative:
-they do not claim that the globally optimal origin actually incurs only the certificate
-value.
+from neural validation accuracy. The measured radius may have a bounded pertur-
+bation without invalidating the rule, provided the cutoff and perturbation meet the
+exact inequality. The experimental threshold and the maximum-tolerance threshold
+answer different questions and are preserved separately. This separation of theorem,
+decoder and learner prevents a high test accuracy from being interpreted as a universal
+robustness guarantee.
 
 
-8.3      Decision recovery from a radial bit
+8.4    A reproducible sequence for testing class-preserving pre-
 
-The one-bit construction distinguishes data reconstruction from decision sufficiency.
-Continuous radius paired with direction reconstructs the original coordinates, preserving
-all information. The near/far bit cannot reconstruct a point and is uninformative
+       processing
 
-                                            26
+The combined analysis suggests a disciplined evaluation sequence for a direction-based
+feature map. First establish the source-space Bayes error, because some class overlap is
+intrinsic to the original observations. Then derive or estimate the Bayes error for the
+transformed representation and attribute their difference to lost information. When a
+normalization parameter such as the origin can vary, study its full admissible domain
+rather than only a finite grid. Finally measure fitted-model error above the appropriate
+transformed-input floor and test whether a restricted additional measurement can
+preserve the needed decision.
+   The frozen paired experiments instantiate this sequence. Their empirical outcomes
+closely track the respective Bayes-risk floors across origins and distinguish those floors
+from training excess. The independent repair study tests learnability of a theoretically
+sufficient input rather than using neural accuracy to claim the existence of an exact
+decoder. Together with the geometric proofs, these results demonstrate a specific
+mechanism of decision-information loss and a precisely bounded method of recovery.
+
+
+8.5    Limitations
+
+The explicit half-moon results concern two-dimensional, continuously distributed half-
+annular supports with specified radii and center displacement. The general uniform
+projection-limit theorem covers absolutely continuous binary populations in dimension
+
+
+                                           26
 

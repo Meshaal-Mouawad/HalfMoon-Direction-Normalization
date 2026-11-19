@@ -1,36 +1,36 @@
-decision, with a sharp threshold interval and measurement-error margin. Controlled
-neural evaluations show that trained models can approach the population limits
-associated with raw coordinates, direction-only inputs and the repaired representation.
-The contribution is a decision-based account of when an origin-dependent preprocessing
-rule irreversibly removes information, and how a minimal radial code restores it in a
-precisely characterized setting.
+[2] Arnulf B. A. Graf, Alexander J. Smola, and Silvio Borer. Classification in a
+   normalized feature space using support vector machines. IEEE Trans. Neural
+   Netw., 14(3):597–605, 2003. doi: 10.1109/TNN.2003.811708.
 
+[3] Víctor Poblete, José Aillapi, Carlos Duarte, Luis Veas, and Felipe Otondo. Decision-
+   rule alignment in generative latent spaces: The role of radial compatibility. Pattern
+   Recognit. Lett., 208:69–85, 2026. doi: 10.1016/j.patrec.2026.07.024.
 
+[4] Amirhossein Ahmadian and Fredrik Lindsten. Improved contrastive predictive
+   coding for time series out-of-distribution detection applied to human activity data.
+   Pattern Recognit. Lett., 197:132–138, 2025. doi: 10.1016/j.patrec.2025.07.011.
 
-Data availability
+[5] Jorge F. Silva and Shrikanth S. Narayanan. On signal representations within
+   the Bayes decision framework. Pattern Recognit., 45(5):1853–1865, 2012. doi:
+   10.1016/j.patcog.2011.11.015.
 
-Research generators, frozen protocols, numerical certificates, trained weights, predic-
-tions and analysis code are publicly available in the original V11 release at https:
-//github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/relea
-ses/tag/v11-submission. The supplementary research package also includes the
-Threshold Addendum and reproducible verification of its sharp radius-error guarantee.
+[6] Jorge F. Silva, Felipe Tobar, Mario Vicuña, and Felipe Cordova. Studying
+   the interplay between information loss and operation loss in representations
+   for classification.   J. Mach. Learn. Res., 25(291):1–71, 2024.        URL https:
+   //www.jmlr.org/papers/v25/21-1551.html.
 
+[7] László Györfi, Tamás Linder, and Harro Walk. Lossless transformations and
+   excess risk bounds in statistical inference. Entropy, 25(10):1394, 2023. doi:
+   10.3390/e25101394.
 
+[8] Jorge F. Silva, Victor Faraggi, Camilo Ramirez, Alvaro Egaña, and Eduardo Pavez.
+   Understanding encoder–decoder structures in machine learning using information
+   measures. Signal Process., 234:109983, 2025. doi: 10.1016/j.sigpro.2025.109983.
 
-Funding
-
-This research did not receive any specific grant from funding agencies in the public,
-commercial, or not-for-profit sectors.
-
-
-
-Declaration of competing interests
-
-The author declares no competing financial or non-financial interests relevant to the
-research.
-
-
-
+[9] Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris J. Maddison.
+   Lossy compression for lossless prediction. In Advances in Neural Information
+   Processing Systems, volume 34, 2021. URL https://proceedings.neurips.cc
+   /paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html.
 
                                           29
 

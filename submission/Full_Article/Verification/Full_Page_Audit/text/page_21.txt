@@ -1,39 +1,36 @@
-Table 3: Prespecified origin contrasts in percentage points. Intervals are simultaneous
-95% Bonferroni-adjusted paired-t intervals for all six comparisons.
-                         h Contrast     Mean Simultaneous interval
+6.3    Sensitivity to the sampling law and diagnostic networks
 
-                     −0.25 DM − D0      0.000 [0.000, 0.000]
-
-                            DA − D 0   22.528 [22.341, 22.715]
-
-                        0.5 DM − D0 −1.156 [−1.292, −1.020]
-
-                            DA − D 0    9.379 [9.083, 9.675]
-
-                          1 DM − D0 −1.254 [−1.755, −0.752]
-
-                            DA − D0 −1.445 [−1.879, −1.012]
-
-
-
-   Five nonzero contrasts have simultaneous intervals excluding zero. In the disjoint
-h = 0.5 case, the midpoint lowers fitted error by 1.156 percentage points relative to
-the zero origin, while moving to the upper origin increases it by 9.379 points. In the
-overlapping h = 1 case, both the midpoint and upper-origin transformations reduce
-learned error relative to D0 , by 1.254 and 1.445 points, respectively. For h = −0.25,
-the DM − D0 difference is zero for every seed. These results demonstrate that the
-sign and magnitude of the origin effect are determined by class arrangement, not by a
-universal rule that moving the origin in one direction helps.
-   The population and neural findings are consistent in their ordering, yet they support
-different scopes of inference. Paired neural comparisons establish differences under
-the evaluated origins, model class and finite training protocol. The analytical all-
-origin result establishes the absence of any lossless origin over the specified continuous
-population. Neither is a substitute for the other: a proof over all origins does not
-measure a network’s optimization success, and a finite experiment does not prove a
-universal representation theorem.
+The second sampling law changes probabilities inside the same support geometry. Its
+calculated risk values are preserved in the supplementary population table. For equal
+priors, the ratio of radius-uniform to area-uniform class densities lies between 5/6 and
+5/4, so the signed-risk argument gives a corresponding conservative relation between
+normalization losses. In particular, changing density within the supports does not
+remove the geometric obstruction that causes all-origin loss when both class densities
+remain positive on their respective regions.
+    The prespecified width and conditioning diagnostics delimit how the learned results
+should be interpreted. At h = 1, the paired difference between the direction-plus-radius
+control PA and raw coordinates R is 0.044 percentage points, with a pointwise 95%
+interval of [−0.043, 0.130]. All three width-15 versus width-64 diagnostic intervals
+include zero. Removing affine input conditioning increases DA error by 0.179 percentage
+points, interval [0.053, 0.305]; the corresponding raw and full-radius diagnostic intervals
+include zero. These are measured comparisons under specific model settings. Their
+role is to characterize variation in the fitting procedure while the underlying Bayes-risk
+interpretation remains fixed.
 
 
 
+7     Independent empirical test of the one-bit repair
 
-                                           21
+7.1    A new evaluation distinct from the original origin study
+
+The one-bit theorem establishes an exact decoder on the continuous h = 0.5 supports.
+The independent neural experiment asks whether a trained network can effectively
+use the restricted feature. Ten new paired dataset/initialization seeds, 2001–2010,
+generate area-uniform, equal-prior observations under a fresh random namespace. The
+same sample sizes, fixed 64-unit architecture, two learning rates, 4,000-update budget,
+feature conditioning and validation-based checkpoint selection are retained from the
+original protocol. The bit cutoff is fixed at 0.8 before generating the repair evaluation
+
+
+                                            21
 
