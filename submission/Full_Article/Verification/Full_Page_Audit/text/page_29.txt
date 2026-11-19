@@ -1,0 +1,36 @@
+decision, with a sharp threshold interval and measurement-error margin. Controlled
+neural evaluations show that trained models can approach the population limits
+associated with raw coordinates, direction-only inputs and the repaired representation.
+The contribution is a decision-based account of when an origin-dependent preprocessing
+rule irreversibly removes information, and how a minimal radial code restores it in a
+precisely characterized setting.
+
+
+
+Data availability
+
+Research generators, frozen protocols, numerical certificates, trained weights, predic-
+tions and analysis code are publicly available in the original V11 release at https:
+//github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/relea
+ses/tag/v11-submission. The supplementary research package also includes the
+Threshold Addendum and reproducible verification of its sharp radius-error guarantee.
+
+
+
+Funding
+
+This research did not receive any specific grant from funding agencies in the public,
+commercial, or not-for-profit sectors.
+
+
+
+Declaration of competing interests
+
+The author declares no competing financial or non-financial interests relevant to the
+research.
+
+
+
+
+                                          29
+

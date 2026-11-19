@@ -1,0 +1,56 @@
+   Finite-origin positivity does not imply a globally positive lower bound. A sequence
+of strictly positive values may converge to zero along increasingly distant centers. This
+distinction is fundamental when the goal is to establish an irreducible error for every
+possible normalization origin. Viewed from afar, rays through a bounded population
+become almost parallel, so their retained differences are associated with projections
+perpendicular to the viewing direction. The statistical statement needed here concerns
+the optimal classification risks of those representations rather than a visual resemblance
+between rays. The uniform theorem below controls all viewing directions simultaneously
+and completes the origin-search problem at infinity.
+
+
+Uniform projection limit at distant origins. Fix a reference point p, a unit
+viewing vector e, and the orthogonal projection Pe onto the hyperplane perpendicular
+to e. For binary populations with densities in dimension n ≥ 2, the optimal risk of
+direction normalization about p + Re approaches the risk of Pe uniformly over e as R
+increases:
+                                          ⃓                 ⃓
+                                lim sup ⃓RT∗ p+Re − RP∗ e ⃓ = 0.                       (6)
+                                          ⃓                 ⃓
+                                R→∞   e
+
+
+Write ∆∞ (e) = RP∗ e − RX
+                        ∗
+                          . The loss surface, completed by these projection limits, is
+continuous on a compact domain. Consequently,
+
+                                              ⎧
+                                              ⎪
+                                              ⎨∆(c) > 0         all finite c,
+                                              ⎪
+                                              ⎪
+                 inf
+                  c
+                     ∆(c) > 0     ⇐⇒          ⎪
+                                                                                       (7)
+                                              ⎪
+                                              ⎩∆∞ (e) > 0
+                                              ⎪
+                                                                all directions e.
+
+
+Thus optimizing the origin cannot make loss vanish when both finite radial views and
+all limiting linear projections lose decisions.
+   Half-moon consequence. The connected winner regions in Theorem 1 have overlap-
+ping projection intervals in every direction. Equations (6)–(7) therefore strengthen its
+conclusion to
+                                                     √︂
+                    inf2 ∆(c) > 0 for 0 < h ≤             3/5 and for h = 1.           (8)
+                    c∈R
+
+
+
+
+                                                12
+

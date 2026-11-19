@@ -1,0 +1,37 @@
+    for classification.   J. Mach. Learn. Res., 25(291):1–71, 2024.      URL https:
+    //www.jmlr.org/papers/v25/21-1551.html.
+
+ [7] László Györfi, Tamás Linder, and Harro Walk. Lossless transformations and
+    excess risk bounds in statistical inference. Entropy, 25(10):1394, 2023. doi:
+    10.3390/e25101394.
+
+ [8] Jorge F. Silva, Victor Faraggi, Camilo Ramirez, Alvaro Egaña, and Eduardo Pavez.
+    Understanding encoder–decoder structures in machine learning using information
+    measures. Signal Process., 234:109983, 2025. doi: 10.1016/j.sigpro.2025.109983.
+
+ [9] Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris J. Maddison.
+    Lossy compression for lossless prediction. In Advances in Neural Information
+    Processing Systems, volume 34, 2021. URL https://proceedings.neurips.cc
+    /paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html.
+
+[10] Onur C. Hamsici and Aleix M. Martinez. Spherical-homoscedastic distributions:
+    The equivalency of spherical and normal distributions in classification. J. Mach.
+    Learn. Res., 8:1583–1623, 2007. URL https://www.jmlr.org/papers/volume8/
+    hamsici07a/hamsici07a.pdf.
+
+[11] Onur C. Hamsici and Aleix M. Martinez. Bayes optimality in linear discriminant
+    analysis. IEEE Trans. Pattern Anal. Mach. Intell., 30(4):647–657, 2008. doi:
+    10.1109/TPAMI.2007.70717.
+
+[12] Jiyong Oh. Maximizing generalized mean of trace ratios for discriminative feature
+    learning. Pattern Recognit. Lett., 194:26–31, 2025. doi: 10.1016/j.patrec.2025.04.0
+    26.
+
+[13] Tuomas Orponen. On the dimension and smoothness of radial projections. Anal.
+    PDE, 12(5):1273–1294, 2019. doi: 10.2140/apde.2019.12.1273.
+
+[14] Ferran Hurtado, Marc Noy, Pedro A. Ramos, and Carlos Seara. Separating objects
+    in the plane by wedges and strips. Discrete Appl. Math., 109(1–2):109–138, 2001.
+
+                                         31
+

@@ -1,0 +1,38 @@
+This holds for every fixed pair of positive priors and densities positive almost everywhere
+on their respective supports. The proof controls signed probability mass in total
+variation, so it establishes convergence of the optimal decision risk. Supplementary
+Section S9 proves the general result and gives an explicit convergence bound for
+bounded-support densities of bounded variation.
+
+
+A numerical lower certificate for the whole plane. A certificate converts the
+qualitative positivity theorem into a numerical lower bound valid for every origin. Such
+a bound can be constructed from two interior regions where one class is favored by a
+fixed probability margin. Their relative positions make conflicting rays unavoidable,
+while their sizes bound the amount of probability merged on those rays. In the plane, let
+K+ , K− be compact connected cores whose radius-ρ neighborhoods satisfy d ≥ κ+ > 0
+and d ≤ −κ− < 0, respectively. Suppose each core meets the other’s convex hull, their
+convex hulls contain a common disk B(p, δ), and both cores lie within distance M of p.
+Writing κ = min(κ+ , κ− ) gives
+
+                                             {︄ √          }︄
+                                                   3ρ3
+                          inf ∆(c) ≥ κ min             , 2ρδ > 0.                       (9)
+                           c                      6M
+
+For bounded origins, mutual convex-hull intrusion forces rays through both cores; their
+neighborhoods provide an angular interval with conflicting class mass. For distant
+origins, the shared convex-hull disk supplies the bound. Thus the certificate does not
+rest on a finite search grid. Supplementary Section S10 proves the result and optimizes
+the split between these regions. For equal-prior area sampling, the conservative whole-
+plane certificates exceed 0.0205 percentage points (pp) at h = 0.5 and 0.00119 pp
+at h = 1. They bound inf c ∆(c), the best loss over all origins; by comparison, the
+midpoint loss at h = 0.5 is 10.7479% for one fixed origin (Table 2). Eroded half-annuli
+supply the required cores under both sampling laws and any fixed positive priors.
+
+
+Computing the best possible error at a chosen origin. An ideal directional
+classifier needs no neural training: for each viewing angle, one can integrate the
+
+                                             13
+

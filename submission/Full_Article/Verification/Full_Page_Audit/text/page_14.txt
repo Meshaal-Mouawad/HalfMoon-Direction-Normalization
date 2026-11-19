@@ -1,0 +1,37 @@
+class probabilities carried by that direction and choose the more probable label. For
+the half-annuli, circle tangencies and boundary intersections partition directions into
+finitely many cells. Radial support order is fixed inside a cell, so one representative
+ray determines whether opposite preferences coexist. Exact radial primitives then
+reduce Bayes risk to one angular integral. Ball arithmetic and a bounded-variation
+truncation bound certify its value. Supplementary Sections S5–S8 give the finite
+preservation test, integration formulas and error bounds. At equal priors, the density
+ratio fiR /fiA ∈ [5/6, 5/4] also gives ∆R (c) ≥ (5/6)∆A (c).
+
+
+Recovering the decision with one radius bit. The all-origin loss result rules
+out fixing the midpoint case by moving the origin, but it leaves open whether a small
+amount of distance information can repair the representation. The proposed bit answers
+only whether an observation is near or far from the fixed midpoint; it does not report
+the full distance. At h = 0.5, direction alone has positive loss at every origin. At
+c = (1/2, 1/4), append q = 1{∥x − c∥ > 4/5}. For q = 0, the sign of 9u1 + 10u2
+determines the class; for q = 1, the sign of u2 − u1 determines it. Positive signs identify
+class 0. Figure 2 shows how the radial bit assigns observations to the two angular
+rules. Together, the two rules correctly label the complete class supports under their
+respective bit conditions, giving zero Bayes risk under either sampling law and any
+positive priors. Supplementary Section S11 proves the separating inequalities. Since
+zero additional radial bits leave the positive direction-only floor, one bit is the minimal
+radial addition at this geometry.
+
+
+How accurately must radius be measured? With the same angular rules, recovery
+is exact precisely for α ≤ t ≤ β, where α ≈ 0.7433034374 and β ≈ 0.8120914734
+(Threshold Addendum, Proposition 1). If the measured radius is rˆ︁ = r + e, |e| ≤ ε,
+every support label is preserved for every admissible error function exactly when
+
+
+                                    α + ε ≤ t ≤ β − ε.                                (10)
+
+
+
+                                            14
+

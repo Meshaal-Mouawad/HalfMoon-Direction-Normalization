@@ -1,0 +1,46 @@
+the same supports. Neural experiments use equal priors and area-uniform sampling.
+The geometric positivity results apply to any positive priors πi and densities positive
+almost everywhere on the respective supports.
+   For a continuously distributed population, an isolated pair of points with the same
+normalized direction illustrates a possible collision, but does not itself prove positive
+classification error. An exact point or ray has zero probability under the continuous area
+distributions used here. What matters is the class-conditional probability distributed
+across intervals of angles. Once distance is discarded, a classifier must assign the same
+label to every position represented by a given angle; if competing decision preferences
+occur on a positive-measure set of angles, it cannot reproduce the full-coordinate Bayes
+rule. The following identity quantifies precisely that loss, by integrating the opposing
+class-weighted preferences along radius and then across direction.
+
+
+Why one ray can force classification error. A classifier that sees the original
+coordinates may give different labels to points at different distances along the same
+ray. After normalization it sees only the angle and must make one decision for all of
+them. To count the probability of the conflicting decisions, define the signed density
+d = π0 f0 − π1 f1 : its positive and negative regions favor classes 0 and 1, respectively.
+Let uθ = (cos θ, sin θ) and [z]+ = max(z, 0). Integration along the ray from c uses the
+polar area factor r, because an angular slice contains more area at a larger radius. The
+opposing class-preference masses per unit angle are
+
+                                       ∫︂ ∞
+                            Ac (θ) =          [d(c + ruθ )]+ r dr,
+                                        0
+                                       ∫︂ ∞                                            (2)
+                            Bc (θ) =          [−d(c + ruθ )]+ r dr.
+                                        0
+
+
+     ∗
+Let RX and RT∗ c denote the minimum classification risks from raw coordinates and
+directions, respectively. Using the masses in (2), the binary Bayes-risk identity yields
+
+                                               ∫︂ 2π
+                    ∆(c) := RT∗ c − RX
+                                     ∗
+                                       =               min{Ac (θ), Bc (θ)} dθ.         (3)
+                                                0
+
+
+
+
+                                                10
+

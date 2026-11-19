@@ -1,0 +1,41 @@
+The functions Ac (θ) and Bc (θ) are signed decision-mass densities per unit angle,
+not probabilities on individual zero-width rays. Their minimum describes opposing
+preference cancelled at each angle; only integration across angles gives the excess Bayes
+risk ∆(c), a probability. Positive loss therefore requires conflicting preferences on a set
+of directions of positive angular measure. This specializes decision-preservation theory
+[5, 6] to a moving normalization origin; Supplementary Section S1 derives the identity.
+
+
+Theorem 1: loss at every finite origin. A collision seen from one origin might
+disappear when the origin moves. The stronger question is whether some viewpoint
+separates the two half-rings into different sets of directions. Their geometry answers
+that question for the positive displacements below: despite disjoint original class regions,
+                                                                      √︂
+every finite viewpoint merges conflicting decisions. For 0 < h ≤           3/5, the supports
+have disjoint interiors and
+
+
+                        ∗
+                       RX = 0,       ∆(c) > 0 for every c ∈ R2 .                         (4)
+
+
+At h = 0, every origin with c2 = 0 preserves zero risk. More generally, for h < 0, origins
+in the separating strip h ≤ c2 ≤ 0 preserve zero risk. At h = 1, the supports overlap
+and
+                        ∗
+                       RX > 0,       ∆(c) > 0 for every c ∈ R2 .                         (5)
+
+                                                                                √
+   Proof idea. Horizontal slicing shows that the disjoint supports satisfy       a2 − h 2 ≥
+1/5 in the stated range. Yet each connected half-ring intrudes into the other one’s convex
+hull. Were their directional images disjoint from some origin, a separating angular
+cone would contain one region’s convex hull while excluding the other, contradicting
+this intrusion. This adapts the geometry of Hurtado et al. [14]; positive class densities
+convert the forced angular overlap into positive risk in (3). At h = 1, the same argument
+uses connected class-exclusive regions to establish additional loss despite the overlap
+already present in raw coordinates. Supplementary Sections S2–S3 provide the explicit
+geometric witnesses, inequalities and complete proofs.
+
+
+                                            11
+

@@ -1,0 +1,45 @@
+Table 1: Geometry and intended role of each evaluation configuration. The descriptions
+summarize proved support properties; they are not inferred from a neural classifier’s
+observed accuracy.
+ Displacement Source-space property              Main question
+ h = −0.25              Disjoint; decision-preserving  When can direction retain the opti-
+                        origins exist                  mal label decision?
+ h = 0.5                Disjoint; no origin eliminates How large is preprocessing-induced
+                        directional loss               error when the raw classes are sep-
+                                                       arable?
+ h=1                    Original supports overlap; di- How do original ambiguity and pre-
+                        rection adds loss              processing loss differ?
+
+
+
+
+           A h=0                                    B h = 0.5                                   C h=1
+                                                                    One direction,
+                                                                    opposite labels
+       1                                        1                                           1
+
+
+ x2    0                                  x2    0                                     x2    0
+
+
+                                                                                                              Overlap
+      −1                                       −1                                          −1
+
+           −1       0        1        2              −1      0           1        2             −1        0         1       2
+                        x1                                          x1                                         x1
+                A preserving origin                  Every origin loses decisions               Additional loss despite overlap
+
+
+
+Figure 1: The two half-annular class supports under three relative displacements. A
+shared normalization origin determines which points have the same unit direction;
+colored rays in the original construction illustrate the geometry of merged decisions.
+Panel A exhibits an origin preserving the decision, panel B a disjoint arrangement with
+forced directional overlap, and panel C a configuration with overlapping raw supports.
+The illustrations motivate, rather than replace, the population-risk proofs.
+
+
+
+
+                                                                7
+

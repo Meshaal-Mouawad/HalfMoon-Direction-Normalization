@@ -1,0 +1,35 @@
+8.2      Relation to contemporary representation and decision
+
+         research
+
+The fixed-embedding comparisons of Poblete et al. [3] concern which downstream rule
+matches existing learned feature geometry. The present all-origin theory concerns
+whether a feature transformation preserves the information required by the optimal
+decision in the first place. This distinction is consequential: once the direction map
+merges opposite class preferences, replacing the learner with a different classifier cannot
+eliminate the corresponding population loss.
+   Ahmadian and Lindsten [4] provide independent empirical motivation for studying
+normalization-sensitive performance under a radial-kernel anomaly-detection objective.
+Our result identifies and quantifies an explicit geometric mechanism in a different task,
+binary Bayes classification. The experimental scores are not interchangeable, but both
+studies show that removing or retaining magnitude must be judged relative to the
+decisions the representation is intended to support.
+   The broader statistical-risk literature [5–7] establishes decision preservation as a
+criterion for useful representations. The present contribution makes that criterion
+computable for a moving-origin direction map. The ray identity measures the mass
+of opposing decisions lost by normalization, the convex-geometric argument rules out
+lossless finite views, and the uniform projection limit rules out sequences of distant
+origins approaching zero loss. The lower certificates translate these arguments into a
+positive quantitative guarantee for the entire plane. They are intentionally conservative:
+they do not claim that the globally optimal origin actually incurs only the certificate
+value.
+
+
+8.3      Decision recovery from a radial bit
+
+The one-bit construction distinguishes data reconstruction from decision sufficiency.
+Continuous radius paired with direction reconstructs the original coordinates, preserving
+all information. The near/far bit cannot reconstruct a point and is uninformative
+
+                                            26
+

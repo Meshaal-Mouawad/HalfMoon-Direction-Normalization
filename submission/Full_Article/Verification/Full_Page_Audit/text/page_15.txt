@@ -1,0 +1,48 @@
+At the experimentally fixed t = 0.8, the decoder tolerates bounded radius error up to
+β − 0.8 ≈ 0.0120914734 coordinate units. The different threshold t⋆ = (α + β)/2 ≈
+0.7776974554 maximizes that guarantee at (β − α)/2 ≈ 0.0343940180 units (Addendum,
+Corollary 1). The neural experiment uses exact-radius bits at t = 0.8; it does not test
+noisy radius measurements.
+
+                  A Near: radius ≤ 0.8                      B Far: radius > 0.8
+
+            1.0                                       1.0
+
+            0.5                                       0.5
+      x2                                        x2
+            0.0                                       0.0
+
+           −0.5                                      −0.5
+                  9u1 + 10u2                                u2 − u1
+
+                   −1          0        1   2                −1        0          1   2
+                                   x1                                      x1
+
+
+Figure 2: Exact one-bit recovery for the disjoint h = 0.5 configuration. A shared
+near/far radius bit about c = (0.5, 0.25) chooses between two angular decision rules.
+Inside threshold 0.8, the rule uses the sign of 9u1 + 10u2 ; outside it uses the sign of
+u2 − u1 . The same cutoff applies to every direction. The decoder classifies the entire
+continuous support correctly, while the numerical neural experiment evaluates whether
+a fitted model learns to use this representation.
+
+
+
+
+5      Experimental methodology and reproducibility
+
+5.1        Separating a representation limit from neural learning
+
+The theoretical Bayes risk answers what the best classifier could do if the class probabil-
+ities were known and the representation were fixed. A neural experiment answers how
+close a finite-data learner comes to that risk. These are separate measurements: an error
+forced by discarded radius remains even with unlimited model training, whereas error
+above the Bayes floor may reflect insufficient training data, architecture approximation
+or optimization. The empirical design therefore calculates or certifies the population
+risk independently and compares every trained network with the floor appropriate to
+its own inputs.
+
+
+
+                                                15
+

@@ -1,0 +1,38 @@
+    These controls are designed around an information hierarchy. Raw coordinates and
+exact direction-plus-radius inputs have the full coordinate information. Direction-only
+features discard the radial component. The one-bit repair condition, evaluated sepa-
+rately, restores a categorical part of the radius without restoring the continuous variable.
+Comparing population Bayes risks identifies information loss exactly; comparing trained
+networks shows how those distinct inputs perform under a fixed fitting protocol.
+
+
+
+4     Population geometry and the information lost in
+
+      a directional representation
+
+To determine what is lost by retaining direction alone, we first describe the class regions
+and the best possible decision before and after normalization. Each half-moon is a
+thick semicircular ring, bounded by an inner and an outer radius. Class 0 occupies an
+upper half-ring centered at the origin; class 1 occupies a lower half-ring whose center
+is shifted one unit to the right and h units upward. The displacement h controls the
+separation or overlap of the two bands (Fig. 1). An origin c determines the rays along
+which distinct points are merged when their distance is discarded. We calculate the
+class probability merged on each ray and then ask whether any choice of c can avoid
+the resulting minimum classification error.
+    Let a = 0.8, b = 1.2, m0 = (0, 0) and m1 = (1, h), where h is the upward center
+displacement. The open class supports are
+
+
+                         S0 = {x : a < ∥x∥ < b, x2 > 0},
+
+                         S1 = {x : a < ∥x − m1 ∥ < b, x2 < h}.                          (1)
+
+
+Each support has area H = π(b2 − a2 )/2 = 2π/5. The primary generator draws points
+uniformly over the area of each band, so its density is fiA = 1Si /H. A second law
+draws radius and angle uniformly, giving fiR (x) = 1Si (x)/[π(b − a)∥x − mi ∥]; it tests
+whether the geometric conclusions survive a different allocation of probability within
+
+                                             9
+

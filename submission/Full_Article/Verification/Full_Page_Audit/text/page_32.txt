@@ -1,0 +1,20 @@
+    doi: 10.1016/S0166-218X(00)00230-4. URL https://pedroramos.web.uah.es/
+    papers/separating-wedges-strips.pdf.
+
+[15] Karen L. Oehler and Robert M. Gray. Combining image compression and classifi-
+    cation using vector quantization. IEEE Trans. Pattern Anal. Mach. Intell., 17(5):
+    461–473, 1995. doi: 10.1109/34.391396.
+
+[16] Hatice Şenozan and Banu Soylu. A flexible non-monotonic discretization method
+    for pre-processing in supervised learning. Pattern Recognition Letters, 181:77–85,
+    2024. doi: 10.1016/j.patrec.2024.03.024.
+
+[17] Diederik P. Kingma and Jimmy Ba. Adam: A method for stochastic optimization.
+    In International Conference on Learning Representations, 2015. URL https:
+    //arxiv.org/abs/1412.6980.
+
+
+
+
+                                         32
+

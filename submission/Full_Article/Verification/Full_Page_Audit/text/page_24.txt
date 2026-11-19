@@ -1,0 +1,40 @@
+Table 4: Fresh one-bit experiment at h = 0.5. Bayes risk and mean ± sample SD over
+ten seeds are percentages. Each input is evaluated on the same 500,000 observations,
+balanced within each seed. R denotes raw coordinates; DM , midpoint direction; B,
+midpoint direction plus one bit; and PM , midpoint direction plus full radius.
+                     Input Bayes risk        Test error Error count
+
+                     R              0   0.0000 ± 0.0000           0
+
+                     DM       10.7479 10.8724 ± 0.1157       54,362
+
+                     B              0   0.0006 ± 0.0019           3
+
+                     PM             0   0.0000 ± 0.0000           0
+
+
+
+   The mean paired improvement B − DM is −10.8718 percentage points, with simul-
+taneous 95% interval [−10.9691, −10.7745]. The difference B − PM is 0.0006 percentage
+points, interval [−0.0010, 0.0022]. Under this fixed learner and evaluation procedure,
+most of the error associated with discarding radius is recovered by one bit. The three
+remaining neural mistakes are not contradictions of the exact mathematical decoder:
+one statement concerns an optimal rule with fixed coefficients on the complete support,
+and the other concerns the output of a fitted model on finite held-out observations.
+
+
+7.3    Minimality and robustness are distinct results
+
+One additional radial bit is sufficient in the midpoint geometry because the constructed
+classifier uses it to choose between two valid angular decision rules. It is minimal
+among finite-valued radial codes appended to exact direction because a zero-bit addition
+leaves the direction-only Bayes floor unchanged. The bit does not identify the label
+independently of direction; under the equal-prior reflected sampling laws its own Bayes
+error is 50%. Its value is relational: it supplies the small amount of radial information
+needed to choose which angular separator applies.
+   The sharp interval result adds a separate guarantee. With the same fixed decoder,
+all common thresholds t in [α, β], where α ≈ 0.7433034374 and β ≈ 0.8120914734,
+
+
+                                           24
+

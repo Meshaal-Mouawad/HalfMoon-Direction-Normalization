@@ -1,0 +1,33 @@
+   The disjoint h = 0.5 case isolates representation loss more sharply. Full coordinates
+have zero population risk. Direction-only risks vary by origin: 11.8577% for D0 ,
+10.7479% for the midpoint DM , and 21.1509% for DA . Their fitted networks exhibit
+errors close to these respective floors. The midpoint network averages 10.835%, about
+0.087 percentage points above the calculated midpoint Bayes risk. Most of its error
+therefore follows from discarded radius rather than the inability of the trained network
+to approximate the optimal directional rule. The underlying global theorem is stronger
+than these finite comparisons: it states that no possible origin eliminates this type of
+loss in the proved displacement range.
+   In the overlapping h = 1 configuration, raw-coordinate ambiguity is already present
+before preprocessing. The area-uniform raw-coordinate Bayes risk is approximately
+6.7157%. The three directional features increase that floor to 21.7294%, 20.8548%,
+and 20.5987%. A fitted raw-coordinate model achieves mean error 6.790%, and a
+direction-plus-radius model achieves 6.833%, both near the common full-information
+floor. The comparison distinguishes two errors that would otherwise be conflated: the
+source-space overlap that even a coordinate-perfect classifier cannot eliminate, and the
+additional ambiguity introduced by observing direction alone.
+
+
+6.2    How much does changing the origin change learned error?
+
+The six prespecified paired origin contrasts provide an inferential check on the pattern
+seen in the population-risk table. Every seed contributes a paired difference computed on
+the same held-out observations under two transformations. The simultaneous confidence
+intervals therefore summarize across the ten independent seed-level repetitions rather
+than treating hundreds of thousands of test observations as independent replicates for
+the purpose of inference.
+
+
+
+
+                                           20
+
