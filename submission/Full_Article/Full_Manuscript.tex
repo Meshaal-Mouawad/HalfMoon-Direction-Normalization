@@ -134,7 +134,9 @@ Table~\ref{tab:neural-main} reports the population Bayes risk and mean learned t
 
 The negative-displacement case establishes that direction normalization can be decision preserving for a suitable origin. At \(h=-0.25\), raw coordinates \(R\) and directions from the zero and midpoint origins all have zero Bayes risk and zero observed test error in the main study. Directions from the upper origin \(D_A\), by contrast, have population risk \(22.2934\%\) and mean neural test error \(22.528\%\). The same underlying classes and network training budget therefore produce drastically different attainable risks solely because normalization uses a different origin. This is a negative control for any overgeneralized claim that direction normalization always destroys class decisions.
 
-\begin{table}[!htbp]
+The disjoint \(h=0.5\) case isolates representation loss more sharply. Full coordinates have zero population risk. Direction-only risks vary by origin: \(11.8577\%\) for \(D_0\), \(10.7479\%\) for the midpoint \(D_M\), and \(21.1509\%\) for \(D_A\). Their fitted networks exhibit errors close to these respective floors. The midpoint network averages \(10.835\%\), about \(0.087\) percentage points above the calculated midpoint Bayes risk. Most of its error therefore follows from discarded radius rather than the inability of the trained network to approximate the optimal directional rule. The underlying global theorem is stronger than these finite comparisons: it states that no possible origin eliminates this type of loss in the proved displacement range.
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{Population Bayes risk and neural test error. Errors are mean $\pm$ sample SD over ten seeds; excess is mean error minus Bayes risk. Risk and error are percentages; excess is in percentage points. $R$ denotes raw coordinates, $D$ direction, and $P$ direction plus radius; subscripts $0$, $M$ and $A$ identify the zero, midpoint and upper origins.}
@@ -163,8 +165,6 @@ $1$      & $R$   & 6.7157 & $6.790\pm0.103$ & 0.074 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-The disjoint \(h=0.5\) case isolates representation loss more sharply. Full coordinates have zero population risk. Direction-only risks vary by origin: \(11.8577\%\) for \(D_0\), \(10.7479\%\) for the midpoint \(D_M\), and \(21.1509\%\) for \(D_A\). Their fitted networks exhibit errors close to these respective floors. The midpoint network averages \(10.835\%\), about \(0.087\) percentage points above the calculated midpoint Bayes risk. Most of its error therefore follows from discarded radius rather than the inability of the trained network to approximate the optimal directional rule. The underlying global theorem is stronger than these finite comparisons: it states that no possible origin eliminates this type of loss in the proved displacement range.
 
 In the overlapping \(h=1\) configuration, raw-coordinate ambiguity is already present before preprocessing. The area-uniform raw-coordinate Bayes risk is approximately \(6.7157\%\). The three directional features increase that floor to \(21.7294\%\), \(20.8548\%\), and \(20.5987\%\). A fitted raw-coordinate model achieves mean error \(6.790\%\), and a direction-plus-radius model achieves \(6.833\%\), both near the common full-information floor. The comparison distinguishes two errors that would otherwise be conflated: the source-space overlap that even a coordinate-perfect classifier cannot eliminate, and the additional ambiguity introduced by observing direction alone.
 
