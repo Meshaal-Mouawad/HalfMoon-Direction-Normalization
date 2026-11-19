@@ -126,3 +126,112 @@ The one-bit repair experiment later adds 80 new candidate fits and 40 selected e
 The primary outcome is test misclassification probability. Accuracy and mean squared error are secondary, while learned excess is the fitted test error minus the representation-specific Bayes risk. Six planned origin contrasts compare \(D_M-D_0\) and \(D_A-D_0\) at each of the three displacements. Paired seed differences are summarized by their means, sample standard deviations and Student-\(t\) intervals with nine degrees of freedom. Simultaneous 95\% intervals use a Bonferroni adjustment across the six contrasts; supplementary analyses retain whole-seed bootstrap sensitivity and pointwise intervals for diagnostics.
 
 The analytical Bayes rule is also evaluated on the identical held-out observations, allowing test-sampling variation to be distinguished from the numerical integration used to calculate the population floor. Across the 15 main conditions, the mean empirical Bayes-rule error differs from the integrated risk by at most \(0.061\) percentage points. This is a consistency check of the population calculations and sampled observations, not evidence that any fitted network attained the true Bayes rule exactly.
+
+
+\section{Neural results evaluated against population risk}
+\subsection{Three geometries reveal different sources of error}
+Table~\ref{tab:neural-main} reports the population Bayes risk and mean learned test error for all 15 main geometry--representation conditions. The raw-coordinate risk gives the best achievable decision from the untransformed observation. Each direction-only risk gives the minimum error after deleting radius about its specified origin. The learned excess is the difference between fitted-network error and the corresponding population floor. This decomposition is necessary because two networks with different observed error rates may simply have been trained on features with different attainable information.
+
+\HalfMoonMainRiskTable
+
+The negative-displacement case establishes that direction normalization can be decision preserving for a suitable origin. At \(h=-0.25\), raw coordinates \(R\) and directions from the zero and midpoint origins all have zero Bayes risk and zero observed test error in the main study. Directions from the upper origin \(D_A\), by contrast, have population risk \(22.2934\%\) and mean neural test error \(22.528\%\). The same underlying classes and network training budget therefore produce drastically different attainable risks solely because normalization uses a different origin. This is a negative control for any overgeneralized claim that direction normalization always destroys class decisions.
+
+The disjoint \(h=0.5\) case isolates representation loss more sharply. Full coordinates have zero population risk. Direction-only risks vary by origin: \(11.8577\%\) for \(D_0\), \(10.7479\%\) for the midpoint \(D_M\), and \(21.1509\%\) for \(D_A\). Their fitted networks exhibit errors close to these respective floors. The midpoint network averages \(10.835\%\), about \(0.087\) percentage points above the calculated midpoint Bayes risk. Most of its error therefore follows from discarded radius rather than the inability of the trained network to approximate the optimal directional rule. The underlying global theorem is stronger than these finite comparisons: it states that no possible origin eliminates this type of loss in the proved displacement range.
+
+In the overlapping \(h=1\) configuration, raw-coordinate ambiguity is already present before preprocessing. The area-uniform raw-coordinate Bayes risk is approximately \(6.7157\%\). The three directional features increase that floor to \(21.7294\%\), \(20.8548\%\), and \(20.5987\%\). A fitted raw-coordinate model achieves mean error \(6.790\%\), and a direction-plus-radius model achieves \(6.833\%\), both near the common full-information floor. The comparison distinguishes two errors that would otherwise be conflated: the source-space overlap that even a coordinate-perfect classifier cannot eliminate, and the additional ambiguity introduced by observing direction alone.
+
+\subsection{How much does changing the origin change learned error?}
+The six prespecified paired origin contrasts provide an inferential check on the pattern seen in the population-risk table. Every seed contributes a paired difference computed on the same held-out observations under two transformations. The simultaneous confidence intervals therefore summarize across the ten independent seed-level repetitions rather than treating hundreds of thousands of test observations as independent replicates for the purpose of inference.
+
+\HalfMoonOriginContrastTable
+
+Five nonzero contrasts have simultaneous intervals excluding zero. In the disjoint \(h=0.5\) case, the midpoint lowers fitted error by \(1.156\) percentage points relative to the zero origin, while moving to the upper origin increases it by \(9.379\) points. In the overlapping \(h=1\) case, both the midpoint and upper-origin transformations reduce learned error relative to \(D_0\), by \(1.254\) and \(1.445\) points, respectively. For \(h=-0.25\), the \(D_M-D_0\) difference is zero for every seed. These results demonstrate that the sign and magnitude of the origin effect are determined by class arrangement, not by a universal rule that moving the origin in one direction helps.
+
+The population and neural findings are consistent in their ordering, yet they support different scopes of inference. Paired neural comparisons establish differences under the evaluated origins, model class and finite training protocol. The analytical all-origin result establishes the absence of any lossless origin over the specified continuous population. Neither is a substitute for the other: a proof over all origins does not measure a network's optimization success, and a finite experiment does not prove a universal representation theorem.
+
+\subsection{Sensitivity to the sampling law and diagnostic networks}
+The second sampling law changes probabilities inside the same support geometry. Its calculated risk values are preserved in the supplementary population table. For equal priors, the ratio of radius-uniform to area-uniform class densities lies between \(5/6\) and \(5/4\), so the signed-risk argument gives a corresponding conservative relation between normalization losses. In particular, changing density within the supports does not remove the geometric obstruction that causes all-origin loss when both class densities remain positive on their respective regions.
+
+The prespecified width and conditioning diagnostics delimit how the learned results should be interpreted. At \(h=1\), the paired difference between the direction-plus-radius control \(P_A\) and raw coordinates \(R\) is \(0.044\) percentage points, with a pointwise 95\% interval of \([-0.043,0.130]\). All three width-15 versus width-64 diagnostic intervals include zero. Removing affine input conditioning increases \(D_A\) error by \(0.179\) percentage points, interval \([0.053,0.305]\); the corresponding raw and full-radius diagnostic intervals include zero. These are measured comparisons under specific model settings. Their role is to characterize variation in the fitting procedure while the underlying Bayes-risk interpretation remains fixed.
+
+\section{Independent empirical test of the one-bit repair}
+\subsection{A new evaluation distinct from the original origin study}
+The one-bit theorem establishes an exact decoder on the continuous \(h=0.5\) supports. The independent neural experiment asks whether a trained network can effectively use the restricted feature. Ten new paired dataset/initialization seeds, 2001--2010, generate area-uniform, equal-prior observations under a fresh random namespace. The same sample sizes, fixed 64-unit architecture, two learning rates, 4,000-update budget, feature conditioning and validation-based checkpoint selection are retained from the original protocol. The bit cutoff is fixed at \(0.8\) before generating the repair evaluation samples.
+
+Four representations clarify the comparison. Raw coordinates \(R\) and midpoint direction plus continuous radius \(P_M\) retain full positional information, establishing two information-complete controls. Midpoint direction alone \(D_M\) removes radius and has a nonzero Bayes-risk floor. The repaired representation \(B\) contains midpoint direction and the single near/far bit. The last two comparisons isolate the empirical value of the bit relative to direction and the remaining gap relative to full radial information. The 80 new candidate fits yield 40 selected models whose final tests are evaluated after model selection is frozen.
+
+The study treats the paired \(B-D_M\) and \(B-P_M\) differences as their own two-comparison family, with simultaneous 95\% Bonferroni-adjusted intervals. The direction-plus-bit and direction-plus-radius networks use three input features and 321 parameters; the raw and direction-only controls use two features and 257 parameters. These details matter because the evidence combines a change in the information supplied with a documented change in input dimensionality.
+
+\subsection{Learned performance and the exact decoder}
+The repaired representation has zero Bayes risk in the proved geometry, and the explicit decoder correctly labels all points in the continuous class supports. The trained network approximates this mapping rather than receiving the decoder's coefficients. On the same 500,000 test observations, direction-only networks make 54,362 errors while the networks with the one-bit feature make three. Raw-coordinate and full-radius models make no observed errors, and the explicit analytic decoder also makes none. Table~\ref{tab:one-bit-neural} records the corresponding errors and seed-level standard deviations, keeping the theoretical floor separate from the empirical count.
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{Fresh one-bit experiment at $h=0.5$. Bayes risk and mean $\pm$ sample SD over ten seeds are percentages. Each input is evaluated on the same 500,000 observations, balanced within each seed. $R$ denotes raw coordinates; $D_M$, midpoint direction; $B$, midpoint direction plus one bit; and $P_M$, midpoint direction plus full radius.}
+\label{tab:one-bit-neural}
+\begin{tabular}{lrrr}
+\toprule
+Input & Bayes risk & Test error & Error count \\
+\midrule
+$R$ & 0 & $0.0000\pm0.0000$ & 0 \\
+$D_M$ & 10.7479 & $10.8724\pm0.1157$ & 54,362 \\
+$B$ & 0 & $0.0006\pm0.0019$ & 3 \\
+$P_M$ & 0 & $0.0000\pm0.0000$ & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mean paired improvement \(B-D_M\) is \(-10.8718\) percentage points, with simultaneous 95\% interval \([-10.9691,-10.7745]\). The difference \(B-P_M\) is \(0.0006\) percentage points, interval \([-0.0010,0.0022]\). Under this fixed learner and evaluation procedure, most of the error associated with discarding radius is recovered by one bit. The three remaining neural mistakes are not contradictions of the exact mathematical decoder: one statement concerns an optimal rule with fixed coefficients on the complete support, and the other concerns the output of a fitted model on finite held-out observations.
+
+\subsection{Minimality and robustness are distinct results}
+One additional radial bit is sufficient in the midpoint geometry because the constructed classifier uses it to choose between two valid angular decision rules. It is minimal among finite-valued radial codes appended to exact direction because a zero-bit addition leaves the direction-only Bayes floor unchanged. The bit does not identify the label independently of direction; under the equal-prior reflected sampling laws its own Bayes error is \(50\%\). Its value is relational: it supplies the small amount of radial information needed to choose which angular separator applies.
+
+The sharp interval result adds a separate guarantee. With the same fixed decoder, all common thresholds \(t\) in \([\alpha,\beta]\), where \(\alpha\approx0.7433034374\) and \(\beta\approx0.8120914734\), preserve every decision. If the measured radius differs from the true radius by at most \(\varepsilon\), exact recovery is guaranteed when \(\alpha+\varepsilon\leq t\leq\beta-\varepsilon\). At the experimental cutoff \(t=0.8\), this yields a sharp guarantee of approximately \(0.01209147\) coordinate units. The different threshold \(t^\star\approx0.77769746\) maximizes the guaranteed tolerance at approximately \(0.03439402\) units. These are mathematical statements about a fixed decoder and bounded measurement perturbation; the neural experiment uses the specified exact-radius bit and does not test noisy-radius performance.
+
+\section{Discussion}
+\subsection{The representation, rather than the learner, can determine the error floor}
+A common approach to preprocessing evaluation is to train a model under several feature transformations and compare accuracies. The present study shows why that evidence alone is insufficient for understanding direction normalization. When preprocessing maps class-preference regions requiring different decisions to the same direction, the transformed observation cannot carry the information needed for the raw-coordinate Bayes rule. The resulting minimum error is imposed before model fitting. If learned error is close to that minimum, more elaborate training may change the small excess without recovering the missing decisions.
+
+The three half-moon arrangements clarify which conclusions are intrinsic to geometry. At negative displacement, suitable origins remain decision preserving. At the disjoint midpoint displacement, direction-only features have a positive floor for every origin even though the original classes can be separated perfectly. At the overlapping displacement, raw ambiguity and representational ambiguity coexist. These distinctions permit error to be allocated to its correct cause instead of describing every increase in test error as a network deficiency.
+
+\subsection{Relation to contemporary representation and decision research}
+The fixed-embedding comparisons of Poblete et al.~\citep{Poblete2026} concern which downstream rule matches existing learned feature geometry. The present all-origin theory concerns whether a feature transformation preserves the information required by the optimal decision in the first place. This distinction is consequential: once the direction map merges opposite class preferences, replacing the learner with a different classifier cannot eliminate the corresponding population loss.
+
+Ahmadian and Lindsten~\citep{Ahmadian2025} provide independent empirical motivation for studying normalization-sensitive performance under a radial-kernel anomaly-detection objective. Our result identifies and quantifies an explicit geometric mechanism in a different task, binary Bayes classification. The experimental scores are not interchangeable, but both studies show that removing or retaining magnitude must be judged relative to the decisions the representation is intended to support.
+
+The broader statistical-risk literature \citep{Silva2012,Silva2024,Gyorfi2023} establishes decision preservation as a criterion for useful representations. The present contribution makes that criterion computable for a moving-origin direction map. The ray identity measures the mass of opposing decisions lost by normalization, the convex-geometric argument rules out lossless finite views, and the uniform projection limit rules out sequences of distant origins approaching zero loss. The lower certificates translate these arguments into a positive quantitative guarantee for the entire plane. They are intentionally conservative: they do not claim that the globally optimal origin actually incurs only the certificate value.
+
+\subsection{Why restricted radial information can restore a task decision}
+The one-bit construction distinguishes data reconstruction from decision sufficiency. Continuous radius paired with direction reconstructs the original coordinates, preserving all information. The near/far bit cannot reconstruct a point and is uninformative about its label in isolation under the symmetric prior model. Combined with direction, however, it selects one of two angular rules, each correct on its prescribed radial region. The repair therefore succeeds not by approximating the lost continuous radius, but by preserving precisely the distinction required for the decision in this geometry.
+
+The threshold interval makes the constructive result useful beyond an isolated nominal cutoff. Its endpoints are proved from the continuous supports, not estimated from neural validation accuracy. The measured radius may have a bounded perturbation without invalidating the rule, provided the cutoff and perturbation meet the exact inequality. The experimental threshold and the maximum-tolerance threshold answer different questions and are preserved separately. This separation of theorem, decoder and learner prevents a high test accuracy from being interpreted as a universal robustness guarantee.
+
+\subsection{A reproducible sequence for testing class-preserving preprocessing}
+The combined analysis suggests a disciplined evaluation sequence for a direction-based feature map. First establish the source-space Bayes error, because some class overlap is intrinsic to the original observations. Then derive or estimate the Bayes error for the transformed representation and attribute their difference to lost information. When a normalization parameter such as the origin can vary, study its full admissible domain rather than only a finite grid. Finally measure fitted-model error above the appropriate transformed-input floor and test whether a restricted additional measurement can preserve the needed decision.
+
+The frozen paired experiments instantiate this sequence. Their empirical outcomes closely track the respective Bayes-risk floors across origins and distinguish those floors from training excess. The independent repair study tests learnability of a theoretically sufficient input rather than using neural accuracy to claim the existence of an exact decoder. Together with the geometric proofs, these results demonstrate a specific mechanism of decision-information loss and a precisely bounded method of recovery.
+
+\subsection{Limitations}
+The explicit half-moon results concern two-dimensional, continuously distributed half-annular supports with specified radii and center displacement. The general uniform projection-limit theorem covers absolutely continuous binary populations in dimension at least two, whereas the specific geometric corollaries and positive numerical certificates require connected preferred-decision regions, convex-hull relations and density assumptions. The certificates are conservative lower bounds over all origins; fixed-origin risks are separate calculated values. The additional radial-bit construction and sharp threshold interval are proved for the stated disjoint midpoint geometry, exact direction, fixed angular rules and bounded additive radius error.
+
+The neural tests use equal-prior area-uniform observations, ten seeds per final study, a specified one-hidden-layer architecture, a fixed training budget and prespecified model-selection procedures. Their results concern the studied distributions and models. The radius-uniform comparison addresses analytical population risk, not an additional neural training arm. Fitted errors include finite-sample, optimization and approximation effects; some three-input controls have more parameters than the two-input networks. These restrictions delimit the empirical claims and do not alter the established mathematical results for their stated domains.
+
+\section{Conclusion}
+Discarding radius during direction normalization can destroy a class distinction even when the original class supports are disjoint. The study derives an exact population-risk identity for that loss, establishes conditions under which it remains positive over every normalization origin, and proves a uniform connection to projected classification at distant origins. Explicit whole-plane certificates make the guarantee quantitative. In the proved disjoint midpoint geometry, one shared near/far radius bit recovers every class decision, with a sharp threshold interval and measurement-error margin. Controlled neural evaluations show that trained models can approach the population limits associated with raw coordinates, direction-only inputs and the repaired representation. The contribution is a decision-based account of when an origin-dependent preprocessing rule irreversibly removes information, and how a minimal radial code restores it in a precisely characterized setting.
+
+\section*{Data availability}
+Research generators, frozen protocols, numerical certificates, trained weights, predictions and analysis code are publicly available in the original V11 release at \url{https://github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/releases/tag/v11-submission}. The supplementary research package also includes the Threshold Addendum and reproducible verification of its sharp radius-error guarantee.
+
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+\section*{Declaration of competing interests}
+The author declares no competing financial or non-financial interests relevant to the research.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the preparation process}
+During preparation of this work, the author used Elsevier LeapSpace and other tools to support literature discovery, manuscript organization, language refinement, and consistency checking. The author takes responsibility for the content of the article.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}
