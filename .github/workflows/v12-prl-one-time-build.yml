@@ -1,4 +1,5 @@
 name: One-time V12 Pattern Recognition Letters build
+# Rerun for focused bibliography after verified page-8 overflow diagnosis
 on:
   push:
     branches: [main]
