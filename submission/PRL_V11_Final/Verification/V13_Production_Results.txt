@@ -8,5 +8,5 @@ Build script: PASS
 Source ZIP integrity: PASS
 Submission PDFs copied byte-identically from build: PASS
 Scientific results: frozen mathematical/table/figure content protected
-Final PDF visual inspection: PENDING
+Final PDF visual inspection: PASS — all seven final pages inspected, figures, tables, math and references readable; page-two column overflow corrected
 Editorial portal resubmission: NOT PERFORMED
