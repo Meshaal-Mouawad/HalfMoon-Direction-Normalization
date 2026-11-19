@@ -1,5 +1,5 @@
 # Full-length research article production record
-Compiled pages: 33
+Compiled pages: 32
 Format: 12-point, single-column, double-spaced LaTeX
 Frozen mathematical equations: verified unchanged
 One-bit experimental table: verified unchanged
