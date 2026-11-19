@@ -1,0 +1,157 @@
+name: One-time V12 R2 Gold Niche review closure build
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/v12-r2-prl-review-closure.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Verify frozen mathematical and experimental content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re, subprocess
+          from pathlib import Path
+          base = '83d4a4dd98f503049bc8b1abfcbd07a326a8d522'
+          prefix = 'submission/PRL_V11_Final/Editable_LaTeX/'
+          targets = [
+              ('Manuscript.tex', ['figure*']),
+              ('theory_main.tex', ['equation','align']),
+              ('experimental_sections.tex', ['table']),
+              ('one_bit_experiment.tex', ['table']),
+              ('Threshold_Addendum.tex', ['equation','align','proposition','corollary'])
+          ]
+          for name, tags in targets:
+              path = prefix+name
+              old = subprocess.check_output(['git','show',base+':'+path],text=True)
+              new = Path(path).read_text()
+              for tag in tags:
+                  pat = re.compile(r'\\begin\{'+re.escape(tag)+r'\}.*?\\end\{'+re.escape(tag)+r'\}',re.S)
+                  assert pat.findall(old)==pat.findall(new), 'Protected '+tag+' changed in '+name
+              assert re.findall(r'\\label\{([^}]+)\}',old)==re.findall(r'\\label\{([^}]+)\}',new), 'Labels changed: '+name
+          bib=prefix+'references.bib'
+          assert subprocess.check_output(['git','show',base+':'+bib],text=True)==Path(bib).read_text(), 'Bibliography changed'
+          ms=Path(prefix+'Manuscript.tex').read_text()
+          assert 'During preparation of this work, the author used Elsevier LeapSpace' in ms
+          assert 'https://github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/releases/tag/v11-submission' in ms
+          exp=Path(prefix+'one_bit_experiment.tex').read_text()
+          assert all(x in exp for x in ['54,362','500,000','0.0006']), 'Experimental counts changed'
+          print('PASS: frozen equations, tables, figures, labels, references, AI statement, key counts')
+          PY
+      - name: Build all three documents in complete TeX Live
+        uses: xu-cheng/texlive-action@v3
+        with:
+          os: debian
+          scheme: full
+          run: |
+            apt-get -qq update
+            DEBIAN_FRONTEND=noninteractive apt-get -qq install -y python3
+            cd submission/PRL_V11_Final/Editable_LaTeX
+            bash build.sh > ../Verification/V12_Build.log 2>&1 || {
+              tail -150 ../Verification/V12_Build.log
+              exit 1
+            }
+      - name: Verify pages, source and upload package
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y poppler-utils rsync zip
+          BASE=submission/PRL_V11_Final
+          EDIT="$BASE/Editable_LaTeX"
+          UP="$BASE/Journal_Upload"
+          PAGES_MAIN=$(pdfinfo "$EDIT/Manuscript.pdf" | awk '/^Pages:/ {print $2}')
+          PAGES_SUPP=$(pdfinfo "$EDIT/Supplement.pdf" | awk '/^Pages:/ {print $2}')
+          PAGES_ADD=$(pdfinfo "$EDIT/Threshold_Addendum.pdf" | awk '/^Pages:/ {print $2}')
+          printf 'Pages: main=%s supplement=%s addendum=%s\n' "$PAGES_MAIN" "$PAGES_SUPP" "$PAGES_ADD"
+          if [ "$PAGES_MAIN" -gt 7 ]; then
+            echo '=== PAGE 7 CONTENTS (LAYOUT DIAGNOSTIC) ==='
+            pdftotext -f 7 -l 7 -layout "$EDIT/Manuscript.pdf" - | tail -85
+            echo '=== PAGE 8 CONTENTS (LAYOUT DIAGNOSTIC) ==='
+            pdftotext -f 8 -l 8 -layout "$EDIT/Manuscript.pdf" - | tail -85
+          fi
+          test "$PAGES_MAIN" -le 7 || {
+            echo "FAIL: PRL initial main article exceeds seven-page limit"
+            exit 1
+          }
+          test "$PAGES_MAIN" -ge 6
+          test "$PAGES_SUPP" -ge 18
+          test "$PAGES_ADD" -ge 3
+          grep -Fq "Half-moon geometry and the minimum error after normalization" "$EDIT/theory_main.tex"
+          grep -Fq "54,362" "$EDIT/one_bit_experiment.tex"
+          grep -Fq "10.7479" "$EDIT/experimental_sections.tex"
+          grep -Fq "Research data and code:" "$EDIT/Manuscript.tex"
+          grep -Fq "0.0120914734" "$EDIT/theory_main.tex"
+          grep -Fq "x_0=(1,0.25)" "$EDIT/narrative_sections.tex"
+          grep -Fq "257 trainable parameters" "$EDIT/experimental_sections.tex"
+          for name in Manuscript Supplement Threshold_Addendum; do
+            cp "$EDIT/$name.pdf" "$UP/$name.pdf"
+            cmp -s "$EDIT/$name.pdf" "$UP/$name.pdf"
+          done
+          mkdir -p "$RUNNER_TEMP/V12_source/Manuscript" "$RUNNER_TEMP/V12_source/Figures"
+          rsync -a --exclude='*.aux' --exclude='*.log' --exclude='*.blg' --exclude='*.abs' --exclude='*.pdf' --exclude='*.out' --exclude='*.synctex*' "$EDIT/" "$RUNNER_TEMP/V12_source/Manuscript/"
+          rsync -a "$BASE/Figures/" "$RUNNER_TEMP/V12_source/Figures/"
+          rm -f "$UP/LaTeX_Source.zip"
+          (cd "$RUNNER_TEMP/V12_source" && zip -q -r "$GITHUB_WORKSPACE/$UP/LaTeX_Source.zip" Manuscript Figures)
+          unzip -tq "$UP/LaTeX_Source.zip" >/dev/null
+          (cd "$UP" && find . -maxdepth 1 -type f -print0 | sort -z | xargs -0 sha256sum) > "$BASE/Verification/SHA256SUMS.txt"
+          cat > "$BASE/Verification/V12_Production_Results.txt" <<EOF
+          V12 R2 Gold Niche review-closure clean build
+          Source: GitHub Actions complete TeX Live
+          Review findings M01-M10 implemented in editable source
+          Main article pages: $PAGES_MAIN (limit 7)
+          Supplement pages: $PAGES_SUPP
+          Threshold addendum pages: $PAGES_ADD
+          Build script: PASS
+          Source ZIP integrity: PASS
+          Submission PDFs copied byte-identically from build: PASS
+          Scientific results: frozen mathematical/table/figure content protected
+          Final PDF visual inspection: PENDING
+          Editorial portal resubmission: NOT PERFORMED
+          EOF
+          cat > "$BASE/FINAL_STATUS.txt" <<EOF
+          V12 R2 reader-first manuscript for PRLETTERS-D-26-03032
+          Main PDF: $PAGES_MAIN pages, freshly built.
+          Supplement: $PAGES_SUPP pages, freshly built.
+          Threshold Addendum: $PAGES_ADD pages, freshly built.
+          LaTeX Source: rebuilt and ZIP integrity checked.
+          Full original research archives preserved in public V11 release.
+          Signed authorship confirmation must be uploaded under Cover letter.
+          Visual review of generated PDF and editor approval remain author actions.
+          EOF
+      - name: Publish rebuilt journal files on the existing main branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/v12-r2-prl-review-closure.yml
+          git add -A -- submission/PRL_V11_Final .github/workflows/v12-r2-prl-review-closure.yml
+          git diff --cached --quiet && { echo "No build changes"; exit 1; }
+          git commit -m "Verify Gold Niche V12 R2 and synchronize journal PDF and LaTeX"
+          git push origin HEAD:main
+      - name: Render manuscript page previews
+        shell: bash
+        run: |
+          mkdir -p /tmp/HalfMoonV12R2Previews
+          pdftoppm -f 1 -l 7 -r 120 -png submission/PRL_V11_Final/Journal_Upload/Manuscript.pdf /tmp/HalfMoonV12R2Previews/page
+      - name: Preserve visual preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: V12-R2-Manuscript-Page-Previews
+          path: /tmp/HalfMoonV12R2Previews/
+      - name: Preserve compiled upload files as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: V12-R2-Pattern-Recognition-Letters-Submission
+          path: submission/PRL_V11_Final/Journal_Upload/
