@@ -4,11 +4,11 @@
 \usepackage{lmodern,amsmath,amssymb,booktabs,graphicx,microtype,xurl,setspace}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
-\usepackage{xr}
+\usepackage{xr,float}
 \externaldocument{Supplement_labels}
 \graphicspath{{../Figures/}}
 \newcommand{\R}{\mathbb R}
-\input{experimental_sections}
+% Result tables are included verbatim at their argument locations.
 \doublespacing
 \begin{document}
 \begin{center}
@@ -132,7 +132,35 @@ The analytical Bayes rule is also evaluated on the identical held-out observatio
 \subsection{Three geometries reveal different sources of error}
 Table~\ref{tab:neural-main} reports the population Bayes risk and mean learned test error for all 15 main geometry--representation conditions. The raw-coordinate risk gives the best achievable decision from the untransformed observation. Each direction-only risk gives the minimum error after deleting radius about its specified origin. The learned excess is the difference between fitted-network error and the corresponding population floor. This decomposition is necessary because two networks with different observed error rates may simply have been trained on features with different attainable information.
 
-\HalfMoonMainRiskTable
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{Population Bayes risk and neural test error. Errors are mean $\pm$ sample SD over ten seeds; excess is mean error minus Bayes risk. Risk and error are percentages; excess is in percentage points. $R$ denotes raw coordinates, $D$ direction, and $P$ direction plus radius; subscripts $0$, $M$ and $A$ identify the zero, midpoint and upper origins.}
+\label{tab:neural-main}
+\begin{tabular}{rrrcr}
+\toprule
+$h$ & Input & Bayes risk & Test error & Excess \\
+\midrule
+$-0.25$ & $R$   & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+         & $D_0$ & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+         & $D_M$ & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+         & $D_A$ & 22.2934 & $22.528\pm0.176$ & 0.234 \\
+         & $P_A$ & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+\addlinespace
+$0.5$    & $R$   & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+         & $D_0$ & 11.8577 & $11.991\pm0.132$ & 0.134 \\
+         & $D_M$ & 10.7479 & $10.835\pm0.140$ & 0.087 \\
+         & $D_A$ & 21.1509 & $21.370\pm0.268$ & 0.219 \\
+         & $P_A$ & 0.0000 & $0.000\pm0.000$ & 0.000 \\
+\addlinespace
+$1$      & $R$   & 6.7157 & $6.790\pm0.103$ & 0.074 \\
+         & $D_0$ & 21.7294 & $22.201\pm0.375$ & 0.471 \\
+         & $D_M$ & 20.8548 & $20.947\pm0.175$ & 0.092 \\
+         & $D_A$ & 20.5987 & $20.755\pm0.316$ & 0.157 \\
+         & $P_A$ & 6.7157 & $6.833\pm0.135$ & 0.118 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The negative-displacement case establishes that direction normalization can be decision preserving for a suitable origin. At \(h=-0.25\), raw coordinates \(R\) and directions from the zero and midpoint origins all have zero Bayes risk and zero observed test error in the main study. Directions from the upper origin \(D_A\), by contrast, have population risk \(22.2934\%\) and mean neural test error \(22.528\%\). The same underlying classes and network training budget therefore produce drastically different attainable risks solely because normalization uses a different origin. This is a negative control for any overgeneralized claim that direction normalization always destroys class decisions.
 
@@ -143,7 +171,24 @@ In the overlapping \(h=1\) configuration, raw-coordinate ambiguity is already pr
 \subsection{How much does changing the origin change learned error?}
 The six prespecified paired origin contrasts provide an inferential check on the pattern seen in the population-risk table. Every seed contributes a paired difference computed on the same held-out observations under two transformations. The simultaneous confidence intervals therefore summarize across the ten independent seed-level repetitions rather than treating hundreds of thousands of test observations as independent replicates for the purpose of inference.
 
-\HalfMoonOriginContrastTable
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{Prespecified origin contrasts in percentage points. Intervals are simultaneous 95\% Bonferroni-adjusted paired-$t$ intervals for all six comparisons.}
+\label{tab:neural-contrasts}
+\begin{tabular}{rlrl}
+\toprule
+$h$ & Contrast & Mean & Simultaneous interval \\
+\midrule
+$-0.25$ & $D_M-D_0$ & 0.000 & $[0.000,0.000]$ \\
+         & $D_A-D_0$ & 22.528 & $[22.341,22.715]$ \\
+$0.5$    & $D_M-D_0$ & $-1.156$ & $[-1.292,-1.020]$ \\
+         & $D_A-D_0$ & 9.379 & $[9.083,9.675]$ \\
+$1$      & $D_M-D_0$ & $-1.254$ & $[-1.755,-0.752]$ \\
+         & $D_A-D_0$ & $-1.445$ & $[-1.879,-1.012]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Five nonzero contrasts have simultaneous intervals excluding zero. In the disjoint \(h=0.5\) case, the midpoint lowers fitted error by \(1.156\) percentage points relative to the zero origin, while moving to the upper origin increases it by \(9.379\) points. In the overlapping \(h=1\) case, both the midpoint and upper-origin transformations reduce learned error relative to \(D_0\), by \(1.254\) and \(1.445\) points, respectively. For \(h=-0.25\), the \(D_M-D_0\) difference is zero for every seed. These results demonstrate that the sign and magnitude of the origin effect are determined by class arrangement, not by a universal rule that moving the origin in one direction helps.
 
@@ -165,7 +210,7 @@ The study treats the paired \(B-D_M\) and \(B-P_M\) differences as their own two
 \subsection{Learned performance and the exact decoder}
 The repaired representation has zero Bayes risk in the proved geometry, and the explicit decoder correctly labels all points in the continuous class supports. The trained network approximates this mapping rather than receiving the decoder's coefficients. On the same 500,000 test observations, direction-only networks make 54,362 errors while the networks with the one-bit feature make three. Raw-coordinate and full-radius models make no observed errors, and the explicit analytic decoder also makes none. Table~\ref{tab:one-bit-neural} records the corresponding errors and seed-level standard deviations, keeping the theoretical floor separate from the empirical count.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{Fresh one-bit experiment at $h=0.5$. Bayes risk and mean $\pm$ sample SD over ten seeds are percentages. Each input is evaluated on the same 500,000 observations, balanced within each seed. $R$ denotes raw coordinates; $D_M$, midpoint direction; $B$, midpoint direction plus one bit; and $P_M$, midpoint direction plus full radius.}
