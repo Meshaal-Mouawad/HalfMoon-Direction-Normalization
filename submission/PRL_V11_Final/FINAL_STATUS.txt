@@ -1,26 +1,14 @@
-Pattern Recognition Letters — Half-Moon V11
+HALF-MOON PRL SUBMISSION STATUS — 2026-11-19
+Manuscript: PRLETTERS-D-26-03032
+Research author: Meshaal Mouawad
 
-PASS:
-- Public GitHub repository and V11 research release
-- Both original research archives preserved
-- Public research-data URL in manuscript
-- Seven-page manuscript
-- Eighteen-page supplement
-- Three-page threshold addendum
-- Independent LaTeX build
-- Figures available for loose-source compilation
-- Journal-upload files and source ZIP
+V11: submitted 2026-11-18; returned to author for the mandatory Authorship Confirmation form.
+V12: reader-first REVISED LATEX SOURCE committed on main, editorial and mathematical source checks documented.
+IMPORTANT: Journal_Upload/*.pdf and Journal_Upload/LaTeX_Source.zip are STILL V11 until a clean V12 build passes.
+DO NOT RESUBMIT OLD JOURNAL_UPLOAD FILES AS V12.
+V12 PDF build, seven-page limit, figure inspection and refreshed ZIP are NOT YET VERIFIED.
+The V11 data release and original mathematical/experimental record remain preserved.
 
-AUTHOR COMPLETION:
-- Official signed authorship/formatting form
-- Funding declaration
-- Competing-interest declaration
-- Originality and submission-history confirmation
-
-FINAL CHECK:
-- Confirm publisher portal requirements
-- Review rendered submission files
-- Submit manuscript
-
-CLEANUP:
-Final operation only, after submission package closure.
+The signed Authorship Confirmation form must be uploaded as item type Cover letter.
+After production PASS: inspect the generated submission PDF and explicitly approve in Editorial Manager.
+Do not claim the journal resubmission has occurred.
