@@ -54,3 +54,15 @@ The revision uses current claims already supported by these cited works; it does
 The uploaded Universal Writing Protocol, GOLD Niche standard and Mouawad Gap Discovery prompt were inspected directly. The Academic Writing Prompts.zip was materialized, but the file-execution environment could not unpack it in this session; its internal components are only corroborated through the earlier implementation inventory. Direct ZIP-wide compliance remains NOT VERIFIED.
 
 No new experiments, results, mathematical statements, authors or preprint claims were introduced. This file records an editorial revision, not editor approval or journal resubmission.
+
+## Page-limit correction — 19 November 2026
+
+The first V12 Mac and GitHub Actions builds produced eight main-article pages (supplement 18, addendum 3). A diagnostic PDF text extract established that page 8 contained only bibliography entries [16]–[25]. The overflow arose from the reference list, not a missing explanation or experimental figure.
+
+The bibliography was refocused on directly relevant research. Eight peripheral citation keys were removed from the main-text background: `Yang2026Compression`, `Meng2026`, `Ding2026`, `Scholkemper2025`, `September2024`, `Zhuang2026`, `Shen2025`, and `Ni2024`. Their entries remain in the preserved `references.bib`; no bibliographic source file or empirical/theoretical source was modified. The removed sentence on explanation-preserving image compression addressed a different outcome from classification Bayes risk. The grouped citations about attention, graph centering, discriminant analysis, and layer normalization did not establish the paper's particular all-origin or one-bit claim. The replacement paragraph directly connects decision-aware quantization to the shared-threshold question, preserving the reader's explanatory progression.
+
+The central sources on spatial signs, Bayes decision preservation, recent PRL normalization/feature geometry, orthogonal projection, planar separability, and Bayes-aware quantization are retained. Frozen equations, numerical estimates, tables, figures, algorithm/code, authorship, AI declaration, and public data URL are unchanged.
+
+The source spelling error `emph{can}` in `one_bit_experiment.tex` was corrected to `\\emph{can}` (TeX emphasis command).
+
+**Production gate:** recompile and verify at most seven main pages before publishing the revised journal files. Visual inspection is still mandatory after successful build.
