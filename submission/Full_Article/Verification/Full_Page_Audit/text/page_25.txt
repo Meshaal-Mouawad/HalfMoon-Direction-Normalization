@@ -1,3 +1,18 @@
+midpoint displacement, direction-only features have a positive floor for every origin even
+though the original classes can be separated perfectly. At the overlapping displacement,
+raw ambiguity and representational ambiguity coexist. These distinctions permit error
+to be allocated to its correct cause instead of describing every increase in test error as
+a network deficiency.
+
+
+8.2    Relation to contemporary representation and decision
+
+       research
+
+The fixed-embedding comparisons of Poblete et al. [3] concern which downstream rule
+matches existing learned feature geometry. The present all-origin theory concerns
+whether a feature transformation preserves the information required by the optimal
+decision in the first place. This distinction is consequential: once the direction map
 merges opposite class preferences, replacing the learner with a different classifier cannot
 eliminate the corresponding population loss.
    Ahmadian and Lindsten [4] provide independent empirical motivation for studying
@@ -14,21 +29,6 @@ lossless finite views, and the uniform projection limit rules out sequences of d
 origins approaching zero loss. The lower certificates translate these arguments into a
 positive quantitative guarantee for the entire plane. They are intentionally conservative:
 they do not claim that the globally optimal origin actually incurs only the certificate
-value.
-
-
-8.3      Decision recovery from a radial bit
-
-The one-bit construction distinguishes data reconstruction from decision sufficiency.
-Continuous radius paired with direction reconstructs the original coordinates, preserving
-all information. The near/far bit cannot reconstruct a point and is uninformative
-about its label in isolation under the symmetric prior model. Combined with direction,
-however, it selects one of two angular rules, each correct on its prescribed radial region.
-The repair therefore succeeds not by approximating the lost continuous radius, but by
-preserving precisely the distinction required for the decision in this geometry.
-   The threshold interval makes the constructive result useful beyond an isolated
-nominal cutoff. Its endpoints are proved from the continuous supports, not estimated
-
 
 
                                             25

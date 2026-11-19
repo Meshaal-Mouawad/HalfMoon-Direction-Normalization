@@ -1,36 +1,41 @@
-[2] Arnulf B. A. Graf, Alexander J. Smola, and Silvio Borer. Classification in a
-   normalized feature space using support vector machines. IEEE Trans. Neural
-   Netw., 14(3):597–605, 2003. doi: 10.1109/TNN.2003.811708.
+Declaration of competing interests
 
-[3] Víctor Poblete, José Aillapi, Carlos Duarte, Luis Veas, and Felipe Otondo. Decision-
-   rule alignment in generative latent spaces: The role of radial compatibility. Pattern
-   Recognit. Lett., 208:69–85, 2026. doi: 10.1016/j.patrec.2026.07.024.
+The author declares no competing financial or non-financial interests relevant to the
+research.
 
-[4] Amirhossein Ahmadian and Fredrik Lindsten. Improved contrastive predictive
-   coding for time series out-of-distribution detection applied to human activity data.
-   Pattern Recognit. Lett., 197:132–138, 2025. doi: 10.1016/j.patrec.2025.07.011.
 
-[5] Jorge F. Silva and Shrikanth S. Narayanan. On signal representations within
-   the Bayes decision framework. Pattern Recognit., 45(5):1853–1865, 2012. doi:
-   10.1016/j.patcog.2011.11.015.
 
-[6] Jorge F. Silva, Felipe Tobar, Mario Vicuña, and Felipe Cordova. Studying
-   the interplay between information loss and operation loss in representations
-   for classification.   J. Mach. Learn. Res., 25(291):1–71, 2024.        URL https:
-   //www.jmlr.org/papers/v25/21-1551.html.
+Declaration of generative AI and AI-assisted tech-
 
-[7] László Györfi, Tamás Linder, and Harro Walk. Lossless transformations and
-   excess risk bounds in statistical inference. Entropy, 25(10):1394, 2023. doi:
-   10.3390/e25101394.
+nologies in the preparation process
 
-[8] Jorge F. Silva, Victor Faraggi, Camilo Ramirez, Alvaro Egaña, and Eduardo Pavez.
-   Understanding encoder–decoder structures in machine learning using information
-   measures. Signal Process., 234:109983, 2025. doi: 10.1016/j.sigpro.2025.109983.
+During preparation of this work, the author used Elsevier LeapSpace and other tools
+to support literature discovery, manuscript organization, language refinement, and
+consistency checking. The author takes responsibility for the content of the article.
 
-[9] Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris J. Maddison.
-   Lossy compression for lossless prediction. In Advances in Neural Information
-   Processing Systems, volume 34, 2021. URL https://proceedings.neurips.cc
-   /paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html.
 
-                                          29
+
+References
+
+ [1] Sven Serneels, Evert De Nolf, and Pierre J. Van Espen. Spatial sign preprocessing:
+    A simple way to impart moderate robustness to multivariate estimators. J. Chem.
+    Inf. Model., 46(3):1402–1409, 2006. doi: 10.1021/ci050498u.
+
+ [2] Arnulf B. A. Graf, Alexander J. Smola, and Silvio Borer. Classification in a
+    normalized feature space using support vector machines. IEEE Trans. Neural
+    Netw., 14(3):597–605, 2003. doi: 10.1109/TNN.2003.811708.
+
+ [3] Víctor Poblete, José Aillapi, Carlos Duarte, Luis Veas, and Felipe Otondo. Decision-
+    rule alignment in generative latent spaces: The role of radial compatibility. Pattern
+    Recognit. Lett., 208:69–85, 2026. doi: 10.1016/j.patrec.2026.07.024.
+
+ [4] Amirhossein Ahmadian and Fredrik Lindsten. Improved contrastive predictive
+    coding for time series out-of-distribution detection applied to human activity data.
+    Pattern Recognit. Lett., 197:132–138, 2025. doi: 10.1016/j.patrec.2025.07.011.
+
+ [5] Jorge F. Silva and Shrikanth S. Narayanan. On signal representations within
+
+
+
+                                           29
 

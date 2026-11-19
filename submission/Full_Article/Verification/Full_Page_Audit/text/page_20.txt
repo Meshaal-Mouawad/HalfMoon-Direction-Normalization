@@ -1,3 +1,12 @@
+additional ambiguity introduced by observing direction alone.
+
+
+6.2    How much does changing the origin change learned error?
+
+The six prespecified paired origin contrasts provide an inferential check on the pattern
+seen in the population-risk table. Every seed contributes a paired difference computed on
+the same held-out observations under two transformations. The simultaneous confidence
+intervals therefore summarize across the ten independent seed-level repetitions rather
 than treating hundreds of thousands of test observations as independent replicates for
 the purpose of inference.
 
@@ -28,14 +37,6 @@ the DM − D0 difference is zero for every seed. These results demonstrate that 
 sign and magnitude of the origin effect are determined by class arrangement, not by a
 universal rule that moving the origin in one direction helps.
    The population and neural findings are consistent in their ordering, yet they support
-different scopes of inference. Paired neural comparisons establish differences under
-the evaluated origins, model class and finite training protocol. The analytical all-
-origin result establishes the absence of any lossless origin over the specified continuous
-population. Neither is a substitute for the other: a proof over all origins does not
-measure a network’s optimization success, and a finite experiment does not prove a
-universal representation theorem.
-
-
 
 
                                              20

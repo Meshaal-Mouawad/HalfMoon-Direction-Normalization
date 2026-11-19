@@ -1,3 +1,24 @@
+    the Bayes decision framework. Pattern Recognit., 45(5):1853–1865, 2012. doi:
+    10.1016/j.patcog.2011.11.015.
+
+ [6] Jorge F. Silva, Felipe Tobar, Mario Vicuña, and Felipe Cordova. Studying
+    the interplay between information loss and operation loss in representations
+    for classification.   J. Mach. Learn. Res., 25(291):1–71, 2024.      URL https:
+    //www.jmlr.org/papers/v25/21-1551.html.
+
+ [7] László Györfi, Tamás Linder, and Harro Walk. Lossless transformations and
+    excess risk bounds in statistical inference. Entropy, 25(10):1394, 2023. doi:
+    10.3390/e25101394.
+
+ [8] Jorge F. Silva, Victor Faraggi, Camilo Ramirez, Alvaro Egaña, and Eduardo Pavez.
+    Understanding encoder–decoder structures in machine learning using information
+    measures. Signal Process., 234:109983, 2025. doi: 10.1016/j.sigpro.2025.109983.
+
+ [9] Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris J. Maddison.
+    Lossy compression for lossless prediction. In Advances in Neural Information
+    Processing Systems, volume 34, 2021. URL https://proceedings.neurips.cc
+    /paper/2021/hash/7535bbb91c8fde347ad861f293126633-Abstract.html.
+
 [10] Onur C. Hamsici and Aleix M. Martinez. Spherical-homoscedastic distributions:
     The equivalency of spherical and normal distributions in classification. J. Mach.
     Learn. Res., 8:1583–1623, 2007. URL https://www.jmlr.org/papers/volume8/
@@ -10,28 +31,6 @@
 [12] Jiyong Oh. Maximizing generalized mean of trace ratios for discriminative feature
     learning. Pattern Recognit. Lett., 194:26–31, 2025. doi: 10.1016/j.patrec.2025.04.0
     26.
-
-[13] Tuomas Orponen. On the dimension and smoothness of radial projections. Anal.
-    PDE, 12(5):1273–1294, 2019. doi: 10.2140/apde.2019.12.1273.
-
-[14] Ferran Hurtado, Marc Noy, Pedro A. Ramos, and Carlos Seara. Separating objects
-    in the plane by wedges and strips. Discrete Appl. Math., 109(1–2):109–138, 2001.
-    doi: 10.1016/S0166-218X(00)00230-4. URL https://pedroramos.web.uah.es/
-    papers/separating-wedges-strips.pdf.
-
-[15] Karen L. Oehler and Robert M. Gray. Combining image compression and classifi-
-    cation using vector quantization. IEEE Trans. Pattern Anal. Mach. Intell., 17(5):
-    461–473, 1995. doi: 10.1109/34.391396.
-
-[16] Hatice Şenozan and Banu Soylu. A flexible non-monotonic discretization method
-    for pre-processing in supervised learning. Pattern Recognition Letters, 181:77–85,
-    2024. doi: 10.1016/j.patrec.2024.03.024.
-
-[17] Diederik P. Kingma and Jimmy Ba. Adam: A method for stochastic optimization.
-    In International Conference on Learning Representations, 2015. URL https:
-    //arxiv.org/abs/1412.6980.
-
-
 
                                          30
 

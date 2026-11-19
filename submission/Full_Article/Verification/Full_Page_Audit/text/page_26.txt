@@ -1,3 +1,17 @@
+value.
+
+
+8.3      Decision recovery from a radial bit
+
+The one-bit construction distinguishes data reconstruction from decision sufficiency.
+Continuous radius paired with direction reconstructs the original coordinates, preserving
+all information. The near/far bit cannot reconstruct a point and is uninformative
+about its label in isolation under the symmetric prior model. Combined with direction,
+however, it selects one of two angular rules, each correct on its prescribed radial region.
+The repair therefore succeeds not by approximating the lost continuous radius, but by
+preserving precisely the distinction required for the decision in this geometry.
+   The threshold interval makes the constructive result useful beyond an isolated
+nominal cutoff. Its endpoints are proved from the continuous supports, not estimated
 from neural validation accuracy. The measured radius may have a bounded pertur-
 bation without invalidating the rule, provided the cutoff and perturbation meet the
 exact inequality. The experimental threshold and the maximum-tolerance threshold
@@ -6,9 +20,9 @@ decoder and learner prevents a high test accuracy from being interpreted as a un
 robustness guarantee.
 
 
-8.4    A reproducible sequence for testing class-preserving pre-
+8.4      A reproducible sequence for testing class-preserving pre-
 
-       processing
+         processing
 
 The combined analysis suggests a disciplined evaluation sequence for a direction-based
 feature map. First establish the source-space Bayes error, because some class overlap is
@@ -17,21 +31,7 @@ transformed representation and attribute their difference to lost information. W
 normalization parameter such as the origin can vary, study its full admissible domain
 rather than only a finite grid. Finally measure fitted-model error above the appropriate
 transformed-input floor and test whether a restricted additional measurement can
-preserve the needed decision.
-   The frozen paired experiments instantiate this sequence. Their empirical outcomes
-closely track the respective Bayes-risk floors across origins and distinguish those floors
-from training excess. The independent repair study tests learnability of a theoretically
-sufficient input rather than using neural accuracy to claim the existence of an exact
-decoder. Together with the geometric proofs, these results demonstrate a specific
-mechanism of decision-information loss and a precisely bounded method of recovery.
 
 
-8.5    Limitations
-
-The explicit half-moon results concern two-dimensional, continuously distributed half-
-annular supports with specified radii and center displacement. The general uniform
-projection-limit theorem covers absolutely continuous binary populations in dimension
-
-
-                                           26
+                                            26
 

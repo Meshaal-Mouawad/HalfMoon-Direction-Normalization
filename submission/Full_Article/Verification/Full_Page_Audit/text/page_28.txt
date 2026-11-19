@@ -1,3 +1,20 @@
+9    Conclusion
+
+Discarding radius during direction normalization can destroy a class distinction even
+when the original class supports are disjoint. The study derives an exact population-risk
+identity for that loss, establishes conditions under which it remains positive over every
+normalization origin, and proves a uniform connection to projected classification at
+distant origins. Explicit whole-plane certificates make the guarantee quantitative. In the
+proved disjoint midpoint geometry, one shared near/far radius bit recovers every class
+decision, with a sharp threshold interval and measurement-error margin. Controlled
+neural evaluations show that trained models can approach the population limits
+associated with raw coordinates, direction-only inputs and the repaired representation.
+The contribution is a decision-based account of when an origin-dependent preprocessing
+rule irreversibly removes information, and how a minimal radial code restores it in a
+precisely characterized setting.
+
+
+
 Data availability
 
 Research generators, frozen protocols, numerical certificates, trained weights, predic-
@@ -15,28 +32,6 @@ commercial, or not-for-profit sectors.
 
 
 
-Declaration of competing interests
 
-The author declares no competing financial or non-financial interests relevant to the
-research.
-
-
-
-Declaration of generative AI and AI-assisted tech-
-
-nologies in the preparation process
-
-During preparation of this work, the author used Elsevier LeapSpace and other tools
-to support literature discovery, manuscript organization, language refinement, and
-consistency checking. The author takes responsibility for the content of the article.
-
-
-
-References
-
- [1] Sven Serneels, Evert De Nolf, and Pierre J. Van Espen. Spatial sign preprocessing:
-    A simple way to impart moderate robustness to multivariate estimators. J. Chem.
-    Inf. Model., 46(3):1402–1409, 2006. doi: 10.1021/ci050498u.
-
-                                          28
+                                           28
 

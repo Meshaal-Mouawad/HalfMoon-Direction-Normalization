@@ -1,3 +1,11 @@
+different scopes of inference. Paired neural comparisons establish differences under
+the evaluated origins, model class and finite training protocol. The analytical all-
+origin result establishes the absence of any lossless origin over the specified continuous
+population. Neither is a substitute for the other: a proof over all origins does not
+measure a network’s optimization success, and a finite experiment does not prove a
+universal representation theorem.
+
+
 6.3    Sensitivity to the sampling law and diagnostic networks
 
 The second sampling law changes probabilities inside the same support geometry. Its
@@ -7,7 +15,7 @@ priors, the ratio of radius-uniform to area-uniform class densities lies between
 normalization losses. In particular, changing density within the supports does not
 remove the geometric obstruction that causes all-origin loss when both class densities
 remain positive on their respective regions.
-    The prespecified width and conditioning diagnostics delimit how the learned results
+   The prespecified width and conditioning diagnostics delimit how the learned results
 should be interpreted. At h = 1, the paired difference between the direction-plus-radius
 control PA and raw coordinates R is 0.044 percentage points, with a pointwise 95%
 interval of [−0.043, 0.130]. All three width-15 versus width-64 diagnostic intervals
@@ -18,18 +26,6 @@ role is to characterize variation in the fitting procedure while the underlying 
 interpretation remains fixed.
 
 
-
-7     Independent empirical test of the one-bit repair
-
-7.1    A new evaluation distinct from the original origin study
-
-The one-bit theorem establishes an exact decoder on the continuous h = 0.5 supports.
-The independent neural experiment asks whether a trained network can effectively
-use the restricted feature. Ten new paired dataset/initialization seeds, 2001–2010,
-generate area-uniform, equal-prior observations under a fresh random namespace. The
-same sample sizes, fixed 64-unit architecture, two learning rates, 4,000-update budget,
-feature conditioning and validation-based checkpoint selection are retained from the
-original protocol. The bit cutoff is fixed at 0.8 before generating the repair evaluation
 
 
                                             21

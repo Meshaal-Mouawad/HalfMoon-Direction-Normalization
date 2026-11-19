@@ -1,10 +1,24 @@
+preserve the needed decision.
+   The frozen paired experiments instantiate this sequence. Their empirical outcomes
+closely track the respective Bayes-risk floors across origins and distinguish those floors
+from training excess. The independent repair study tests learnability of a theoretically
+sufficient input rather than using neural accuracy to claim the existence of an exact
+decoder. Together with the geometric proofs, these results demonstrate a specific
+mechanism of decision-information loss and a precisely bounded method of recovery.
+
+
+8.5    Limitations
+
+The explicit half-moon results concern two-dimensional, continuously distributed half-
+annular supports with specified radii and center displacement. The general uniform
+projection-limit theorem covers absolutely continuous binary populations in dimension
 at least two, whereas the specific geometric corollaries and positive numerical certifi-
 cates require connected preferred-decision regions, convex-hull relations and density
 assumptions. The certificates are conservative lower bounds over all origins; fixed-origin
 risks are separate calculated values. The additional radial-bit construction and sharp
 threshold interval are proved for the stated disjoint midpoint geometry, exact direction,
 fixed angular rules and bounded additive radius error.
-    The neural tests use equal-prior area-uniform observations, ten seeds per final
+   The neural tests use equal-prior area-uniform observations, ten seeds per final
 study, a specified one-hidden-layer architecture, a fixed training budget and prespeci-
 fied model-selection procedures. Their results concern the studied distributions and
 models. The radius-uniform comparison addresses analytical population risk, not
@@ -14,21 +28,6 @@ two-input networks. These restrictions delimit the empirical claims and do not a
 the established mathematical results for their stated domains.
 
 
-
-9     Conclusion
-
-Discarding radius during direction normalization can destroy a class distinction even
-when the original class supports are disjoint. The study derives an exact population-risk
-identity for that loss, establishes conditions under which it remains positive over every
-normalization origin, and proves a uniform connection to projected classification at
-distant origins. Explicit whole-plane certificates make the guarantee quantitative. In the
-proved disjoint midpoint geometry, one shared near/far radius bit recovers every class
-decision, with a sharp threshold interval and measurement-error margin. Controlled
-neural evaluations show that trained models can approach the population limits
-associated with raw coordinates, direction-only inputs and the repaired representation.
-The contribution is a decision-based account of when an origin-dependent preprocessing
-rule irreversibly removes information, and how a minimal radial code restores it in a
-precisely characterized setting.
 
 
                                            27

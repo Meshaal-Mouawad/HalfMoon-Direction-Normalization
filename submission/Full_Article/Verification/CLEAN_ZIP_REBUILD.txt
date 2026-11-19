@@ -1,7 +1,7 @@
-Clean source archive reproducibility: PASS
-Source: submission/Full_Article/Full_Article_Source.zip
-Procedure: unzip into new /tmp directory, bash build.sh, pdflatex + bibtex + pdflatex twice on Full_Manuscript.tex
-Supplement and manuscript compilation from ZIP: PASS
-Page count equals published Full_Manuscript.pdf: PASS
-PDF text (pdftotext -layout) identical to published Full_Manuscript.pdf: PASS
-External journal submission: NOT PERFORMED
+Clean extracted-source rebuild: PASS
+Independent extraction under temporary root: PASS
+Supplement and long-form LaTeX compilation: PASS
+Rebuilt page count: 31
+Pages match published PDF: PASS
+pdftotext -layout identical to published PDF: PASS
+Source ZIP verified: Full_Article_Source.zip

@@ -1,12 +1,12 @@
-# Half-Moon full-length article — final production
-Pages: 30 (single-column, 12-point, double-spaced)
+# Half-Moon full-length article — synchronized final production
+Main article: 31 pages (12-point, single-column, double-spaced)
 Full LaTeX compilation: PASS
-Original theorem equation/label preservation: PASS
-Three original evidence tables preserved: PASS (float positions adjusted)
+Source/math/label/result table preservation: PASS
 Citation-key resolution: PASS
-Source ZIP contents and integrity: PASS
-All pages generated for full visual audit: 30 / 30
-Original PRL Journal_Upload: unchanged
-Whole-document visual inspection of rebuilt pages: PENDING
+Source ZIP complete and integrity-checked: PASS
+Source ZIP independent clean-room compilation: PASS
+Rebuilt PDF page count and text equality: PASS
+Original PRL Journal_Upload unchanged: PASS
+Final visual page-by-page inspection: PENDING
 Independent external scientific peer review: NOT VERIFIED
-Full-length article submission: NOT PERFORMED
+Full-length journal submission: NOT PERFORMED
