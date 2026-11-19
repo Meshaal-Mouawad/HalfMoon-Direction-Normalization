@@ -1,0 +1,41 @@
+name: Sample-render full-length manuscript for layout audit
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/halfmoon-visual-audit.yml']
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Render representative pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y poppler-utils
+          FILE=submission/Full_Article/Full_Manuscript.pdf
+          OUT=submission/Full_Article/Verification
+          mkdir -p "$OUT"
+          PAGES=$(pdfinfo "$FILE" | awk '/^Pages:/ {print $2}')
+          test "$PAGES" = 32
+          for page in 1 5 12 20 27 32; do
+            pdftoppm -f "$page" -l "$page" -r 90 -singlefile -png "$FILE" "$OUT/page_$(printf %02d "$page")"
+            test -s "$OUT/page_$(printf %02d "$page").png"
+          done
+          echo "Six representative pages rendered from 32-page PDF."
+      - name: Commit previews and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/halfmoon-visual-audit.yml
+          git add -A -- submission/Full_Article/Verification .github/workflows/halfmoon-visual-audit.yml
+          git commit -m "Render full-length article sample pages for editorial inspection"
+          git push origin HEAD:main
