@@ -1,0 +1,52 @@
+name: One-time exhaustive full-article PDF page audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/full-article-page-audit.yml'
+permissions:
+  contents: write
+jobs:
+  render:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Render every manuscript PDF page and extract page text
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y poppler-utils
+          FILE="submission/Full_Article/Full_Manuscript.pdf"
+          OUT="submission/Full_Article/Verification/Full_Page_Audit"
+          mkdir -p "$OUT/png" "$OUT/text"
+          PAGECOUNT="$(pdfinfo "$FILE" | awk '/^Pages:/ {print $2}')"
+          test "$PAGECOUNT" -eq 32
+          printf "page\twords\tlines\tcharacters\n" > "$OUT/page_metrics.tsv"
+          for page in $(seq 1 "$PAGECOUNT"); do
+             num="$(printf '%02d' "$page")"
+             pdftoppm -f "$page" -l "$page" -r 85 -singlefile -png "$FILE" "$OUT/png/page_${num}"
+             pdftotext -f "$page" -l "$page" -layout "$FILE" "$OUT/text/page_${num}.txt"
+             test -s "$OUT/png/page_${num}.png"
+             test -s "$OUT/text/page_${num}.txt"
+             wcw="$(wc -w < "$OUT/text/page_${num}.txt" | tr -d ' ')"
+             wcl="$(wc -l < "$OUT/text/page_${num}.txt" | tr -d ' ')"
+             wcc="$(wc -m < "$OUT/text/page_${num}.txt" | tr -d ' ')"
+             printf "%s\t%s\t%s\t%s\n" "$page" "$wcw" "$wcl" "$wcc" >> "$OUT/page_metrics.tsv"
+          done
+          echo "PASS: 32 pages rendered; all 32 page texts extracted"
+          cat "$OUT/page_metrics.tsv"
+      - name: Preserve audit evidence and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/full-article-page-audit.yml
+          git add -A -- submission/Full_Article/Verification/Full_Page_Audit .github/workflows/full-article-page-audit.yml
+          git commit -m "Record exhaustive 32-page PDF audit images and page-text inventory"
+          git push origin HEAD:main
