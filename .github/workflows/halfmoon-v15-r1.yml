@@ -1,0 +1,228 @@
+name: HalfMoon V15 — R1 reader-flow closure only
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/halfmoon-v15-r1.yml']
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Freeze V14 and apply local R1 pagination markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess, shutil, difflib, re
+          base=Path('submission')
+          old=base/'PRL_V14_Final'
+          new=base/'PRL_V15_Final'
+          assert old.is_dir()
+          assert not new.exists(), 'V15 already exists; preserve current work'
+          source=old/'Editable_LaTeX'
+          expected={
+              'experimental_sections.tex':'a7ea47e1a799556dae3933d64f2f046548076ad3',
+              'one_bit_experiment.tex':'3ac1e17bd54fcf332a2f8a78438ed649e4ef0e62',
+              'theory_main.tex':'bba70266daf91b1ed280430222ab533c0fbe3610',
+              'narrative_sections.tex':'1a285164d624e97d97a7bcf49fac7b47f4ef82c9'
+          }
+          for name,sha in expected.items():
+              got=subprocess.check_output(['git','hash-object',str(source/name)],text=True).strip()
+              assert got==sha,(name,got,sha)
+          shutil.copytree(source,new/'Editable_LaTeX')
+          shutil.copytree(old/'Figures',new/'Figures')
+          (new/'Journal_Upload').mkdir(parents=True)
+          (new/'Verification').mkdir(parents=True)
+
+          changes={
+              'experimental_sections.tex':(
+                  'Every candidate executed 4,000 updates.',
+                  r'Every candidate executed\vadjust{\nobreak} 4,000 updates.'),
+              'one_bit_experiment.tex':(
+                  'formed a separate two-comparison family with simultaneous',
+                  r'formed a separate two-comparison\vadjust{\nobreak} family with simultaneous'),
+              # Optional local word-pair nonbreaking at page 3/4:
+              'theory_main.tex':(
+                  "each core meets the other's convex hull",
+                  r"each core meets the other's \mbox{convex hull}")
+          }
+          diffs=[]
+          for name,(before,after) in changes.items():
+              src=(source/name).read_text()
+              assert src.count(before)==1,f'{name}: expected exactly one target'
+              revised=src.replace(before,after,1)
+              assert revised.replace(r'\vadjust{\nobreak}','').replace(r'\mbox{convex hull}','convex hull')==src, f'{name}: scientific text altered'
+              (new/'Editable_LaTeX'/name).write_text(revised)
+              diffs.extend(difflib.unified_diff(src.splitlines(keepends=True),revised.splitlines(keepends=True),
+                         fromfile='V14/'+name,tofile='V15/'+name))
+          (new/'Verification/V14_to_V15_Source.diff').write_text(''.join(diffs))
+          (new/'Verification/V15_Editorial_Change_Log.md').write_text(
+              '# V15 — R1 page-flow repair\n'
+              '- Keep the complete “Every candidate executed 4,000 updates.” training-budget sentence together across the Figure 2 float boundary.\n'
+              '- Keep the complete “two-comparison family with simultaneous 95% ...” design clause together across the Tables 1–2 float boundary.\n'
+              '- Prevent the incidental “convex hull” phrase from splitting between pages 3 and 4, if the final pagination permits.\n'
+              '- No prose, results, proof, citations, figure, table, experimental data, or AI declaration modified.\n'
+              '- V14 remains untouched. The LaTeX-only markers are the entire source change.\n'
+          )
+          assert (new/'Editable_LaTeX/narrative_sections.tex').read_bytes()==(source/'narrative_sections.tex').read_bytes()
+          for p in source.glob('*.tex'):
+              if p.name not in changes:
+                  assert (new/'Editable_LaTeX'/p.name).read_bytes()==p.read_bytes(),p
+          print('PASS: only three local non-scientific pagination controls in V15 source')
+          PY
+      - name: Clean TeX Live rebuild
+        uses: xu-cheng/texlive-action@v3
+        with:
+          os: debian
+          scheme: full
+          run: |
+            set -euo pipefail
+            apt-get -qq update
+            DEBIAN_FRONTEND=noninteractive apt-get -qq install -y python3
+            cd submission/PRL_V15_Final/Editable_LaTeX
+            bash build.sh > ../Verification/V15_Build.log 2>&1 || {
+              tail -100 ../Verification/V15_Build.log
+              exit 1
+            }
+      - name: Verify PDF, floats, protected content, and package for journal upload
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -qq update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -qq install -y poppler-utils
+          python3 - <<'PY'
+          from pathlib import Path
+          from collections import Counter
+          import re, hashlib, shutil, subprocess, zipfile, difflib
+          old=Path('submission/PRL_V14_Final')
+          new=Path('submission/PRL_V15_Final')
+          edit=new/'Editable_LaTeX'
+          out=new/'Journal_Upload'
+          verify=new/'Verification'
+          def info(p):
+              text=subprocess.check_output(['pdfinfo',str(p)],text=True)
+              return int(re.search(r'^Pages:\s*(\d+)',text,re.M).group(1))
+          def text_pdf(p,mode='-layout'):
+              return subprocess.check_output(['pdftotext',mode,str(p),'-'],text=True)
+          def page(p,num):
+              return subprocess.check_output(['pdftotext','-f',str(num),'-l',str(num),'-layout',str(p),'-'],text=True)
+          assert info(edit/'Manuscript.pdf')==7,'V15 main manuscript must remain 7 pages'
+          assert info(edit/'Supplement.pdf')==18
+          assert info(edit/'Threshold_Addendum.pdf')==3
+          assert 'undefined' not in (verify/'V15_Build.log').read_text().lower().split('there were undefined citations')[:1][-1][-100:]
+          pages=[page(edit/'Manuscript.pdf',i) for i in range(1,8)]
+          for i,t in enumerate(pages,1):
+              (verify/f'V15_Page_{i}_Text.txt').write_text(t)
+          assert sum('Every candidate executed' in t for t in pages)==1
+          a=next(i for i,t in enumerate(pages,1) if 'Every candidate executed' in t)
+          assert '4,000 updates' in pages[a-1],f'R1 A still split after page {a}'
+          assert sum('two-comparison' in t for t in pages)==1
+          b=next(i for i,t in enumerate(pages,1) if 'two-comparison' in t)
+          assert 'family with simultaneous' in pages[b-1],f'R1 B still split after page {b}'
+          assert 'Writing' in pages[3] and '(9)' in pages[3], 'Closed P1 reopened'
+          assert '54,362' in ''.join(pages) and '10.7479' in ''.join(pages)
+          assert 'During preparation of this work' in ''.join(pages)
+          assert '0.0205' in ''.join(pages)
+          assert '0.00119' in ''.join(pages)
+          # No change to source mathematics, evidence tables, figures, bibliography, declarations, or methodology wording.
+          for f in (old/'Editable_LaTeX').rglob('*'):
+              if f.is_file() and f.suffix in ('.tex','.bib','.cls','.sty','.sh','.py'):
+                  g=edit/f.relative_to(old/'Editable_LaTeX')
+                  if f.name not in ('experimental_sections.tex','one_bit_experiment.tex','theory_main.tex'):
+                      assert f.read_bytes()==g.read_bytes(),f'Required frozen source differs: {f}'
+          for f in (old/'Figures').rglob('*'):
+              if f.is_file():
+                  assert f.read_bytes()==(new/'Figures'/f.relative_to(old/'Figures')).read_bytes(),f
+          theorem_orig=(old/'Editable_LaTeX/theory_main.tex').read_text()
+          theorem_new=(edit/'theory_main.tex').read_text()
+          pattern=re.compile(r'\\begin\{(?:equation|align)\}.*?\\end\{(?:equation|align)\}',re.S)
+          assert pattern.findall(theorem_orig)==pattern.findall(theorem_new),'Protected formulas changed'
+          for name in ['Supplement.pdf','Threshold_Addendum.pdf']:
+              src=old/'Journal_Upload'/name
+              # Source compilation is tested; deliver the previously approved byte-identical artifact.
+              assert text_pdf(src)==text_pdf(edit/name),f'Rebuilt supplemental text differs: {name}'
+              shutil.copy2(src,out/name)
+              assert src.read_bytes()==(out/name).read_bytes()
+          shutil.copy2(edit/'Manuscript.pdf',out/'Manuscript.pdf')
+          for name in ['Cover_Letter.pdf','Highlights.docx','Graphical_Abstract.png']:
+              shutil.copy2(old/'Journal_Upload'/name,out/name)
+              assert (out/name).read_bytes()==(old/'Journal_Upload'/name).read_bytes()
+          for i in range(1,8):
+              stem=verify/f'V15_Page_{i}'
+              subprocess.run(['pdftoppm','-f',str(i),'-l',str(i),'-r','100','-singlefile','-png',str(edit/'Manuscript.pdf'),str(stem)],check=True,stdout=subprocess.DEVNULL)
+          zname=out/'LaTeX_Source.zip'
+          with zipfile.ZipFile(zname,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              for f in sorted(edit.rglob('*')):
+                  if f.is_file() and f.suffix in ('.tex','.bib','.cls','.sty','.sh','.py'):
+                      z.write(f,arcname='Manuscript/'+str(f.relative_to(edit)))
+              for f in sorted((new/'Figures').rglob('*')):
+                  if f.is_file():
+                      z.write(f,arcname='Figures/'+str(f.relative_to(new/'Figures')))
+          with zipfile.ZipFile(zname) as z:
+              assert z.testzip() is None
+              assert 'Manuscript/Manuscript.tex' in z.namelist()
+          files=['Manuscript.pdf','Supplement.pdf','Threshold_Addendum.pdf',
+                  'LaTeX_Source.zip','Highlights.docx','Graphical_Abstract.png','Cover_Letter.pdf']
+          checks=[hashlib.sha256((out/name).read_bytes()).hexdigest()+'  Journal_Upload/'+name for name in files]
+          (verify/'V15_SHA256SUMS.txt').write_text('\n'.join(checks)+'\n')
+          report=[
+              'V15 R1 isolated page-flow closure',
+              'Scientific content, equations, evidence tables, source citations: PRESERVED',
+              'E1, E2, P1 and M01-M10: preserved from V14',
+              'Main manuscript: 7 pages',
+              'Supplement: 18 pages; V14 file retained byte-identically',
+              'Threshold Addendum: 3 pages; V14 file retained byte-identically',
+              f'R1 A full training-update sentence: PASS (page {a})',
+              f'R1 B complete contrast-family clause: PASS (page {b})',
+              'Figure 1, Figure 2, result tables and AI declaration: unaltered',
+              'Graphical abstract, highlights and cover letter: unaltered',
+              'All 7 article pages rasterized for visual review',
+              'Source ZIP integrity: PASS',
+              'Signed Confirmation of Authorship: NOT INCLUDED',
+              'Editorial Manager resubmission: NOT PERFORMED',
+          ]
+          (verify/'V15_Production_Results.txt').write_text('\n'.join(report)+'\n')
+          readme=('HALF-MOON V15 — Pattern Recognition Letters\n'
+                  'Article: Global loss bounds and one-bit recovery for direction-normalized half-moons\n'
+                  'Existing Editorial Manager record PRLETTERS-D-26-03032\n'
+                  'Source baseline: V14 at GitHub commit b5aa9986fcbf560f45a2d7d69e32bd8eafba51b3\n'
+                  'Correction: R1 two float-interrupted Methods sentences, plus optional nonbreakable convex-hull word pair.\n'
+                  'Extract this delivery ZIP. Upload Journal_Upload/ contents as individual portal items.\n'
+                  'Signed Confirmation of Authorship must be uploaded separately.\n'
+                  'No journal portal action has been performed.\n')
+          arc=new/'HalfMoon_PRL_V15_EditorialManager_Submission.zip'
+          with zipfile.ZipFile(arc,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              z.writestr('README_FIRST.txt',readme)
+              z.write(verify/'V15_SHA256SUMS.txt','SHA256SUMS.txt')
+              z.write(verify/'V15_Production_Results.txt','V15_Production_Results.txt')
+              z.write(verify/'V15_Editorial_Change_Log.md','V15_Editorial_Change_Log.md')
+              for name in files:
+                  z.write(out/name,'Journal_Upload/'+name)
+          with zipfile.ZipFile(arc) as z:
+              assert z.testzip() is None
+              assert len(z.namelist())==11
+              for name in files:
+                  assert z.read('Journal_Upload/'+name)==(out/name).read_bytes()
+          digest=hashlib.sha256(arc.read_bytes()).hexdigest()
+          (new/'PACKAGE_SHA256.txt').write_text(f'{digest}  {arc.name}\n')
+          print('\n'.join(report))
+          print('V15 SHA256:',digest,'Archive bytes:',arc.stat().st_size)
+          PY
+      - name: Commit completed V15 package and full-page inspection artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A submission/PRL_V15_Final
+          git diff --cached --name-only | grep -v '^submission/PRL_V15_Final/' && exit 1 || true
+          git diff --cached --quiet && { echo 'V15 package missing'; exit 1; }
+          git commit -m "Produce V15 page-flow revision of Half-Moon PRL manuscript (R1)"
+          git push origin HEAD:main
