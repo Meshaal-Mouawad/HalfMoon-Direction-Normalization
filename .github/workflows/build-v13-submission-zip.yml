@@ -1,0 +1,145 @@
+name: Assemble verified V13 PRL journal submission package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-v13-submission-zip.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-package:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out authoritative source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install PDF verification tools
+        run: |
+          sudo apt-get -qq update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -qq install -y poppler-utils
+
+      - name: Assemble and verify standalone ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import io
+          import os
+          import struct
+          import subprocess
+          import zipfile
+          from pathlib import Path
+
+          repo = Path('.')
+          base = repo / 'submission/PRL_V11_Final'
+          upload = base / 'Journal_Upload'
+          output = base / 'Submission_Package'
+          output.mkdir(parents=True, exist_ok=True)
+          archive = output / 'HalfMoon_PRL_V13_EditorialManager_Submission.zip'
+          expected = {
+              'Manuscript.pdf': ('7744e023e9d250db8dcc7b907c77a09b605b0e6f', 447660),
+              'Supplement.pdf': ('1fa052ce7a1eadeec04d2a57e9892cd25e562162', 597853),
+              'Threshold_Addendum.pdf': ('8b64a4d0c38ac99994467a36e38e7ce71b58fcd7', 279260),
+              'LaTeX_Source.zip': ('cf45abe3239fc82b372dde0ac3145ffb8e141420', 1144921),
+              'Highlights.docx': ('769d939f9de2fc07d2ed688c7aa9de999526536f', 36860),
+              'Graphical_Abstract.png': ('e77e5f36cb69bf93fae6d8887bbcbeed0a15770a', 196320),
+              'Cover_Letter.pdf': ('c66aac6692f13d10b41d5398d5413a7830d01cc9', 56050),
+          }
+
+          for name, (sha, size) in expected.items():
+              p = upload / name
+              assert p.is_file(), f'Missing source: {p}'
+              assert p.stat().st_size == size, f'Size changed: {p}'
+              blob = subprocess.check_output(['git', 'hash-object', str(p)], text=True).strip()
+              assert blob == sha, f'V13 protected file changed: {name} {blob} != {sha}'
+
+          def pages(name):
+              info = subprocess.check_output(['pdfinfo', str(upload/name)], text=True)
+              return int(next(line.split(':')[1].strip() for line in info.splitlines() if line.startswith('Pages:')))
+          assert (pages('Manuscript.pdf'), pages('Supplement.pdf'), pages('Threshold_Addendum.pdf')) == (7, 18, 3)
+          assert pages('Cover_Letter.pdf') >= 1
+          with zipfile.ZipFile(upload / 'LaTeX_Source.zip') as z:
+              assert z.testzip() is None, 'LaTeX source ZIP CRC check failed'
+              assert z.namelist(), 'LaTeX source ZIP is empty'
+          with zipfile.ZipFile(upload / 'Highlights.docx') as z:
+              assert z.testzip() is None, 'Highlights DOCX integrity error'
+              assert '[Content_Types].xml' in z.namelist()
+          ga = (upload / 'Graphical_Abstract.png').read_bytes()
+          assert ga[:8] == b'\x89PNG\r\n\x1a\n'
+          width, height = struct.unpack('>II', ga[16:24])
+          assert width >= 100 and height >= 100
+
+          intro = (
+              'HALF-MOON V13 - PATTERN RECOGNITION LETTERS\n'
+              'Existing Editorial Manager record: PRLETTERS-D-26-03032\n'
+              'Article: Global loss bounds and one-bit recovery for direction-normalized half-moons\n'
+              'Author: Meshaal Mouawad\n'
+              'Baseline commit: d3ddee51c783387475d48cdead83ad20a3c89df2\n'
+              '\n'
+              'EXTRACT THE ZIP BEFORE JOURNAL UPLOAD.\n'
+              'Upload the seven files under Journal_Upload/ as separate items as appropriate.\n'
+              'This ZIP is a local delivery container, not itself a manuscript file.\n'
+              '\n'
+              'PENDING AUTHOR ACTION: The separately signed Confirmation of Authorship\n'
+              'is not included because it is absent from the verified GitHub folder.\n'
+              'Upload the signed form to the existing Editorial Manager record,\n'
+              'check the assembled journal PDF, and approve the final submission.\n'
+              'This archive does not indicate that a resubmission was performed.\n'
+          )
+          manifest = ['filename,bytes,git_blob_sha,sha256']
+          checksums = []
+          for name, (sha, size) in expected.items():
+              digest = hashlib.sha256((upload/name).read_bytes()).hexdigest()
+              manifest.append(f'{name},{size},{sha},{digest}')
+              checksums.append(f'{digest}  Journal_Upload/{name}')
+          with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+              z.writestr('README_FIRST.txt', intro)
+              z.writestr('FILE_MANIFEST.csv', '\n'.join(manifest)+'\n')
+              z.writestr('SHA256SUMS.txt', '\n'.join(checksums)+'\n')
+              for name in expected:
+                  z.write(upload/name, arcname='Journal_Upload/'+name)
+          with zipfile.ZipFile(archive) as z:
+              assert z.testzip() is None, 'Final ZIP integrity failure'
+              assert len(z.namelist()) == 10, 'Unexpected archive contents'
+              for name in expected:
+                  entry = z.read('Journal_Upload/'+name)
+                  assert hashlib.sha256(entry).hexdigest() == hashlib.sha256((upload/name).read_bytes()).hexdigest(), name
+          result_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+          (output / 'Package_SHA256.txt').write_text(f'{result_sha}  {archive.name}\n')
+          (output / 'BUILD_REPORT.txt').write_text(
+              'V13 PRL journal submission delivery package: PASS\n'
+              'Seven original upload files: byte-for-byte verified against Git blob SHA and file sizes\n'
+              'Manuscript/Supplement/Threshold Addendum pages: 7/18/3\n'
+              'Cover letter PDF: readable PDF structure\n'
+              'LaTeX source archive: CRC PASS\n'
+              'Highlights DOCX: CRC PASS\n'
+              f'Graphical abstract PNG: {width}x{height}\n'
+              'Final ZIP: CRC PASS; 10 entries (7 original files + 3 support records)\n'
+              f'Archive SHA256: {result_sha}\n'
+              'Signed Confirmation of Authorship: NOT INCLUDED\n'
+              'Editorial Manager resubmission: NOT PERFORMED\n'
+          )
+          print('ARCHIVE:', archive)
+          print('BYTES:', archive.stat().st_size)
+          print('SHA256:', result_sha)
+          print((output/'BUILD_REPORT.txt').read_text())
+          PY
+
+      - name: Commit verified delivery package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A submission/PRL_V11_Final/Submission_Package
+          git diff --cached --quiet && { echo 'Package already present'; exit 0; }
+          git commit -m "Package original V13 journal-upload files as verified submission ZIP"
+          git push origin HEAD:main
