@@ -1,0 +1,75 @@
+                                                Global loss bounds and one-bit recovery
+
+          A h=0                                          B h = 0.5                                      C h=1
+                                                                           One direction,
+                                                                           opposite labels
+      1                                              1                                              1
+
+
+x2    0                                        x2    0                                        x2    0
+
+
+                                                                                                                      Overlap
+     −1                                             −1                                             −1
+
+           −1         0         1        2                −1           0        1        2              −1        0         1         2
+                          x1                                               x1                                          x1
+                 A preserving origin                       Every origin loses decisions                 Additional loss despite overlap
+
+Figure 1: Half-moon geometry and the effect of radial removal. Blue and orange indicate the two class supports; crosses mark the
+illustrated origin. The vertical displacement between class centers is ℎ. (A) At ℎ = 0, the vertical direction preserves the label
+(the neural negative control uses ℎ = −0.25). (B) At ℎ = 0.5, one illustrated ray crosses both labels; the theorem establishes
+positive loss for every origin. Colored ray segments are exact support intersections. (C) At ℎ = 1, the original classes overlap, and
+normalization adds further ambiguity. The diagrams explain the mechanism; population risks are computed separately.
+
+
+
+preferences do not occur on a positive-probability set of these            as the origin escapes to infinity. We resolve that boundary
+equivalence classes.                                                       through convergence of Bayes risk to orthogonal-projection
+                                                                           risk. Finally, Oehler and Gray [14] study classification-
+Established decision theory and the remaining geomet-                      aware vector quantization, and Şenozan and Soylu [15] study
+ric question. Silva and Narayanan [1] separate the repre-                  supervised discretization for classification. Our construction
+sentational component of classification error from learning                proves exact decision preservation with one shared radial bit
+with finite data. Later work analyzes operational decision                 and direction on the specified continuous support.
+loss and losslessness of transformations [2, 3]. Dubois et
+al. [4] identify unit direction as an invariant to positive scaling,
+an invariance that preserves class decisions only when the                 3. Half-moon geometry and the minimum
+task supports it. These foundations establish why removed                     error after normalization
+information can raise minimum risk. Here the map depends                       Two separate choices govern the problem: displacement
+additionally on a selectable center; we derive the opposing                ℎ fixes the relative positions of the class regions, whereas
+signed-decision mass merged on its rays and determine                      origin 𝑐 specifies which observations have the same retained
+whether every center suffers positive loss in the specified                direction. The class supports are thick half-rings with fixed
+geometry.                                                                  inner and outer radii (Fig. 1). We calculate the optimal
+                                                                           decision lost along the rays from 𝑐, then examine whether
+Closest geometric and empirical evidence. Poblete et                       that loss remains positive for every possible origin.
+al. [7] compare downstream classifiers on fixed representa-
+                                                                               Let 𝑎 = 0.8, 𝑏 = 1.2, 𝑚0 = (0, 0) and 𝑚1 = (1, ℎ), where
+tions across eight datasets. They report variation in classifier
+                                                                           ℎ is the upward center displacement. The open class supports
+rankings and descriptive associations with representation
+                                                                           are
+geometry. The present question precedes rule selection: can
+any classifier recover a decision already lost by constructing                   𝑆0 = {𝑥 ∶ 𝑎 < ‖𝑥‖ < 𝑏, 𝑥2 > 0},
+the representation? Ahmadian and Lindsten [8] study radial-
+                                                                                 𝑆1 = {𝑥 ∶ 𝑎 < ‖𝑥 − 𝑚1 ‖ < 𝑏, 𝑥2 < ℎ}.                    (1)
+kernel novelty scoring and context quantization, reporting
+normalization-sensitive performance in their activity-data
+                                                                   Each support has area 𝐻 = 𝜋(𝑏2 − 𝑎2 )∕2 = 2𝜋∕5. The
+experiments. This is related motivation from a different
+                                                                  primary generator draws points uniformly over the area
+prediction objective, not a measurement of the present half-
+                                                                  of each band, so its density is 𝑓𝑖𝐴 = 𝟏𝑆𝑖 ∕𝐻. A second
+moon Bayes risks. Neither comparison establishes the loss
+for all normalization origins.                                    law draws radius and angle uniformly, giving 𝑓𝑖𝑅 (𝑥) =
+                                                                  𝟏𝑆𝑖 (𝑥)∕[𝜋(𝑏 − 𝑎)‖𝑥 − 𝑚𝑖 ‖]; it tests whether the geometric
+Finite origins, distant origins, and restricted repair. conclusions survive a different allocation of probability
+Projected classifiers study fixed views [9–11]. Radial-projection within the same supports. Neural experiments use equal priors
+geometry studies how those views change as the origin moves       and area-uniform sampling. The geometric positivity results
+[12]. Geometric wedge-separation research supplies a basis        apply to any positive priors 𝜋𝑖 and densities positive almost
+for reasoning about obstructed angular separability [13].         everywhere on the respective supports.
+Positive loss at each finite origin by itself does not imply
+a positive global infimum: the loss could approach zero           Why one ray can force classification error. A classifier
+                                                                  that sees the original coordinates may give different labels
+
+M. Mouawad: Preprint submitted to Elsevier                                                                                      Page 2 of 7
+

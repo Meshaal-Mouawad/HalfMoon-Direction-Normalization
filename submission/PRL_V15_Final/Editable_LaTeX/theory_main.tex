@@ -1,0 +1,107 @@
+% Main-text fragment; supplementary proofs are in supplement_theory.tex.
+% Requires amsmath, amssymb, booktabs and natbib.
+\section{Half-moon geometry and the minimum error after normalization}
+\label{sec:origin-theory}
+
+Two separate choices govern the problem: displacement $h$ fixes the relative positions of the class regions, whereas origin $c$ specifies which observations have the same retained direction. The class supports are thick half-rings with fixed inner and outer radii (Fig.~\ref{fig:geometry}). We calculate the optimal decision lost along the rays from $c$, then examine whether that loss remains positive for every possible origin.
+
+\begin{samepage}
+Let $a=0.8$, $b=1.2$, $m_0=(0,0)$ and $m_1=(1,h)$, where $h$ is the upward center displacement. The open class supports are
+\begin{align}
+ S_0&=\{x:a<\|x\|<b,\ x_2>0\},\nonumber\\
+ S_1&=\{x:a<\|x-m_1\|<b,\ x_2<h\}.
+ \label{eq:halfmoon-supports}
+\end{align}
+\end{samepage}
+Each support has area $H=\pi(b^2-a^2)/2=2\pi/5$. The primary generator draws points uniformly over the area of each band, so its density is $f_i^A=\mathbf1_{S_i}/H$. A second law draws radius and angle uniformly, giving $f_i^R(x)=\mathbf1_{S_i}(x)/[\pi(b-a)\|x-m_i\|]$; it tests whether the geometric conclusions survive a different allocation of probability within the same supports. Neural experiments use equal priors and area-uniform sampling. The geometric positivity results apply to any positive priors $\pi_i$ and densities positive almost everywhere on the respective supports.
+
+\paragraph{Why one ray can force classification error.}
+A classifier that sees the original coordinates may give different labels to points at different distances along the same ray. After normalization it sees only the angle and must make one decision for all of them. To count the probability of the conflicting decisions, define the signed density $d=\pi_0f_0-\pi_1f_1$: its positive and negative regions favor classes 0 and 1, respectively. Let $u_\theta=(\cos\theta,\sin\theta)$ and $[z]_+=\max(z,0)$. Integration along the ray from $c$ uses the polar area factor $r$, because an angular slice contains more area at a larger radius. The opposing class-preference masses per unit angle are
+\begin{equation}
+\begin{aligned}
+ A_c(\theta)&=\int_0^\infty[d(c+ru_\theta)]_+r\,dr,\\
+ B_c(\theta)&=\int_0^\infty[-d(c+ru_\theta)]_+r\,dr.
+\end{aligned}
+\label{eq:ray-masses-main}
+\end{equation}
+Let $R_X^*$ and $R^*_{T_c}$ denote the minimum classification risks from raw coordinates and directions, respectively. Using the masses in~\eqref{eq:ray-masses-main}, the binary Bayes-risk identity yields
+\begin{equation}
+ \Delta(c):=R^*_{T_c}-R_X^*
+ =\int_0^{2\pi}\min\{A_c(\theta),B_c(\theta)\}\,d\theta.
+ \label{eq:ray-loss-main}
+\end{equation}
+The functions $A_c(\theta)$ and $B_c(\theta)$ are signed decision-mass \emph{densities per unit angle}, not probabilities on individual zero-width rays. Their minimum describes opposing preference cancelled at each angle; only integration across angles gives the excess Bayes risk $\Delta(c)$, a probability. Positive loss therefore requires conflicting preferences on a set of directions of positive angular measure. This specializes decision-preservation theory \citep{Silva2012,Silva2024} to a moving normalization origin; Supplementary Section~\ref{supp:bayes} derives the identity.
+
+\paragraph{Theorem 1: loss at every finite origin.}
+A collision seen from one origin might disappear when the origin moves. The stronger question is whether some viewpoint separates the two half-rings into different sets of directions. Their geometry answers that question for the positive displacements below: despite disjoint original class regions, every finite viewpoint merges conflicting decisions. For $0<h\leq\sqrt{3/5}$, the supports have disjoint interiors and
+\begin{equation}
+ R_X^*=0,\qquad \Delta(c)>0
+ \quad\text{for every }c\in\mathbb R^2.
+ \label{eq:all-origin-disjoint}
+\end{equation}
+At $h=0$, every origin with $c_2=0$ preserves zero risk. More generally, for $h<0$, origins in the separating strip $h\leq c_2\leq0$ preserve zero risk. At $h=1$, the supports overlap and
+\begin{equation}
+ R_X^*>0,\qquad \Delta(c)>0
+ \quad\text{for every }c\in\mathbb R^2.
+ \label{eq:all-origin-overlap}
+\end{equation}
+
+\emph{Proof idea.}
+Horizontal slicing shows that the disjoint supports satisfy $\sqrt{a^2-h^2}\geq1/5$ in the stated range. Yet each connected half-ring intrudes into the other one's convex hull. Were their directional images disjoint from some origin, a separating angular cone would contain one region's convex hull while excluding the other, contradicting this intrusion. This adapts the geometry of Hurtado et al.~\citep{Hurtado2001}; positive class densities convert the forced angular overlap into positive risk in~\eqref{eq:ray-loss-main}. At $h=1$, the same argument uses connected class-exclusive regions to establish additional loss despite the overlap already present in raw coordinates. Supplementary Sections~\ref{supp:geometry}--\ref{supp:overlap} provide the explicit geometric witnesses, inequalities and complete proofs.
+
+% Suggested main-text replacement/extension for the old positive-infimum theorem.
+% The supplement fragment defines supp:projection-boundary.
+\paragraph{Theorem 2: the decision problem at distant origins.}
+An origin can move without bound, so positive error at each fixed viewpoint does not automatically imply a positive worst-case floor over all possible origins. Seen from far away, the rays through a bounded class population become nearly parallel: their direction-based decisions approach those allowed by projecting the population onto a line perpendicular to the viewing direction (or onto a perpendicular hyperplane in higher dimensions). This is the relevant boundary case of radial projection \citep{Orponen2019}. We therefore compare the optimal classification risks, not merely the geometric images. For binary populations with densities in dimension $n\geq2$, fix a reference point $p$, let $e$ be a unit viewing direction, and let $P_e$ denote orthogonal projection onto the hyperplane perpendicular to $e$. Then
+\begin{equation}
+ \lim_{R\to\infty}\sup_e
+ \left|R^*_{T_{p+Re}}-R^*_{P_e}\right|=0.
+ \label{eq:projection-limit-main}
+\end{equation}
+Write $\Delta_\infty(e)=R^*_{P_e}-R_X^*$. The loss surface, completed by these projection limits, is continuous on a compact domain. Consequently,
+\begin{equation}
+ \inf_c\Delta(c)>0
+ \quad\Longleftrightarrow\quad
+ \begin{cases}
+ \Delta(c)>0&\text{all finite }c,\\
+ \Delta_\infty(e)>0&\text{all directions }e.
+ \end{cases}
+ \label{eq:global-criterion-main}
+\end{equation}
+Thus optimizing the origin cannot make loss vanish when both finite radial views and all limiting linear projections lose decisions.
+
+\emph{Half-moon consequence.}
+The connected winner regions in Theorem~1 have overlapping projection intervals in every direction. Equations~\eqref{eq:projection-limit-main}--\eqref{eq:global-criterion-main} therefore strengthen its conclusion to
+\begin{equation}
+ \inf_{c\in\mathbb R^2}\Delta(c)>0
+ \quad\text{for }0<h\leq\sqrt{3/5}\text{ and for }h=1.
+ \label{eq:global-positive}
+\end{equation}
+This holds for every fixed pair of positive priors and densities positive almost everywhere on their respective supports. The proof controls signed probability mass in total variation, so it establishes convergence of the optimal decision risk. Supplementary Section~\ref{supp:projection-boundary} proves the general result and gives an explicit convergence bound for bounded-support densities of bounded variation.
+
+% Standalone main-text replacement paragraph. Definitions of d and Delta precede it.
+\paragraph{A numerical lower certificate for the whole plane.}
+The preceding result establishes a strictly positive loss floor, but a numerical certificate must still say how large a loss is guaranteed regardless of origin. Such a bound can be constructed from two interior regions where one class is favored by a fixed probability margin. Their relative positions make conflicting rays unavoidable, while their sizes bound the amount of probability merged on those rays. In the plane, let $K_+,K_-$ be compact connected cores whose radius-$\rho$ neighborhoods satisfy $d\geq\kappa_+>0$ and $d\leq-\kappa_-<0$, respectively. Suppose each core meets the other's \mbox{convex hull}, their convex hulls contain a common disk $B(p,\delta)$, and both cores lie within distance $M$ of $p$.
+\par\begin{samepage}
+\noindent Writing $\kappa=\min(\kappa_+,\kappa_-)$ gives
+\begin{equation}
+ \inf_c\Delta(c)\geq\kappa\min\left\{
+ \frac{\sqrt3\rho^3}{6M},\;2\rho\delta\right\}>0.
+ \label{eq:constructive-global}
+\end{equation}
+\end{samepage}
+For bounded origins, mutual convex-hull intrusion forces rays through both cores; their neighborhoods provide an angular interval with conflicting class mass. For distant origins, the shared convex-hull disk supplies the bound. Thus the certificate does not rest on a finite search grid. Supplementary Section~\ref{supp:constructive-global} proves the result and optimizes the split between these regions. For equal-prior area sampling, the conservative whole-plane certificates exceed $0.0205$ percentage points (pp) at $h=0.5$ and $0.00119$~pp at $h=1$. They bound $\inf_c\Delta(c)$, the best loss over \emph{all} origins; by comparison, the midpoint loss at $h=0.5$ is $10.7479\%$ for \emph{one fixed} origin (Table~\ref{tab:neural-main}). Eroded half-annuli supply the required cores under both sampling laws and any fixed positive priors.
+
+\paragraph{Computing the best possible error at a chosen origin.}
+Population Bayes risk is calculated directly from the distributions, before training any network. For each direction, the optimal classifier chooses the label with greater integrated class probability. Circle tangencies and support-boundary intersections partition the directions into finitely many cells within which the radial order of the class supports is fixed. A representative ray identifies the sign pattern in each cell, and exact radial integration leaves one angular integral. Outward-rounded interval (ball) arithmetic and a bounded-variation quadrature bound certify the numerical risks without treating a finite origin grid as proof. Supplementary Sections~\ref{supp:finite}--\ref{supp:bv} give the event construction, integration primitives and certified error bounds. At equal priors, $f_i^R/f_i^A\in[5/6,5/4]$ also implies $\Delta_R(c)\geq(5/6)\Delta_A(c)$.
+
+\paragraph{Recovering the decision with one radius bit.}
+The all-origin loss result rules out fixing the midpoint case by moving the origin, but it leaves open whether a small amount of distance information can repair the representation. The proposed bit answers only whether an observation is near or far from the fixed midpoint; it does not report the full distance. At $h=0.5$, direction alone has positive loss at every origin. At $c=(1/2,1/4)$, append $q=\mathbf1\{\|x-c\|>4/5\}$. For $q=0$, the sign of $9u_1+10u_2$ determines the class; for $q=1$, the sign of $u_2-u_1$ determines it. Positive signs identify class~0. Figure~\ref{fig:bit-repair} shows how the radial bit assigns observations to the two angular rules. Together, the two rules correctly label the complete class supports under their respective bit conditions, giving zero Bayes risk under either sampling law and any positive priors. Supplementary Section~\ref{supp:one-bit} proves the separating inequalities. Since zero additional radial bits leave the positive direction-only floor, one bit is the minimal radial addition at this geometry.
+
+\paragraph{How accurately must radius be measured?}
+The fixed angular decoder remains exact for a complete, geometrically derived interval of common near/far cutoffs. With the same angular rules, recovery is exact precisely for $\alpha\leq t\leq\beta$, where $\alpha\approx0.7433034374$ and $\beta\approx0.8120914734$ (Threshold Addendum, Proposition~1). If the measured radius is $\widehat r=r+e$, $|e|\leq\varepsilon$, every support label is preserved for every admissible error function exactly when
+\begin{equation}
+\alpha+\varepsilon\leq t\leq\beta-\varepsilon.
+\label{eq:radius-error}
+\end{equation}
+At the experimentally fixed $t=0.8$, the decoder tolerates bounded radius error up to $\beta-0.8\approx0.0120914734$ coordinate units. The different threshold $t_\star=(\alpha+\beta)/2\approx0.7776974554$ maximizes that guarantee at $(\beta-\alpha)/2\approx0.0343940180$ units (Addendum, Corollary~1). The neural experiment uses exact-radius bits at $t=0.8$; it does not test noisy radius measurements.

@@ -1,0 +1,72 @@
+                                             Global loss bounds and one-bit recovery
+
+their convex hulls contain a common disk 𝐵(𝑝, 𝛿), and both         derived interval of common near/far cutoffs. With the same
+cores lie within distance 𝑀 of 𝑝.                                  angular rules, recovery is exact precisely for 𝛼 ≤ 𝑡 ≤ 𝛽, where
+Writing 𝜅 = min(𝜅+ , 𝜅− ) gives                                    𝛼 ≈ 0.7433034374 and 𝛽 ≈ 0.8120914734 (Threshold
+                        {√             }                           Addendum, Proposition 1). If the measured radius is 𝑟̂ = 𝑟+𝑒,
+                              3𝜌3                                  |𝑒| ≤ 𝜀, every support label is preserved for every admissible
+       inf Δ(𝑐) ≥ 𝜅 min           , 2𝜌𝛿 > 0.           (9)         error function exactly when
+        𝑐                   6𝑀
+
+ For bounded origins, mutual convex-hull intrusion forces                𝛼 + 𝜀 ≤ 𝑡 ≤ 𝛽 − 𝜀.                                    (10)
+rays through both cores; their neighborhoods provide an
+                                                                   At the experimentally fixed 𝑡 = 0.8, the decoder tolerates
+angular interval with conflicting class mass. For distant
+                                                                   bounded radius error up to 𝛽 − 0.8 ≈ 0.0120914734
+origins, the shared convex-hull disk supplies the bound.
+                                                                   coordinate units. The different threshold 𝑡⋆ = (𝛼 + 𝛽)∕2 ≈
+Thus the certificate does not rest on a finite search grid.
+                                                                   0.7776974554 maximizes that guarantee at (𝛽 − 𝛼)∕2 ≈
+Supplementary Section S10 proves the result and optimizes
+                                                                   0.0343940180 units (Addendum, Corollary 1). The neural
+the split between these regions. For equal-prior area sampling,
+                                                                   experiment uses exact-radius bits at 𝑡 = 0.8; it does not test
+the conservative whole-plane certificates exceed 0.0205
+                                                                   noisy radius measurements.
+percentage points (pp) at ℎ = 0.5 and 0.00119 pp at ℎ = 1.
+They bound inf 𝑐 Δ(𝑐), the best loss over all origins; by
+comparison, the midpoint loss at ℎ = 0.5 is 10.7479% for one       4. Controlled neural experiments
+fixed origin (Table 1). Eroded half-annuli supply the required
+cores under both sampling laws and any fixed positive priors.
+                                                                   4.1. Design and evaluation
+                                                                        Neural comparisons ask how closely fitted models ap-
+Computing the best possible error at a chosen origin.              proach each representation’s Bayes floor. The three displace-
+Population Bayes risk is calculated directly from the distri-      ments serve different purposes: ℎ = −0.25 admits decision-
+butions, before training any network. For each direction, the      preserving origins (control), ℎ = 0.5 has disjoint classes
+optimal classifier chooses the label with greater integrated       with unavoidable all-origin directional loss, and ℎ = 1
+class probability. Circle tangencies and support-boundary          adds overlap already present before normalization. Equal-
+intersections partition the directions into finitely many cells    prior observations were sampled uniformly in area from half-
+within which the radial order of the class supports is fixed. A    annuli with radii 0.8 and 1.2, centered at (0, 0) and (1, ℎ). The
+representative ray identifies the sign pattern in each cell, and   radius-uniform alternative is an analytical sensitivity check,
+exact radial integration leaves one angular integral. Outward-     not an additional neural dataset. Each of ten independent
+rounded interval (ball) arithmetic and a bounded-variation         dataset/initialization seeds, numbered 1001–1010, supplied
+quadrature bound certify the numerical risks without treating      balanced training, validation and test sets of 2,000, 2,000 and
+a finite origin grid as proof. Supplementary Sections S5–          50,000 observations. Within each geometry/seed, conditions
+S8 give the event construction, integration primitives and         shared observations; initializations were paired across con-
+certified error bounds. At equal priors, 𝑓𝑖𝑅 ∕𝑓𝑖𝐴 ∈ [5∕6, 5∕4]     ditions and geometries. Data-generation phases, geometries
+also implies Δ𝑅 (𝑐) ≥ (5∕6)Δ𝐴 (𝑐).                                 and splits used distinct streams.
+                                                                        The five inputs isolate what the classifier receives. Raw
+Recovering the decision with one radius bit. The all-              coordinates 𝑅 preserve the original position. Direction-only
+origin loss result rules out fixing the midpoint case by           inputs 𝐷0 , 𝐷𝑀 and 𝐷𝐴 discard radius about three origins:
+moving the origin, but it leaves open whether a small amount       (0, 0), the midpoint (0.5, ℎ∕2) and the upper origin (0, 3).
+of distance information can repair the representation. The         The control 𝑃𝐴 retains both direction and radius about
+proposed bit answers only whether an observation is near           (0, 3), which together reconstruct the original coordinates.
+or far from the fixed midpoint; it does not report the full        Directions use exact division by the nonzero norm, with zero
+distance. At ℎ = 0.5, direction alone has positive loss at every   residual mapped to zero. All inputs are then standardized
+origin. At 𝑐 = (1∕2, 1∕4), append 𝑞 = 𝟏{‖𝑥 − 𝑐‖ > 4∕5}.            from training-set means and population standard deviations;
+For 𝑞 = 0, the sign of 9𝑢1 + 10𝑢2 determines the class; for        constant features use scale one. This positive affine transfor-
+𝑞 = 1, the sign of 𝑢2 −𝑢1 determines it. Positive signs identify   mation retains the information in each representation.
+class 0. Figure 2 shows how the radial bit assigns observations         All models shared a 64-unit tanh hidden layer, linear
+to the two angular rules. Together, the two rules correctly        output and training schedule, yet two-input models had
+label the complete class supports under their respective bit       257 trainable parameters versus 321 for three-input models.
+conditions, giving zero Bayes risk under either sampling law       The Bayes-floor comparison isolates information loss; fitted-
+and any positive priors. Supplementary Section S11 proves          model comparisons retain this capacity difference. We fitted
+the separating inequalities. Since zero additional radial bits     class labels −1∕ + 1 using mean squared error (MSE),
+leave the positive direction-only floor, one bit is the minimal    assigning positive outputs to the second class. Full-batch
+radial addition at this geometry.                                  Adam [16] used (𝛽1 , 𝛽2 ) = (0.9, 0.999), optimizer 𝜖 = 10−8 ,
+
+How accurately must radius be measured? The fixed
+angular decoder remains exact for a complete, geometrically
+
+M. Mouawad: Preprint submitted to Elsevier                                                                             Page 4 of 7
+

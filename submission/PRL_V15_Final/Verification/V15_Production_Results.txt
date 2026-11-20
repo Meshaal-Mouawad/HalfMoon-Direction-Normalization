@@ -1,0 +1,14 @@
+V15 R1 isolated page-flow closure
+Scientific content, equations, evidence tables, source citations: PRESERVED
+E1, E2, P1 and M01-M10: preserved from V14
+Main manuscript: 7 pages
+Supplement: 18 pages; V14 file retained byte-identically
+Threshold Addendum: 3 pages; V14 file retained byte-identically
+R1 A full training-update sentence: PASS (page 5)
+R1 B complete contrast-family clause: PASS (page 6)
+Figure 1, Figure 2, result tables and AI declaration: unaltered
+Graphical abstract, highlights and cover letter: unaltered
+All 7 article pages rasterized for visual review
+Source ZIP integrity: PASS
+Signed Confirmation of Authorship: NOT INCLUDED
+Editorial Manager resubmission: NOT PERFORMED
