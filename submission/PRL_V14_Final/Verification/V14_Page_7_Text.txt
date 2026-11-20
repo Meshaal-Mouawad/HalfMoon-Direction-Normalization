@@ -1,0 +1,74 @@
+                                                     Global loss bounds and one-bit recovery
+
+signed-density cores and are conservative lower bounds. The                     [4] Yann Dubois, Benjamin Bloem-Reddy, Karen Ullrich, and Chris J.
+one-bit construction, fixed-decoder threshold interval and                          Maddison. Lossy compression for lossless prediction. In Advances
+radius-error guarantee use ℎ = 0.5, the fixed midpoint                              in Neural Information Processing Systems, volume 34, 2021. URL
+                                                                                    https://proceedings.neurips.cc/paper/2021/hash/7535bbb91c8fde347
+and exact direction. Neural inference uses ten replicates per                       ad861f293126633-Abstract.html.
+experiment, equal priors, area-uniform sampling and one                         [5] Sven Serneels, Evert De Nolf, and Pierre J. Van Espen. Spatial
+hidden-layer learner with a fixed training budget. The radius-                      sign preprocessing: A simple way to impart moderate robustness to
+uniform comparison concerns population risks. Learned ex-                           multivariate estimators. J. Chem. Inf. Model., 46(3):1402–1409, 2006.
+cess combines finite-sample, approximation and optimization                         doi: 10.1021/ci050498u.
+                                                                                [6] Arnulf B. A. Graf, Alexander J. Smola, and Silvio Borer. Classification
+effects.                                                                            in a normalized feature space using support vector machines. IEEE
+                                                                                    Trans. Neural Netw., 14(3):597–605, 2003. doi: 10.1109/TNN.2003.8
+                                                                                    11708.
+6. Conclusion                                                                   [7] Víctor Poblete, José Aillapi, Carlos Duarte, Luis Veas, and Felipe
+     A direction-normalized observation tells a classifier                          Otondo. Decision-rule alignment in generative latent spaces: The role
+which way a point lies from an origin, but not how far away                         of radial compatibility. Pattern Recognit. Lett., 208:69–85, 2026. doi:
+                                                                                    10.1016/j.patrec.2026.07.024.
+it is. For the specified half-moon arrangements, this missing                   [8] Amirhossein Ahmadian and Fredrik Lindsten. Improved contrastive
+distance merges opposing class decisions and creates a                              predictive coding for time series out-of-distribution detection applied
+positive classification-loss floor for every origin. The distant-                   to human activity data. Pattern Recognit. Lett., 197:132–138, 2025.
+origin projection limit and explicit signed-density certificates                    doi: 10.1016/j.patrec.2025.07.011.
+establish that the loss persists across the full plane. At ℎ = 0.5,             [9] Onur C. Hamsici and Aleix M. Martinez. Spherical-homoscedastic
+                                                                                    distributions: The equivalency of spherical and normal distributions
+a single common-threshold near/far bit lets two angular rules                       in classification. J. Mach. Learn. Res., 8:1583–1623, 2007. URL
+recover every class decision; the exact admissible interval                         https://www.jmlr.org/papers/volume8/hamsici07a/hamsici07a.pdf.
+identifies the threshold and measurement accuracy needed                       [10] Onur C. Hamsici and Aleix M. Martinez. Bayes optimality in linear
+for that guarantee. The controlled neural experiments show                          discriminant analysis. IEEE Trans. Pattern Anal. Mach. Intell., 30(4):
+how fitted classifiers approach these representation-specific                       647–657, 2008. doi: 10.1109/TPAMI.2007.70717.
+                                                                               [11] Jiyong Oh. Maximizing generalized mean of trace ratios for discrimi-
+limits. The combined result gives a method for deciding                             native feature learning. Pattern Recognit. Lett., 194:26–31, 2025. doi:
+when direction-only preprocessing discards essential class                          10.1016/j.patrec.2025.04.026.
+information and how a minimal radial code can recover the                      [12] Tuomas Orponen. On the dimension and smoothness of radial
+decision in the proved geometry.                                                    projections. Anal. PDE, 12(5):1273–1294, 2019. doi: 10.2140/apde.2
+                                                                                    019.12.1273.
+                                                                               [13] Ferran Hurtado, Marc Noy, Pedro A. Ramos, and Carlos Seara.
+Data availability                                                                   Separating objects in the plane by wedges and strips. Discrete Appl.
+                                                                                    Math., 109(1–2):109–138, 2001. doi: 10.1016/S0166-218X(00)00230
+   Research data and code: https://github.com/Meshaal-M                             -4. URL https://pedroramos.web.uah.es/papers/separating-wedges-s
+ouawad/HalfMoon-Direction-Normalization/releases/tag/v1                             trips.pdf.
+1-submission. The research-data archive contains generators,                   [14] Karen L. Oehler and Robert M. Gray. Combining image compression
+                                                                                    and classification using vector quantization. IEEE Trans. Pattern Anal.
+protocols, predictions, trained weights and certificates. The
+                                                                                    Mach. Intell., 17(5):461–473, 1995. doi: 10.1109/34.391396.
+revision archive includes Threshold_Addendum.pdf with the                      [15] Hatice Şenozan and Banu Soylu. A flexible non-monotonic dis-
+exact interval and radius-error proof.                                              cretization method for pre-processing in supervised learning. Pattern
+                                                                                    Recognition Letters, 181:77–85, 2024. doi: 10.1016/j.patrec.2024.03
+                                                                                    .024.
+Declaration of generative AI and AI-assisted                                   [16] Diederik P. Kingma and Jimmy Ba. Adam: A method for stochastic op-
+technologies in the preparation process                                             timization. In International Conference on Learning Representations,
+                                                                                    2015. URL https://arxiv.org/abs/1412.6980.
+    During preparation of this work, the author used Elsevier
+LeapSpace and other tools to support literature discovery,
+manuscript organization, language refinement, and consis-
+tency checking. The author takes responsibility for the content
+of the article.
+
+References
+ [1] Jorge F. Silva and Shrikanth S. Narayanan. On signal representations
+     within the Bayes decision framework. Pattern Recognit., 45(5):1853–
+     1865, 2012. doi: 10.1016/j.patcog.2011.11.015.
+ [2] Jorge F. Silva, Felipe Tobar, Mario Vicuña, and Felipe Cordova.
+     Studying the interplay between information loss and operation loss in
+     representations for classification. J. Mach. Learn. Res., 25(291):1–71,
+     2024. URL https://www.jmlr.org/papers/v25/21-1551.html.
+ [3] László Györfi, Tamás Linder, and Harro Walk. Lossless transforma-
+     tions and excess risk bounds in statistical inference. Entropy, 25(10):
+     1394, 2023. doi: 10.3390/e25101394.
+
+
+
+M. Mouawad: Preprint submitted to Elsevier                                                                                                  Page 7 of 7
+

@@ -1,0 +1,34 @@
+--- V13/narrative_sections.tex
++++ V14/narrative_sections.tex
+@@ -22,10 +22,10 @@
+ Silva and Narayanan~\citep{Silva2012} separate the representational component of classification error from learning with finite data. Later work analyzes operational decision loss and losslessness of transformations \citep{Silva2024,Gyorfi2023}. Dubois et al.~\citep{Dubois2021} identify unit direction as an invariant to positive scaling, an invariance that preserves class decisions only when the task supports it. These foundations establish \emph{why} removed information can raise minimum risk. Here the map depends additionally on a selectable center; we derive the opposing signed-decision mass merged on its rays and determine whether every center suffers positive loss in the specified geometry.
+ 
+ \paragraph{Closest geometric and empirical evidence.}
+-Poblete et al.~\citep{Poblete2026} compare downstream decision rules on fixed generative embeddings across eight datasets, showing that rule ranking depends on feature geometry. The present question precedes rule selection: can any classifier recover a decision already lost by constructing the representation? Ahmadian and Lindsten~\citep{Ahmadian2025} study radial-kernel novelty scoring and context quantization, reporting normalization-sensitive performance in their activity-data experiments. This is related motivation from a different prediction objective, not a measurement of the present half-moon Bayes risks. Neither comparison establishes the loss for all normalization origins.
++Poblete et al.~\citep{Poblete2026} compare downstream classifiers on fixed representations across eight datasets. They report variation in classifier rankings and descriptive associations with representation geometry. The present question precedes rule selection: can any classifier recover a decision already lost by constructing the representation? Ahmadian and Lindsten~\citep{Ahmadian2025} study radial-kernel novelty scoring and context quantization, reporting normalization-sensitive performance in their activity-data experiments. This is related motivation from a different prediction objective, not a measurement of the present half-moon Bayes risks. Neither comparison establishes the loss for all normalization origins.
+ 
+ \paragraph{Finite origins, distant origins, and restricted repair.}
+-Projected classifiers study fixed views \citep{Hamsici2007,Hamsici2008,Oh2025}. Radial-projection geometry studies how those views change as the origin moves \citep{Orponen2019}. Geometric wedge-separation research supplies a basis for reasoning about obstructed angular separability \citep{Hurtado2001}. Positive loss at each finite origin by itself does not imply a positive \emph{global} infimum: the loss could approach zero as the origin escapes to infinity. We resolve that boundary through convergence of Bayes risk to orthogonal-projection risk. Finally, decision-aware quantization provides precedent for preserving labels with compressed inputs \citep{OehlerGray1995,Senozan2024}; our repair establishes that one common radial bit, combined with direction, preserves the decision throughout a specified continuous class support.
++Projected classifiers study fixed views \citep{Hamsici2007,Hamsici2008,Oh2025}. Radial-projection geometry studies how those views change as the origin moves \citep{Orponen2019}. Geometric wedge-separation research supplies a basis for reasoning about obstructed angular separability \citep{Hurtado2001}. Positive loss at each finite origin by itself does not imply a positive \emph{global} infimum: the loss could approach zero as the origin escapes to infinity. We resolve that boundary through convergence of Bayes risk to orthogonal-projection risk. Finally, Oehler and Gray~\citep{OehlerGray1995} study classification-aware vector quantization, and \citet{Senozan2024} study supervised discretization for classification. Our construction proves exact decision preservation with one shared radial bit and direction on the specified continuous support.
+ }
+ 
+ \newcommand{\HalfMoonDiscussion}{%
+--- V13/theory_main.tex
++++ V14/theory_main.tex
+@@ -81,12 +81,15 @@
+ 
+ % Standalone main-text replacement paragraph. Definitions of d and Delta precede it.
+ \paragraph{A numerical lower certificate for the whole plane.}
+-The preceding result establishes a strictly positive loss floor, but a numerical certificate must still say how large a loss is guaranteed regardless of origin. Such a bound can be constructed from two interior regions where one class is favored by a fixed probability margin. Their relative positions make conflicting rays unavoidable, while their sizes bound the amount of probability merged on those rays. In the plane, let $K_+,K_-$ be compact connected cores whose radius-$\rho$ neighborhoods satisfy $d\geq\kappa_+>0$ and $d\leq-\kappa_-<0$, respectively. Suppose each core meets the other's convex hull, their convex hulls contain a common disk $B(p,\delta)$, and both cores lie within distance $M$ of $p$. Writing $\kappa=\min(\kappa_+,\kappa_-)$ gives
++The preceding result establishes a strictly positive loss floor, but a numerical certificate must still say how large a loss is guaranteed regardless of origin. Such a bound can be constructed from two interior regions where one class is favored by a fixed probability margin. Their relative positions make conflicting rays unavoidable, while their sizes bound the amount of probability merged on those rays. In the plane, let $K_+,K_-$ be compact connected cores whose radius-$\rho$ neighborhoods satisfy $d\geq\kappa_+>0$ and $d\leq-\kappa_-<0$, respectively. Suppose each core meets the other's convex hull, their convex hulls contain a common disk $B(p,\delta)$, and both cores lie within distance $M$ of $p$.
++\par\begin{samepage}
++\noindent Writing $\kappa=\min(\kappa_+,\kappa_-)$ gives
+ \begin{equation}
+  \inf_c\Delta(c)\geq\kappa\min\left\{
+  \frac{\sqrt3\rho^3}{6M},\;2\rho\delta\right\}>0.
+  \label{eq:constructive-global}
+ \end{equation}
++\end{samepage}
+ For bounded origins, mutual convex-hull intrusion forces rays through both cores; their neighborhoods provide an angular interval with conflicting class mass. For distant origins, the shared convex-hull disk supplies the bound. Thus the certificate does not rest on a finite search grid. Supplementary Section~\ref{supp:constructive-global} proves the result and optimizes the split between these regions. For equal-prior area sampling, the conservative whole-plane certificates exceed $0.0205$ percentage points (pp) at $h=0.5$ and $0.00119$~pp at $h=1$. They bound $\inf_c\Delta(c)$, the best loss over \emph{all} origins; by comparison, the midpoint loss at $h=0.5$ is $10.7479\%$ for \emph{one fixed} origin (Table~\ref{tab:neural-main}). Eroded half-annuli supply the required cores under both sampling laws and any fixed positive priors.
+ 
+ \paragraph{Computing the best possible error at a chosen origin.}
