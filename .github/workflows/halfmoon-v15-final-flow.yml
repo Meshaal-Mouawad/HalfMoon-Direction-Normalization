@@ -28,12 +28,12 @@ jobs:
           a=p.read_text()
           start=r'assigning positive outputs to the second class. Full-batch Adam'
           replacement='assigning positive outputs to the second class.\n'+r'\par\begin{samepage}'+'\n'+r'\noindent Full-batch Adam'
-          end='Validation was evaluated at initialization and every 50 updates. Selection minimized validation error, followed by validation MSE, earlier update and lower learning rate.'
-          after=end+'\n'+r'\end{samepage}'
+          end='and learning rates $0.001$ and $0.01$.'
+          after=end+'\n'+r'\end{samepage}'+'\n'+r'\newpage\noindent'
           assert a.count(start)==1 and a.count(end)==1
           b=a.replace(start,replacement,1).replace(end,after,1)
           def normalized(s):
-              for cmd in [r'\vadjust{\nobreak}',r'\par',r'\begin{samepage}',r'\end{samepage}',r'\noindent']:
+              for cmd in [r'\vadjust{\nobreak}',r'\par',r'\begin{samepage}',r'\end{samepage}',r'\newpage',r'\noindent']:
                   s=s.replace(cmd,' ')
               return ' '.join(s.split())
           old=(Path('submission/PRL_V14_Final/Editable_LaTeX/experimental_sections.tex')).read_text()
