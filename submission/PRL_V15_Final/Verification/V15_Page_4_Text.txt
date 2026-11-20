@@ -62,9 +62,9 @@ label the complete class supports under their respective bit       257 trainable
 conditions, giving zero Bayes risk under either sampling law       The Bayes-floor comparison isolates information loss; fitted-
 and any positive priors. Supplementary Section S11 proves          model comparisons retain this capacity difference. We fitted
 the separating inequalities. Since zero additional radial bits     class labels −1∕ + 1 using mean squared error (MSE),
-leave the positive direction-only floor, one bit is the minimal    assigning positive outputs to the second class. Full-batch
-radial addition at this geometry.                                  Adam [16] used (𝛽1 , 𝛽2 ) = (0.9, 0.999), optimizer 𝜖 = 10−8 ,
-
+leave the positive direction-only floor, one bit is the minimal    assigning positive outputs to the second class.
+radial addition at this geometry.                                  Full-batch Adam [16] used (𝛽1 , 𝛽2 ) = (0.9, 0.999), optimizer
+                                                                   𝜖 = 10−8 , and learning rates 0.001 and 0.01.
 How accurately must radius be measured? The fixed
 angular decoder remains exact for a complete, geometrically
 

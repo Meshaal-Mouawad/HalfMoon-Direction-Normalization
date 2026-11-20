@@ -1,14 +1,13 @@
-V15 R1 isolated page-flow closure
-Scientific content, equations, evidence tables, source citations: PRESERVED
-E1, E2, P1 and M01-M10: preserved from V14
-Main manuscript: 7 pages
-Supplement: 18 pages; V14 file retained byte-identically
-Threshold Addendum: 3 pages; V14 file retained byte-identically
-R1 A full training-update sentence: PASS (page 5)
-R1 B complete contrast-family clause: PASS (page 6)
-Figure 1, Figure 2, result tables and AI declaration: unaltered
-Graphical abstract, highlights and cover letter: unaltered
-All 7 article pages rasterized for visual review
-Source ZIP integrity: PASS
+HalfMoon V15 final production: PASS
+Main article: 7 pages
+Math supplement: 18 pages, copied unchanged from V14
+Threshold Addendum: 3 pages, copied unchanged from V14
+Scientific LaTeX words, all equations, bibliography, figures: unchanged
+Full optimizer Methods sentence: PASS (page 4)
+Complete 4,000-update sentence: PASS (page 5)
+Complete paired-contrast sentence: PASS (page 6)
+Closed E1, E2, P1 wording and equations preserved
+All article pages rendered and retained for visual inspection
+LaTeX source ZIP: CRC PASS
 Signed Confirmation of Authorship: NOT INCLUDED
-Editorial Manager resubmission: NOT PERFORMED
+Editorial Manager submission: NOT PERFORMED

@@ -21,11 +21,10 @@ boundary. Direction together with the bit determines the class.
 
 
 
-and learning rates 0.001 and 0.01. Every candidate executed                 representation-specific floors: the largest mean excess among
-4,000 updates.1 Validation was evaluated at initialization                  15 principal conditions was 0.471 percentage points (pp). At
-and every 50 updates. Selection minimized validation error,                 ℎ = 0.5, raw and direction-plus-radius inputs produced zero
-followed by validation MSE, earlier update and lower learning               observed test errors, whereas direction-only inputs incurred
-rate.                                                                       errors consistent with their positive population floors. At
+Every candidate executed 4,000 updates.1 Validation was                     15 principal conditions was 0.471 percentage points (pp). At
+evaluated at initialization and every 50 updates. Selection                 ℎ = 0.5, raw and direction-plus-radius inputs produced zero
+minimized validation error, followed by validation MSE,                     observed test errors, whereas direction-only inputs incurred
+earlier update and lower learning rate.                                     errors consistent with their positive population floors. At
      The main design required 300 candidate fits. At ℎ = 1,                 ℎ = 1, 𝑅 and 𝑃𝐴 achieved 6.790% and 6.833% error against
 width-15 and unconditioned width-64 diagnostics each added                  their common 6.716% floor.
 60 fits for 𝑅, 𝐷𝐴 , 𝑃𝐴 . These 420 final candidate fits were                    All five nonzero primary origin contrasts had simulta-
@@ -58,8 +57,11 @@ percentage points (pp).                                                     near
     The key comparison is between the attainable error                      64-unit architecture, two learning rates, 4,000-update budget,
 in each input representation and the corresponding fitted-                  conditioning and validation selection rule were retained. The
 network error (Table 1). Learned errors were close to their                 80 new candidate fits produced 40 selected models; their
-     1 The stopping criterion was completion of the fixed update budget,    test sets used an independent random namespace and were
-including candidates whose selected checkpoint occurred earlier.            evaluated after selection was frozen. The paired contrasts
+representation-specific floors: the largest mean excess among               test sets used an independent random namespace and were
+     1 The stopping criterion was completion of the fixed update budget,
+                                                                            evaluated after selection was frozen. The paired contrasts
+including candidates whose selected checkpoint occurred earlier.
+
 
 M. Mouawad: Preprint submitted to Elsevier                                                                                    Page 5 of 7
 
