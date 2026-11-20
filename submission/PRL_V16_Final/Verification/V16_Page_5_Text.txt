@@ -1,0 +1,67 @@
+                                                    Global loss bounds and one-bit recovery
+
+                        A Near: radius ≤ 0.8                                           B Far: radius > 0.8
+
+                  1.0                                                            1.0
+
+                  0.5                                                            0.5
+            x2                                                             x2
+                  0.0                                                            0.0
+
+                 −0.5                                                           −0.5
+                         9u1 + 10u2                                                    u2 − u1
+
+                          −1             0             1            2                   −1        0           1           2
+                                               x1                                                       x1
+
+Figure 2: Exact one-bit recovery at ℎ = 0.5. The same radius threshold, 0.8 about 𝑐 = (0.5, 0.25), applies to every direction. (A)
+Inside the threshold, 9𝑢1 + 10𝑢2 separates the two classes. (B) Outside it, 𝑢2 − 𝑢1 separates them. Blue denotes class 0 and orange
+class 1. Each panel shows the portion of the original supports assigned to that radial code; the dashed line is its angular decision
+boundary. Direction together with the bit determines the class.
+
+
+
+Every candidate executed 4,000 updates.1 Validation was                     15 principal conditions was 0.471 percentage points (pp). At
+evaluated at initialization and every 50 updates. Selection                 ℎ = 0.5, raw and direction-plus-radius inputs produced zero
+minimized validation error, followed by validation MSE,                     observed test errors, whereas direction-only inputs incurred
+earlier update and lower learning rate.                                     errors consistent with their positive population floors. At
+     The main design required 300 candidate fits. At ℎ = 1,                 ℎ = 1, 𝑅 and 𝑃𝐴 achieved 6.790% and 6.833% error against
+width-15 and unconditioned width-64 diagnostics each added                  their common 6.716% floor.
+60 fits for 𝑅, 𝐷𝐴 , 𝑃𝐴 . These 420 final candidate fits were                    All five nonzero primary origin contrasts had simulta-
+separate from a 48-fit development stage using seeds 101 and                neous intervals excluding zero (Supplementary Table S3).
+103. Training and analysis protocols were frozen before final               The midpoint reduced error relative to the zero origin in both
+test generation; the 210 selected models were then evaluated                nonlinear configurations. The upper origin increased error by
+once.                                                                       9.379 pp at ℎ = 0.5 and decreased it by 1.445 pp at ℎ = 1.
+     Misclassification error was the primary outcome; ac-                   For ℎ = −0.25, 𝐷𝑀 − 𝐷0 was zero for every seed. Thus the
+curacy, MSE and the gap between learned error and the                       effect of changing origin followed the class arrangement.
+representation’s Bayes floor were secondary. Six planned                        The paired 𝑃𝐴 − 𝑅 difference at ℎ = 1 was 0.044 pp,
+paired contrasts compared the midpoint and upper-origin                     with a pointwise 95% interval [−0.043, 0.130]. All three
+direction errors with zero-origin direction error at each                   width-15 versus width-64 diagnostic intervals included zero.
+displacement (𝐷𝑀 − 𝐷0 and 𝐷𝐴 − 𝐷0 ). The inference unit                     Removing affine conditioning increased 𝐷𝐴 error by 0.179 pp,
+was the independently repeated dataset/initialization seed, not             [0.053, 0.305]; the corresponding 𝑅 and 𝑃𝐴 intervals in-
+the individual test observation. We summarized paired seed                  cluded zero. Complete seed outcomes, signed excess esti-
+differences using their mean, sample standard deviation and                 mates, prediction arrays and learning histories accompany
+Student-𝑡 intervals with nine degrees of freedom. Simultane-                the experiment.
+ous 95% intervals used 𝑡9 (1 − 0.05∕12) for the six-contrast
+family. Supplementary results retain whole-seed bootstrap                   4.3. Independent test of the one-bit repair
+sensitivity analyses and pointwise diagnostic intervals.                        The geometric construction establishes that a one-bit rep-
+     The analytical Bayes rule was evaluated on the identical               resentation can preserve every class decision; the remaining
+test observations. Class-specific errors and class-stratified               question is whether a trained network can learn to use that
+Monte Carlo standard errors separated test sampling from                    restricted input. We tested the repair at ℎ = 0.5 using ten
+numerical integration bounds and between-seed variation.                    fresh paired dataset/initialization seeds (2001–2010). Four
+Across the 15 main conditions, mean empirical Bayes-                        inputs separate the relevant alternatives: raw coordinates 𝑅,
+rule error differed from integrated risk by at most 0.061                   midpoint direction alone 𝐷𝑀 , midpoint direction plus the
+percentage points (pp).                                                     near/far bit 𝑞 (𝐵), and midpoint direction plus full radius
+                                                                            (𝑃𝑀 ). The bit threshold 0.8 was fixed by the geometric
+4.2. Results                                                                construction before this experiment. The same sample sizes,
+    The key comparison is between the attainable error                      64-unit architecture, two learning rates, 4,000-update budget,
+in each input representation and the corresponding fitted-                  conditioning and validation selection rule were retained. The
+network error (Table 1). Learned errors were close to their                 80 new candidate fits produced 40 selected models; their
+representation-specific floors: the largest mean excess among               test sets used an independent random namespace and were
+     1 The stopping criterion was completion of the fixed update budget,
+                                                                            evaluated after selection was frozen.
+including candidates whose selected checkpoint occurred earlier.
+
+
+M. Mouawad: Preprint submitted to Elsevier                                                                                    Page 5 of 7
+

@@ -1,0 +1,66 @@
+                                             Global loss bounds and one-bit recovery
+
+Table 1                                                           5. Discussion
+Population Bayes risk and neural test error. Errors are mean ±
+                                                                       The findings distinguish three sources of classification
+sample SD over ten seeds; excess is mean error minus Bayes
+risk. Risk and error are percentages; excess is in percentage     error. In the ℎ = −0.25 control, suitable origins preserve
+points. 𝑅 denotes raw coordinates, 𝐷 direction, and 𝑃 direction   decisions exactly; direction normalization is therefore not
+plus radius; subscripts 0, 𝑀 and 𝐴 identify the zero, midpoint    inherently lossy for every class arrangement. At ℎ = 0.5,
+and upper origins.                                                raw coordinates separate the classes, yet direction at the
+                                                                  midpoint has 10.7479% Bayes risk and its neural classifier
+            ℎ Input Bayes risk     Test error    Excess           averages 10.835% test error. The 0.087 percentage-point
+       −0.25      𝑅     0.0000 0.000 ± 0.000      0.000           learned excess shows that the dominant error is imposed by
+                 𝐷0     0.0000 0.000 ± 0.000      0.000           the input, rather than created during network fitting. At ℎ = 1,
+                𝐷𝑀      0.0000 0.000 ± 0.000      0.000           part of the error already exists because the raw supports
+                𝐷𝐴     22.2934 22.528 ± 0.176     0.234           overlap; direction then adds a separately quantified loss.
+                 𝑃𝐴     0.0000 0.000 ± 0.000      0.000           This decomposition explains outcomes that a comparison
+         0.5      𝑅     0.0000 0.000 ± 0.000      0.000           of trained accuracies alone cannot attribute correctly.
+                 𝐷0    11.8577 11.991 ± 0.132     0.134                The theory advances this interpretation beyond the finitely
+                𝐷𝑀     10.7479 10.835 ± 0.140     0.087           tested origins. Mutual convex-hull intrusion forces opposite
+                𝐷𝐴     21.1509 21.370 ± 0.268     0.219           decisions to share directions from every finite viewpoint.
+                 𝑃𝐴     0.0000 0.000 ± 0.000      0.000           The uniform distant-origin projection limit closes the re-
+            1     𝑅     6.7157 6.790 ± 0.103      0.074           maining possibility that moving the origin arbitrarily far
+                 𝐷0    21.7294 22.201 ± 0.375     0.471           makes loss vanish. The numerical certificates guarantee
+                𝐷𝑀     20.8548 20.947 ± 0.175     0.092           a positive global floor, although their conservative whole-
+                𝐷𝐴     20.5987 20.755 ± 0.316     0.157           plane bounds are smaller than the calculated midpoint error.
+                 𝑃𝐴     6.7157 6.833 ± 0.135      0.118           Established decision-sufficiency research explains the general
+                                                                  phenomenon of representation-induced loss [1–3]; the ray
+Table 2                                                           identity, all-origin geometry and projection-limit argument
+Fresh one-bit experiment at ℎ = 0.5. Bayes risk and mean          specify its mechanism for this origin-dependent map. Relative
+± sample SD over ten seeds are percentages. Each input is         to fixed-feature classifier comparisons [7] and normalization-
+evaluated on the same 500,000 observations, balanced within       sensitive novelty detection [8], the result identifies a pop-
+each seed. 𝑅 denotes raw coordinates; 𝐷𝑀 , midpoint direction;    ulation error that changing the downstream learner cannot
+𝐵, midpoint direction plus one bit; and 𝑃𝑀 , midpoint direction   repair.
+plus full radius.                                                      The one-bit construction shows that decision preservation
+       Input Bayes risk          Test error Error count           requires less information than point reconstruction. Under
+                                                                  the equal-prior reflected laws, the radius bit alone has 50%
+       𝑅              0 0.0000 ± 0.0000               0
+       𝐷𝑀       10.7479 10.8724 ± 0.1157         54,362
+                                                                  Bayes error; together with direction it selects one of two
+       𝐵              0 0.0006 ± 0.0019               3           separators and classifies every point in the disjoint ℎ = 0.5
+       𝑃𝑀             0 0.0000 ± 0.0000               0           supports. The admissible threshold interval supplies a precise
+                                                                  operating condition. The experimental cutoff 0.8 has certified
+                                                                  bounded-radius-error tolerance 0.01209147 coordinate units;
+The paired contrasts 𝐵 − 𝐷𝑀 and 𝐵 − 𝑃𝑀 formed a separate          the different midpoint cutoff 0.77769746 maximizes the
+two-comparison family with simultaneous 95% Bonferroni-           guarantee at 0.03439402. These are mathematical guarantees
+adjusted intervals. 𝐵 and 𝑃𝑀 each used three inputs and 321       for the fixed decoder, while the separate trained one-bit
+parameters; 𝑅 and 𝐷𝑀 used two inputs and 257 parameters.          network made three errors in 500,000 observations. The
+    The additional bit reduced the learned error nearly to        distinction between exact decision sufficiency and learned
+the raw-coordinate and full-radius controls. Across the same      performance is retained.
+500,000 test observations, one-bit networks made three errors,         For pattern-recognition preprocessing, the resulting se-
+compared with 54,362 for direction alone (Table 2). The           quence is to establish the raw-data Bayes limit, measure the
+mean 𝐵 − 𝐷𝑀 difference was −10.8718 pp. Its simultaneous          risk of the proposed representation, and only then evaluate
+95% confidence interval was [−10.9691, −10.7745]. The             learned excess. If that representation is decision-insufficient,
+𝐵 − 𝑃𝑀 difference was 0.0006 pp, [−0.0010, 0.0022]. Raw           a targeted low-bit measurement can be examined before
+and full-radius networks made no observed errors. The             increasing model complexity. The half-moons make this
+explicit decoder also classified all 500,000 observations         sequence inspectable through geometry, exact population-
+correctly. Supplementary Section S15 reports seed outcomes        risk analysis, and held-out neural controls; the continuous-
+and bootstrap sensitivity results.                                support conclusions follow from the proofs rather than from
+                                                                  test-set accuracy.
+
+
+
+
+M. Mouawad: Preprint submitted to Elsevier                                                                           Page 6 of 7
+

@@ -1,0 +1,24 @@
+\subsection{Independent test of the one-bit repair}
+\label{sec:one-bit-experiment}
+The geometric construction establishes that a one-bit representation \emph{can} preserve every class decision; the remaining question is whether a trained network can learn to use that restricted input. We tested the repair at $h=0.5$ using ten fresh paired dataset/initialization seeds (2001--2010). Four inputs separate the relevant alternatives: raw coordinates $R$, midpoint direction alone $D_M$, midpoint direction plus the near/far bit $q$ ($B$), and midpoint direction plus full radius ($P_M$). The bit threshold $0.8$ was fixed by the geometric construction before this experiment. The same sample sizes, 64-unit architecture, two learning rates, 4,000-update budget, conditioning and validation selection rule were retained. The 80 new candidate fits produced 40 selected models; their test sets used an independent random namespace and were evaluated after selection was frozen. \par\begin{samepage}
+\noindent The paired contrasts $B-D_M$ and $B-P_M$ formed a separate two-comparison family with simultaneous 95\% Bonferroni-adjusted intervals.
+\end{samepage} $B$ and $P_M$ each used three inputs and 321 parameters; $R$ and $D_M$ used two inputs and 257 parameters.
+
+The additional bit reduced the learned error nearly to the raw-coordinate and full-radius controls. Across the same 500,000 test observations, one-bit networks made three errors, compared with 54,362 for direction alone (Table~\ref{tab:one-bit-neural}). The mean $B-D_M$ difference was $-10.8718$~pp. Its simultaneous 95\% confidence interval was $[-10.9691,-10.7745]$. The $B-P_M$ difference was $0.0006$~pp, $[-0.0010,0.0022]$. Raw and full-radius networks made no observed errors. The explicit decoder also classified all 500,000 observations correctly. Supplementary Section~\ref{supp:one-bit-experiment} reports seed outcomes and bootstrap sensitivity results.
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{Fresh one-bit experiment at $h=0.5$. Bayes risk and mean $\pm$ sample SD over ten seeds are percentages. Each input is evaluated on the same 500,000 observations, balanced within each seed. $R$ denotes raw coordinates; $D_M$, midpoint direction; $B$, midpoint direction plus one bit; and $P_M$, midpoint direction plus full radius.}
+\label{tab:one-bit-neural}
+\begin{tabular}{lrrr}
+\toprule
+Input & Bayes risk & Test error & Error count \\
+\midrule
+$R$ & 0 & $0.0000\pm0.0000$ & 0 \\
+$D_M$ & 10.7479 & $10.8724\pm0.1157$ & 54,362 \\
+$B$ & 0 & $0.0006\pm0.0019$ & 3 \\
+$P_M$ & 0 & $0.0000\pm0.0000$ & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

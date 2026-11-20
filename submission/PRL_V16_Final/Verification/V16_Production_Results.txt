@@ -1,0 +1,15 @@
+HalfMoon V16 — R1-B targeted production closure
+7-page manuscript: PASS
+R1-B complete paired-contrast sentence together: PASS (page 6)
+R1-A complete optimizer sentence: PASS (page 4)
+R1-A complete training-update sentence: PASS (page 5)
+E1/E2 citation precision: unchanged from approved V15
+P1 Equation (9) introduction: still on page 4
+Scientific source text, equations, reported results and figures: PRESERVED
+18-page mathematical supplement: identical original PDF from V15
+3-page Threshold Addendum: identical original PDF from V15
+All 7 manuscript pages rasterized for inspection
+Highlights, graphical abstract and cover letter: identical to V15
+Editable LaTeX source archive: ZIP CRC PASS
+Signed Confirmation of Authorship: NOT INCLUDED
+Journal resubmission: NOT PERFORMED

@@ -1,0 +1,493 @@
+% Supplementary theory fragment. The wrapper supplies S-prefixed numbering.
+% Requires amsmath, amssymb, booktabs and natbib.
+\section{Population model and the ray-cancellation identity}
+\label{supp:bayes}
+
+Let $a=4/5$, $b=6/5$, $m_0=(0,0)$ and $m_1=(1,h)$, with $h=-g$. Define
+\begin{align}
+ S_0&=\{x:a<\|x\|<b,\ x_2>0\},\nonumber\\
+ S_1&=\{x:a<\|x-m_1\|<b,\ x_2<h\}.
+ \label{supp:eq:supports}
+\end{align}
+Write $H=\pi(b^2-a^2)/2=2\pi/5$ and $K=1/[\pi(b-a)]$. The class densities used in the study are
+\begin{equation}
+ f_i^A(x)=\frac{\mathbf1_{S_i}(x)}H,
+ \qquad
+ f_i^R(x)=\frac{K\mathbf1_{S_i}(x)}{\|x-m_i\|}.
+ \label{supp:eq:densities}
+\end{equation}
+The first is uniform with respect to planar area. The second results from independent uniform radius on $(a,b)$ and uniform angle on the appropriate semicircle; the planar area element is $s\,ds\,d\phi$. Boundaries have probability zero. The experiments use $\pi_0=\pi_1=1/2$. Statements involving arbitrary priors assume $\pi_i>0$ and $\pi_0+\pi_1=1$.
+
+For $x\ne c$, the retained representation is $T_c(x)=(x-c)/\|x-c\|$. Its value at $x=c$ can be assigned arbitrarily. Put $u_\theta=(\cos\theta,\sin\theta)$ and
+\[
+ q_{i,c}(\theta)=\int_0^\infty f_i(c+ru_\theta)r\,dr.
+\]
+Polar change of variables gives $\int_0^{2\pi}q_{i,c}=1$. The raw and directional Bayes risks are
+\begin{align}
+ R_X^*&=\int_{\mathbb R^2}\min\{\pi_0f_0(x),\pi_1f_1(x)\}\,dx,
+ \label{supp:eq:raw-risk}\\
+ R^*_{T_c}&=\int_0^{2\pi}\min\{\pi_0q_{0,c}(\theta),
+                                  \pi_1q_{1,c}(\theta)\}\,d\theta.
+ \label{supp:eq:direction-risk}
+\end{align}
+Let $d=\pi_0f_0-\pi_1f_1$ and define
+\[
+ A_c(\theta)=\int_0^\infty[d(c+ru_\theta)]_+r\,dr,
+ \qquad
+ B_c(\theta)=\int_0^\infty[-d(c+ru_\theta)]_+r\,dr.
+\]
+Since $\min(s,t)=(s+t-|s-t|)/2$,
+\begin{align*}
+ R_X^*&=\frac12\left(1-\int_0^{2\pi}(A_c+B_c)\,d\theta\right),\\
+ R^*_{T_c}&=\frac12\left(1-\int_0^{2\pi}|A_c-B_c|\,d\theta\right).
+\end{align*}
+Subtracting proves
+\begin{equation}
+ \Delta(c):=R^*_{T_c}-R_X^*
+ =\int_0^{2\pi}\min\{A_c(\theta),B_c(\theta)\}\,d\theta.
+ \label{supp:eq:cancellation}
+\end{equation}
+In particular, zero loss holds exactly when almost every ray carries at most one strict sign of $d$. This is the binary zero--one specialization of representation-induced Bayes loss \citep{Silva2012,Silva2024}.
+
+\section{Connected winner regions and the disjoint-support transition}
+\label{supp:geometry}
+
+For a set $U$, write
+\[
+ \Omega_c(U)=\{(x-c)/\|x-c\|:x\in U\setminus\{c\}\}
+\]
+for its angular image. If $U$ is open and $c\in U$, then $\Omega_c(U)$ is the full circle. If $U$ is connected and $c\notin U$, continuity and openness of the direction map show that $\Omega_c(U)$ is a connected open subset of the circle: an open arc or the full circle.
+
+\paragraph{Lemma 1 (mutual convex-hull intrusion).}
+Suppose connected open sets $U_0,U_1$ satisfy $d>0$ almost everywhere on $U_0$, $d<0$ almost everywhere on $U_1$, and
+\begin{equation}
+ U_0\cap\operatorname{int}\operatorname{conv}(U_1)\ne\varnothing,
+ \qquad
+ U_1\cap\operatorname{int}\operatorname{conv}(U_0)\ne\varnothing.
+ \label{supp:eq:intrusion}
+\end{equation}
+Then $\Delta(c)>0$ for every $c\in\mathbb R^2$. This criterion is a probabilistic adaptation of the separability geometry developed by Hurtado et al.\ \citep{Hurtado2001}.
+
+\emph{Proof.}
+If the angular images overlap, their intersection is open. Every ray in this intersection meets each $U_i$ in a nonempty open radial interval. Polar Fubini and the almost-everywhere strict signs imply $A_c,B_c>0$ for almost every angle in that intersection. Equation~\eqref{supp:eq:cancellation} then gives positive loss.
+
+Suppose instead that the images are disjoint. Neither can be the full circle, so they are disjoint open arcs. At least one, say $\Omega_c(U_0)$, has length at most $\pi$. The set
+\[
+ C=\{ru:r>0,\ u\in\Omega_c(U_0)\}
+\]
+is convex: positive sums of vectors whose directions belong to an open arc of length at most $\pi$ retain a direction in that arc and cannot equal zero. Consequently $\operatorname{conv}(U_0)-c\subseteq C$. A point of $U_1\cap\operatorname{conv}(U_0)$ therefore has a direction in both angular images, contradicting disjointness. This proves the lemma.\hfill$\square$
+
+\paragraph{Proposition 1 (the disjoint nonlinear interval).}
+For $0<h\leq\sqrt{3/5}$, $S_0\cap S_1=\varnothing$. For any positive priors and class densities positive almost everywhere on these supports,
+\begin{equation}
+ R_X^*=0,\qquad\Delta(c)>0\quad(c\in\mathbb R^2).
+ \label{supp:eq:disjoint-result}
+\end{equation}
+For $h\leq0$, every origin satisfying $h\leq c_2\leq0$ has zero directional risk.
+
+\emph{Proof.}
+Assume first $0<h\leq\sqrt{3/5}<a$. A common point must have height $0<y<h$. Set
+\[
+ s(y)=\sqrt{a^2-y^2},\qquad t(y)=\sqrt{b^2-y^2}.
+\]
+The horizontal intervals of the two supports at that height are
+\begin{align*}
+ S_0:&\quad(-t(y),-s(y)),\quad(s(y),t(y)),\\
+ S_1:&\quad(1-t(h-y),1-s(h-y)),\quad
+                  (1+s(h-y),1+t(h-y)).
+\end{align*}
+The derivative
+\[
+ \frac{d}{dy}\{t(h-y)-s(y)\}
+ =\frac{h-y}{t(h-y)}+\frac y{s(y)}\geq0
+\]
+gives $t(h-y)-s(y)\leq b-s(h)$. Interchanging $y$ and $h-y$ gives the corresponding reversed bound. Concavity of $s$ gives
+\[
+ s(y)+s(h-y)\geq a+s(h).
+\]
+When $s(h)\geq1/5$, these inequalities separate the left intervals of the two classes, the right intervals, and the potentially crossing middle pair. The remaining pair is already ordered by sign. Thus all pairs are disjoint. The condition $s(h)\geq1/5$ is equivalent to $h\leq\sqrt{3/5}$; equality permits boundary contacts only. For $\sqrt{3/5}<h<a$, the class-0 right interval and class-1 left interval overlap at heights sufficiently close to zero, establishing the threshold within $0\leq h<a$.
+
+Each support is connected and open. Its convex hull is the open outer half-disk with the same center and orientation. The point $z_0=(1,h/2)$ has class-0 radius $\sqrt{1+h^2/4}\in(a,b)$ and lies strictly inside the class-1 outer half-disk. Its reflection $z_1=(0,h/2)$ gives the reverse intrusion. Because disjoint supports have opposite signs of $d$, Lemma~1 proves positive directional risk for every origin. Raw risk is zero by disjointness.
+
+For $h\leq0$ and $h\leq c_2\leq0$, every class-0 observation has positive vertical direction and every class-1 observation has negative vertical direction. The direction therefore determines the class almost surely.\hfill$\square$
+
+\section{An exclusive-region construction for overlapping supports}
+\label{supp:overlap}
+
+Set $h=1$. The point $(9/10,1/10)$ lies strictly inside both supports: its squared distances to the two centers are both $82/100$, between $a^2$ and $b^2$. A neighborhood of that point belongs to the overlap. Positive almost-everywhere class densities and positive priors therefore give $R_X^*>0$.
+
+To establish strictly positive additional loss at every origin, define
+\begin{align*}
+ w_1&=(1,1/4),&w_2&=(-1,1/20),&w_3&=(0,11/10),\\
+ v_i&=(1,1)-w_i.&&&
+\end{align*}
+Let $R=11/10$, $\theta_0=\arctan(1/4)$ and
+$\theta_1=\pi-\arctan(1/20)$. Form a compact connected set $K_0$ from the circular arc
+\[
+ \{R(\cos\theta,\sin\theta):\theta_0\leq\theta\leq\theta_1\}
+\]
+and the radial segments joining $w_1,w_2$ to the two arc endpoints. The arc contains $w_3$. Put $K_1=(1,1)-K_0$ and $\rho=1/20$.
+
+Every open radius-$\rho$ disk centered on $K_0$ is contained in $S_0\setminus\overline{S_1}$. To verify its class-0 inclusion, every center has radius between $\sqrt{401}/20>1$ and $11/10$, and height at least $1/20$. The disk therefore stays strictly between the class-0 radial boundaries and above its diameter. Exclusion from class 1 follows by checking the pieces of $K_0$:
+
+\begin{enumerate}
+\item On the radial segment from $w_1$, write $x=\lambda(1,1/4)$, where $1\leq\lambda\leq22/(5\sqrt{17})$. The squared distance to $(1,1)$ is $17\lambda^2/16-5\lambda/2+2$ and decreases on that interval. Its maximum is $9/16$. A radius-$1/20$ disk is therefore contained in the opposite inner hole of radius $4/5$.
+\item On the radial segment from $w_2$, the first coordinate is at most $-1$, so the distance to $(1,1)$ is at least $2>b+\rho$.
+\item On the right circular branch up to height $21/20$, the squared distance to $(1,1)$ is
+\[
+ 321/100-2R(\cos\theta+\sin\theta)
+ \leq321/100-11/\sqrt{17}<9/16.
+\]
+The minimum of $\cos\theta+\sin\theta$ on this arc segment occurs at an endpoint. The starting endpoint gives $x_1+x_2=11/(2\sqrt{17})$; the other gives $(21+\sqrt{43})/20$, which is larger. These disks are again inside the class-1 inner hole.
+\item On the central arc with height at least $21/20$, the entire open disk lies above the class-1 diameter $x_2=1$.
+\item On the remaining left branch below height $21/20$, $x_1\leq-\sqrt{43}/20$. Hence the distance to $(1,1)$ is at least $1+\sqrt{43}/20>5/4=b+\rho$.
+\end{enumerate}
+Reflection gives the same exclusive-region clearance for $K_1$. Thus
+\[
+ U_i=K_i+B(0,\rho)
+\]
+are connected open subsets of the corresponding exclusive regions, where $B$ denotes an open disk. The exact identity
+\begin{equation}
+ v_1=\frac7{38}w_1+\frac7{38}w_2+\frac{12}{19}w_3
+ \label{supp:eq:barycentric}
+\end{equation}
+has strictly positive coefficients. Since the three $w_i$ are noncollinear, $v_1$ lies in the interior of their triangle, which is contained in $\operatorname{conv}(U_0)$. Reflection gives the reverse intrusion. The signs of $d$ are fixed and opposite on the exclusive sets for every pair of positive priors. Lemma~1 proves
+\begin{equation}
+ R^*_{T_c}>R_X^*>0\qquad(c\in\mathbb R^2, h=1).
+ \label{supp:eq:overlap-result}
+\end{equation}
+
+\section{Exterior certificates and a positive global infimum}
+\label{supp:exterior}
+
+\paragraph{A general disk construction.}
+Let $K_0,K_1$ be compact connected sets. Suppose each open radius-$\rho$ disk centered on $K_0$ lies where $d\geq\kappa_0>0$ almost everywhere, and each such disk centered on $K_1$ lies where $d\leq-\kappa_1<0$ almost everywhere. Suppose also that
+\[
+ B(p,\delta)\subseteq\operatorname{conv}(K_0)\cap\operatorname{conv}(K_1),
+ \qquad \|x-p\|\leq M\quad(x\in K_0\cup K_1).
+\]
+Then, for $t=\|c-p\|>M+\rho$,
+\begin{equation}
+ \Delta(c)\geq4\rho(t-M)\arcsin(\delta/t)
+                   \min(\kappa_0,\kappa_1).
+ \label{supp:eq:general-exterior}
+\end{equation}
+
+To prove this, observe first that a compact connected set viewed from outside its convex hull has the same angular image as its convex hull. Strict separation from the origin places the angular image in an interval shorter than a semicircle. Connectedness fills the interval between the extreme directions, and convex combinations introduce no additional extreme direction. Since $t>M$, the observation applies to each $K_i$. Every ray crossing $B(p,\delta)$ therefore meets both $K_i$. A meeting point is at radial distance $r_i\geq t-M>\rho$ from $c$. Its radius-$\rho$ disk contributes signed ray mass at least
+\[
+ \kappa_i\int_{r_i-\rho}^{r_i+\rho}r\,dr
+ =2\kappa_i\rho r_i\geq2\kappa_i\rho(t-M).
+\]
+The common disk subtends an angle $2\arcsin(\delta/t)$. Applying~\eqref{supp:eq:cancellation} proves~\eqref{supp:eq:general-exterior}. If $M>\rho$ and $t\geq2M$, the inequalities $\arcsin z\geq z$ and $(t-M)/t\geq1/2$ give
+\begin{equation}
+ \Delta(c)\geq2\rho\delta\min(\kappa_0,\kappa_1).
+ \label{supp:eq:constant-exterior}
+\end{equation}
+
+\paragraph{The disjoint geometry $h=1/2$.}
+Use
+\[
+ \rho=\delta=\frac18,\qquad p=(1/2,1/4),\qquad
+ M=\frac{43}{40}+\frac{\sqrt5}{4},
+\]
+and the eroded supports
+\[
+ E_0=\{x:a+\rho\leq\|x\|\leq b-\rho,\ x_2\geq\rho\},
+ \qquad E_1=(1,1/2)-E_0.
+\]
+These are compact connected annular caps, and every open radius-$\rho$ disk centered on $E_i$ lies in $S_i$. Their convex hulls are the outer disk caps
+\[
+ \operatorname{conv}(E_0)=\{x:\|x\|\leq b-\rho,\ x_2\geq\rho\},
+ \qquad\operatorname{conv}(E_1)=(1,1/2)-\operatorname{conv}(E_0).
+\]
+Indeed, the entire outer circular arc belongs to $E_0$, and its convex hull is the displayed cap. The common disk $B(p,\delta)$ lies in both hulls: its heights lie between $1/8$ and $3/8$, and $\|p\|+\delta<b-\rho$. Each point of either eroded support satisfies $\|x-p\|\leq b-\rho+\|p\|=M$. Hence~\eqref{supp:eq:general-exterior} applies with $K_i=E_i$ and
+\[
+ \kappa_i=\frac{\pi_i}{H}\quad\hbox{for area},
+ \qquad
+ \kappa_i=\pi_i\frac{K}{b}=\pi_i\frac{25}{12\pi}
+ \quad\hbox{for radius}.
+\]
+Here each support is exclusive because $h=1/2$ is in the disjoint interval. In particular, for equal priors and $\|c-p\|\geq2M=43/20+\sqrt5/2$,
+\begin{equation}
+ \Delta_A(c)\geq\frac5{128\pi},\qquad
+ \Delta_R(c)\geq\frac{25}{768\pi}.
+ \label{supp:eq:disjoint-exterior}
+\end{equation}
+
+\paragraph{The overlapping geometry $h=1$.}
+Use the exclusive backbones of Section~\ref{supp:overlap}, with
+\[
+ \rho=\frac1{20},\qquad\delta=\frac18,
+ \qquad p=(1/2,1/2),\qquad M=\frac{11}{10}+\frac1{\sqrt2}.
+\]
+The point $p$ has barycentric weights $(45,7,24)/76$ in the triangle $w_1w_2w_3$. Its distances to the three edge lines are
+\[
+ \frac3{\sqrt{101}},\qquad\frac7{2\sqrt{689}},\qquad\frac{45}{58},
+\]
+all larger than $1/8$. Thus the triangle contains $B(p,\delta)$. Reflection about $p$ establishes its inclusion in both backbone convex hulls. Moreover, $\|x-p\|\leq11/10+\|p\|=M$ on either backbone. Their exclusive-region clearance supplies the same $\kappa_i$ as above. For equal priors and $\|c-p\|\geq2M=11/5+\sqrt2$,
+\begin{equation}
+ \Delta_A(c)\geq\frac1{64\pi},\qquad
+ \Delta_R(c)\geq\frac5{384\pi}.
+ \label{supp:eq:overlap-exterior}
+\end{equation}
+
+\paragraph{Relation to the global bounds.}
+The displayed constants certify exterior origins. The general projection-limit theorem in Section~\ref{supp:projection-boundary} establishes positive global loss for arbitrary positive-a.e. densities throughout the disjoint interval and at $h=1$. Section~\ref{supp:constructive-global} converts the cores above into explicit lower certificates over the entire origin plane.
+
+\section{A finite necessary and sufficient preservation test}
+\label{supp:finite}
+
+For a fixed origin $c$, use the four circles with centers $m_0,m_1$ and radii $a,b$, and the diameter lines $x_2=0,h$. Full circles and lines can be used: their unused portions only refine the partition. Collect these oriented direction events:
+\begin{enumerate}
+\item Tangent directions from $c$ to every circle, including both limiting tangent directions when $c$ lies on the circle.
+\item Directions from $c$ to every pairwise curve intersection other than $c$ itself.
+\item The four coordinate directions, which include the diameter-line parallel directions and ensure that every angular cell has length less than $\pi$.
+\end{enumerate}
+Merge repeated directions and coincident curves. The six circle pairs have at most $12$ intersections; the eight circle--line pairs have at most $16$. The diameter lines are parallel or coincident. Adding at most eight tangencies and four coordinate directions gives at most $40$ distinct events.
+
+Select one interior direction in each nonempty angular cell. Order all positive intersection radii on its ray, include the endpoint $r=0$, and inspect one point of each intervening open radial interval. For area densities, support membership determines the sign of $d$: positive on class-0-exclusive intervals, negative on class-1-exclusive intervals, and the sign of $\pi_0-\pi_1$ on overlap intervals. Intervals outside both supports have zero sign. The decision is
+\begin{equation}
+ \Delta(c)>0
+ \quad\Longleftrightarrow\quad
+ \text{at least one tested ray contains intervals of both strict signs.}
+ \label{supp:eq:finite-test}
+\end{equation}
+
+\emph{Completeness proof.}
+Within an open angular cell, simple positive roots vary continuously. Circle roots can be created or destroyed only at a tangent direction, and line roots can escape to infinity only at a parallel direction. The order of distinct positive roots can change only when a ray meets an intersection of two curves. These are all recorded events. Therefore each radial interval retains its support-membership pattern throughout the cell. Both strict signs at the test direction imply both signs on the entire cell; polar Fubini and~\eqref{supp:eq:cancellation} give positive loss. Conversely, if every cell has at most one strict sign, almost every angle has zero cancellation. The finite set of event directions has zero angular measure, proving zero loss.
+
+For radius densities, the sign within an overlap interval is determined by
+\begin{equation}
+ P(x)=\pi_0^2\|x-m_1\|^2-\pi_1^2\|x-m_0\|^2.
+ \label{supp:eq:apollonius}
+\end{equation}
+Both distances are strictly positive on the supports, so squaring the comparison $\pi_0/\|x-m_0\|$ versus $\pi_1/\|x-m_1\|$ preserves its sign. Include $P(x)=0$ in the arrangement. For equal priors this curve is the line
+\[
+ x_1+hx_2=(1+h^2)/2.
+\]
+It contributes at most eight circle intersections, two diameter-line intersections and two parallel directions, giving at most $52$ events. Unequal positive priors produce an Apollonius circle. Its at most eight circle intersections, four line intersections and two tangencies give at most $54$ events. The refined radial intervals now have constant signed-density sign, so the same proof establishes~\eqref{supp:eq:finite-test}.
+
+\paragraph{Degenerate events and exact arithmetic.}
+If $c$ lies on a circle, its zero root persists for all directions; the other root crosses zero at the two tangent directions, which are included. If $c$ lies on a line, the zero root again persists; rays lying on that line are its two parallel event directions. An intersection point equal to $c$ contributes no defined direction and is omitted, with its changes already handled by these tangent or parallel events. Coincident curves are represented once, roots sharing a radius are merged, and zero-length radial intervals are discarded. Tangencies between different curves produce a single intersection event. Equal priors in the area model give zero signed density throughout an overlap interval, so ties are assigned sign zero. The unbounded last radial interval has zero density because the supports are bounded.
+
+For rational $a,b,h,c$ and priors, circle intersections, tangent directions and ray roots are algebraic. Coordinate events ensure adjacent directions differ by less than $\pi$, so their normalized vector sum gives an algebraic interior test direction. Algebraic root ordering and sign evaluation implement the finite decision exactly.
+
+\paragraph{A quantitative witness from one cell.}
+Suppose a test ray contains points $x_\pm=c+r_\pm u_{\theta_0}$ in opposite winning regions. Choose $0<\epsilon_\pm<r_\pm$ and $\kappa_\pm>0$ so that $d\geq\kappa_+$ on $B(x_+,\epsilon_+)$ and $d\leq-\kappa_-$ on $B(x_-,\epsilon_-)$ almost everywhere. Put
+\[
+ \alpha=\min\{\epsilon_+/(2r_+),\epsilon_-/(2r_-)\}.
+\]
+For $|\theta-\theta_0|\leq\alpha$ and $|r-r_i|\leq\epsilon_i/2$,
+\[
+ \|ru_\theta-r_i u_{\theta_0}\|
+ \leq|r-r_i|+r_i\|u_\theta-u_{\theta_0}\|\leq\epsilon_i.
+\]
+The corresponding signed ray mass is at least $\kappa_i r_i\epsilon_i$, giving
+\begin{equation}
+ \Delta(c)\geq2\alpha\min\{\kappa_+r_+\epsilon_+,
+                              \kappa_-r_-\epsilon_-\}>0.
+ \label{supp:eq:witness}
+\end{equation}
+Area-model margins are constant on each winning interval. Radius-model margins have a positive lower bound on any sufficiently small closed disk away from the support boundaries and decision curve.
+
+\section{Exact radial and horizontal integrals}
+\label{supp:radial}
+
+For class $i$, put $v=c-m_i$, $z=u_\theta^Tv$ and $D^2=\|v\|^2$. Intersections of the ray with a circle of radius $R$ satisfy
+\[
+ r^2+2zr+D^2-R^2=0,
+ \qquad r=-z\pm\sqrt{z^2+R^2-D^2}.
+\]
+Negative discriminants give no intersection; a zero discriminant is a tangency. Keep the positive interval inside the outer disk, remove the interval inside the inner disk, and intersect with the appropriate half-plane condition
+\[
+ \sigma_i(v_2+r\sin\theta)>0,
+ \qquad\sigma_0=1,\quad\sigma_1=-1.
+\]
+If $\sin\theta=0$, this condition either retains or removes the whole interval according to the sign of $\sigma_i v_2$. A ray lying on the diameter is an exceptional boundary direction. This construction leaves at most two nonempty intervals $[\ell,u]$ for a class; endpoints do not affect their integrals.
+
+For area sampling, such an interval contributes
+\begin{equation}
+ \int_\ell^u f_i^A(c+ru_\theta)r\,dr
+ =\frac{u^2-\ell^2}{2H}.
+ \label{supp:eq:area-primitive}
+\end{equation}
+For radius sampling, let $k^2=D^2-z^2$. If $k>0$, define
+\begin{equation}
+ F(r)=\sqrt{(r+z)^2+k^2}
+       -z\operatorname{arsinh}((r+z)/k).
+ \label{supp:eq:radius-primitive}
+\end{equation}
+Differentiation gives
+\[
+ F'(r)=\frac{r+z}{\sqrt{(r+z)^2+k^2}}
+        -\frac z{\sqrt{(r+z)^2+k^2}}
+       =\frac r{\|v+ru_\theta\|}.
+\]
+The interval contribution is therefore $K[F(u)-F(\ell)]$. In the collinear case $k=0$, use
+\begin{equation}
+ F(r)=|r+z|-z\operatorname{sign}(r+z)\log|r+z|
+ \label{supp:eq:collinear-primitive}
+\end{equation}
+on each side of $r+z=0$. The annulus has inner radius $a>0$, so a retained interval cannot meet this singular point. At the class-centered origin $c=m_i$, $z=k=0$ and $F(r)=r$ for $r>0$. Summing interval contributions gives $q_{i,c}$, and~\eqref{supp:eq:direction-risk} leaves one angular integration.
+
+\paragraph{Area raw risk.}
+The constant class densities give
+\begin{equation}
+ R_{X,A}^*=\frac{\min(\pi_0,\pi_1)}H\,|S_0\cap S_1|.
+ \label{supp:eq:raw-area}
+\end{equation}
+At a height $y$, the circle roots are $m_{i1}\pm\sqrt{R^2-(y-m_{i2})^2}$. Split the height axis at diameter levels, circle extrema and heights of circle intersections. Between consecutive events their order is fixed, so the overlap length is a sum of constants and signed square roots. The primitive
+\begin{equation}
+ G_R(s)=\frac{s\sqrt{R^2-s^2}+R^2\arcsin(s/R)}2
+ \label{supp:eq:circle-area-primitive}
+\end{equation}
+integrates each root term. This gives an elementary finite evaluation of~\eqref{supp:eq:raw-area}.
+
+\paragraph{Radius raw risk.}
+For a direct horizontal calculation, partition each horizontal overlap interval additionally at roots of~\eqref{supp:eq:apollonius}. On each resulting interval choose the smaller weighted density. Its primitive for class $i$ is
+\begin{equation}
+ K\operatorname{arsinh}\!\left(\frac{x_1-m_{i1}}{|y-m_{i2}|}\right),
+ \qquad y\ne m_{i2}.
+ \label{supp:eq:horizontal-radius}
+\end{equation}
+At $y=m_{i2}$, the corresponding primitive on either side of the excluded class center is $K\operatorname{sign}(x_1-m_{i1})\log|x_1-m_{i1}|$. Multiply by $\pi_i$, sum the retained differences, and integrate over height.
+
+At equal priors there is also a symmetric polar form. Reflection $x\mapsto m_1-x$ swaps the class densities and the two halves of their overlap separated by the perpendicular bisector. The lower density is the density from the more distant center, so
+\begin{equation}
+ R_{X,R}^*
+ =\mathbb P_0^R\{X\in S_1,\ \|X\|\geq\|X-m_1\|\}.
+ \label{supp:eq:raw-radius-symmetry}
+\end{equation}
+In polar coordinates $X=ru_\theta$ about $m_0$, the last condition becomes
+$r(u_\theta^Tm_1)\geq\|m_1\|^2/2$. The density times the area element is $K\,dr\,d\theta$, so the raw risk equals $K$ times the angular integral of the radial lengths satisfying this condition and both support constraints.
+
+\section{Comparison of the two sampling laws}
+\label{supp:density}
+
+On each class support,
+\begin{equation}
+ \frac{f_i^R(x)}{f_i^A(x)}
+ =\frac{a+b}{2\|x-m_i\|}\in[\alpha,\beta],
+ \qquad\alpha=\frac56,\quad\beta=\frac54.
+ \label{supp:eq:density-ratio}
+\end{equation}
+Integration and monotonicity of the minimum imply
+\[
+ \alpha R_{X,A}^*\leq R_{X,R}^*\leq\beta R_{X,A}^*,
+ \qquad
+ \alpha R_{T_c,A}^*\leq R_{T_c,R}^*\leq\beta R_{T_c,A}^*.
+\]
+When the supports are disjoint, raw risks vanish, so the same two-sided comparison holds for representation loss. Moreover, all densities positive almost everywhere on those supports have the same zero-loss origin set: an open intersection of angular support images yields positive error, and disjoint images yield zero error.
+
+For equal priors, $d_A=(\mathbf1_{S_0}-\mathbf1_{S_1})/(2H)$ is zero on the overlap. On exclusive regions $d_R$ has the same sign and magnitude at least $\alpha|d_A|$. Hence $[\pm d_R]_+\geq\alpha[\pm d_A]_+$ pointwise. Integrating along rays and using~\eqref{supp:eq:cancellation} gives
+\begin{equation}
+ \Delta_R(c)\geq\frac56\Delta_A(c)
+ \label{supp:eq:density-loss-lower}
+\end{equation}
+for all origins, including the overlapping geometry. A corresponding upper bound is
+\begin{equation}
+ \Delta_R(c)\leq\frac54\Delta_A(c)
+      +\int_{S_0\cap S_1}|d_R(x)|\,dx.
+ \label{supp:eq:density-loss-upper}
+\end{equation}
+Indeed, on each ray the positive and negative exclusive masses are at most $\beta$ times their area counterparts. Adding the overlap masses can increase their minimum by at most their sum. Polar integration gives~\eqref{supp:eq:density-loss-upper}. Within the overlap, the radius model favors class 0 precisely when $x_1+hx_2<(1+h^2)/2$.
+
+\section{Bounded variation and certified quadrature}
+\label{supp:bv}
+
+\paragraph{Angular pushforward bound.}
+Let $f$ be a compactly supported planar function of bounded variation, with distributional gradient measure $Df$. Define $J(x_1,x_2)=(-x_2,x_1)$ and $V_c(x)=J(x-c)$. For a smooth periodic function $\varphi$, polar coordinates and integration by parts give
+\begin{align*}
+ \int_0^{2\pi}q_c(\theta)\varphi'(\theta)\,d\theta
+ &=\int_{\mathbb R^2} f(x)V_c(x)\cdot
+                    \nabla[\varphi(T_c(x))]\,dx\\
+ &=-\int_{\mathbb R^2}\varphi(T_c(x))V_c(x)\cdot Df(x).
+\end{align*}
+Here $\varphi(T_c(x))$ means the periodic angular function evaluated at the direction. A radial cutoff around $c$ removes its coordinate singularity; $V_c$ is tangent to the cutoff circles, so it contributes no radial boundary flux. The identity first holds for smooth functions, and BV approximation gives the distributional statement. Consequently $D_\theta q_c$ is the angular pushforward of the signed measure $V_c\cdot Df$, and total variation contracts under pushforward:
+\begin{equation}
+ \operatorname{TV}(q_c)\leq
+ |V_c\cdot Df|(\mathbb R^2).
+ \label{supp:eq:angular-bv}
+\end{equation}
+
+\paragraph{Area density.}
+For a half-annulus centered at $m=(m_x,m_y)$, write $D=\|c-m\|$ and $d_x=c_1-m_x$. On a circular boundary of radius $R$, the normal is $\pm e_\phi$ and the arclength element is $R\,d\phi$. Because $J(Re_\phi)\cdot e_\phi=0$, the rotation flux depends only on $J(m-c)$. Its absolute integral on any semicircle is $2D$. The inner and outer arcs therefore contribute $2(a+b)D/H$. On the diameter, the normal flux has absolute value $|t-d_x|$. Thus
+\begin{equation}
+ B^A(c;m)=\frac{2(a+b)D+
+       \displaystyle\int_{[-b,-a]\cup[a,b]}|t-d_x|\,dt}{H}
+ \label{supp:eq:bv-area}
+\end{equation}
+bounds the angular variation. The remaining integral is evaluated at its four endpoints using $(t-d_x)|t-d_x|/2$.
+
+\paragraph{Radius density.}
+The boundary value $K/R$ cancels the circular arclength factor $R$, so the two circular boundaries contribute $4KD$. Within the support,
+$\nabla(K/s)=-Ke_\phi/s^2$. Its rotation flux integrates to
+\[
+ K\int_a^b\frac{ds}{s}
+   \int_{\text{semicircle}}|J(m-c)\cdot e_\phi|\,d\phi
+ =2KD\log(b/a).
+\]
+The diameter term is weighted by $K/|t|$, giving
+\begin{equation}
+ B^R(c;m)=K\left[(4+2\log(b/a))D+
+       \int_{[-b,-a]\cup[a,b]}\frac{|t-d_x|}{|t|}\,dt\right].
+ \label{supp:eq:bv-radius}
+\end{equation}
+The implemented closed-form upper bound uses $|t-d_x|\leq|t|+|d_x|$:
+\begin{equation}
+ B^R(c;m)\leq
+ K\{2D[2+\log(b/a)]+2(b-a)+2|d_x|\log(b/a)\}.
+ \label{supp:eq:bv-radius-implemented}
+\end{equation}
+The same formulas apply to either semicircle orientation.
+
+\paragraph{Midpoint truncation.}
+Set $v(\theta)=\min\{\pi_0q_{0,c}(\theta),\pi_1q_{1,c}(\theta)\}$. The minimum identity and the variation inequality for absolute values imply
+\[
+ \operatorname{TV}(v)\leq\pi_0\operatorname{TV}(q_{0,c})
+                       +\pi_1\operatorname{TV}(q_{1,c})
+ \leq\sum_i\pi_iB_i(c).
+\]
+For a cell $I$ of length $\ell$ with midpoint $m$, split the integral at $m$ and bound $|v(\theta)-v(m)|$ by the variation between the two points. Each contribution to variation receives an integration weight at most $\ell/2$. Therefore
+\[
+ \left|\int_Iv(\theta)\,d\theta-\ell v(m)\right|
+ \leq\frac\ell2\operatorname{TV}_I(v).
+\]
+Summing the $N$ equal angular cells yields
+\begin{equation}
+ \left|R^*_{T_c}-\frac{2\pi}{N}
+       \sum_{j=0}^{N-1}v(\theta_j)\right|
+ \leq\frac\pi N\sum_i\pi_i B_i(c),
+ \qquad\theta_j=-\pi+\frac{(2j+1)\pi}{N}.
+ \label{supp:eq:midpoint-angular}
+\end{equation}
+At a jump, choose a representative between the one-sided limits. Angular jumps for these half-annuli can occur when the ray lies along a diameter through the origin; their directions are $0$ and $\pi$. The even-$N$ grid in~\eqref{supp:eq:midpoint-angular} avoids both directions. Circle tangencies and isolated boundary crossings produce no jump of the integrated angular density.
+
+\paragraph{Horizontal raw-risk truncation.}
+Let $w(y)=\int\min\{\pi_0f_0(x_1,y),\pi_1f_1(x_1,y)\}\,dx_1$. Integration over $x_1$ contracts vertical variation, and the minimum inequality gives
+\[
+ \operatorname{TV}(w)\leq\sum_i\pi_i|D_yf_i|(\mathbb R^2).
+\]
+For the area density, the two circular boundaries contribute $2(a+b)/H$ and the diameter contributes $2(b-a)/H$, so
+\begin{equation}
+ |D_yf_i^A|(\mathbb R^2)=4b/H.
+ \label{supp:eq:horizontal-bv-area}
+\end{equation}
+For the radius density, circles contribute $4K$, the diameter $2K\log(b/a)$ and the interior gradient $2K\log(b/a)$. Thus
+\begin{equation}
+ |D_yf_i^R|(\mathbb R^2)=K[4+4\log(b/a)].
+ \label{supp:eq:horizontal-bv-radius}
+\end{equation}
+On a height interval of length $L$, the $N$-cell midpoint error is at most
+\begin{equation}
+ \frac{L}{2N}\sum_i\pi_i|D_yf_i|(\mathbb R^2).
+ \label{supp:eq:midpoint-horizontal}
+\end{equation}
+For the overlapping study configuration $h=1$, all overlap lies in $0<y<1$, so $L=1$.
+
+\paragraph{Arithmetic enclosures and reported quantities.}
+The implementation evaluates the midpoint sums using 96-bit Arb ball arithmetic. Every elementary operation, trigonometric evaluation and radial primitive returns an enclosing ball. Adding the deterministic truncation radius from~\eqref{supp:eq:midpoint-angular} or~\eqref{supp:eq:midpoint-horizontal} gives the risk enclosure. If $R^*_{T_c}\in[L_T,U_T]$ and $R_X^*\in[L_X,U_X]$, then
+\[
+ \Delta(c)\in[\max\{0,L_T-U_X\},\ U_T-L_X].
+\]
+The raw computations use $N=131072$. The completed certificates cover the $18$ prespecified directional conditions and the two nonzero raw risks. Their largest directional truncation halfwidth is $3.95806458339\times10^{-5}$, and their largest raw halfwidth is $1.70659423293\times10^{-5}$. All adaptive reference estimates fall within these enclosures. The mathematical global-positivity result and constructive certificate follow from Sections~\ref{supp:projection-boundary}--\ref{supp:constructive-global}; these numerical intervals quantify the specified experimental origins.
