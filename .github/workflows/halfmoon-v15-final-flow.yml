@@ -104,7 +104,7 @@ jobs:
                   if p.name not in allowed:
                       assert p.read_bytes()==other.read_bytes(),f'Frozen source changed: {p}'
           def normalize_tex(t):
-              for cmd in [r'\vadjust{\nobreak}',r'\par',r'\begin{samepage}',r'\end{samepage}',r'\noindent']:
+              for cmd in [r'\vadjust{\nobreak}',r'\par',r'\begin{samepage}',r'\end{samepage}',r'\newpage',r'\noindent']:
                   t=t.replace(cmd,' ')
               t=t.replace(r'\mbox{convex hull}','convex hull')
               return ' '.join(t.split())
