@@ -5,12 +5,12 @@ Target journal: Pattern Recognition Letters (Elsevier)
 
 ## Journal submission
 
-The final prepared files are in:
+The author-approved V16 submission files are in:
 
-submission/PRL_V11_Final/Journal_Upload/
+submission/PRL_V16_Final/Journal_Upload/
 
 Editable LaTeX and figures are also available under
-submission/PRL_V11_Final/.
+submission/PRL_V16_Final/.
 
 ## Research data
 
@@ -32,6 +32,6 @@ by Dr. Du.
 
 ## Status
 
-Technical package prepared.
-Final author forms and publisher declarations pending.
-No journal submission has been made.
+V16 author approval and the Editorial Office acknowledgment were received on 20 November 2026 for manuscript PRLETTERS-D-26-03032. Journal review status is pending further notification.
+
+Earlier working submission versions are preserved in Git history and the pre-cleanup archive tag. The original V11 research-data release remains available at the link above. The separate Full_Article research materials are retained.
