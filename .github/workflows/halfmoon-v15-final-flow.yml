@@ -81,7 +81,7 @@ jobs:
           pages=[page(pdf,i) for i in range(1,8)]
           checks={
              'R1_optimizer':('Full-batch','and learning rates'),
-             'R1_update':('Every candidate executed','4,000 updates'),
+             'R1_update':('Every candidate','4,000 updates'),
              'R1_contrast':('two-comparison','family with simultaneous')
           }
           page_nums={}
