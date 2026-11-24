@@ -1,0 +1,33 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath}
+\usepackage[left=29mm,right=29mm,top=28mm,bottom=26mm]{geometry}
+\usepackage[hidelinks,bookmarks=false,pdftitle={Cover letter for Information Sciences},pdfauthor={Meshaal Mouawad}]{hyperref}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.75\baselineskip}
+\begin{document}
+\begin{flushright}
+24 November 2026
+\end{flushright}
+
+Editors\\
+\textit{Information Sciences}
+
+Dear Editors,
+
+Please consider my manuscript, \emph{Exact radial coding and feedback limits for direction-normalized half-moons}, for publication in \emph{Information Sciences}. I revised the article following the transfer recommendation for my submission to \emph{Pattern Recognition Letters} (\mbox{PRLETTERS-D-26-03032}). The paper determines when a classifier that already knows the direction of an observation can use a compressed radial message and still recover its class exactly.
+
+I prove a sufficient condition that yields an exact tradeoff between direction hints and radial replies. It pairs a set of cutoffs covering the ambiguous directions with ordered radial intervals that exhibit simultaneous class conflicts of positive mass. The half-annuli satisfy this condition before contact. When $M$ radial symbols are needed without feedback and each hint permits $m\ge2$ replies, the minimum is $\lceil(M-1)/(m-1)\rceil$ distinct hint values over measurable encoders. Feedback can shift communication to the reverse link while the minimum fixed-length total remains $\lceil\log_2 M\rceil$ bits.
+
+The arrangement of conflicts makes a difference even when two populations need the same number of one-way symbols. With a one-bit reply, simultaneous conflicts in half-annuli require $M-1$ hint values. A population in which each pair of radial bands conflicts on a separate direction sector requires $\lceil\log_2 M\rceil$ hint values. At $M=13$, the two minima are 12 and 4 hint values, which take four and two fixed-length feedback bits, respectively. When the reply width is also optimized, the minimum total is four bits for the half-annuli and three for the pair-specific population. These results show how geometry governs decision-preserving feature compression.
+
+The V11 archive documents the earlier fixed-threshold recovery result and neural experiments. The V18 research-data deposit documents the one-way calculations and archived test counts. The manuscript cites both archives and gives proofs of the general condition, the comparison law, and exact recovery at first contact using a countable threshold list and one radial bit.
+
+Sincerely,\\[.25em]
+Meshaal Mouawad\\
+Department of Electrical and Computer Engineering\\
+Mississippi State University\\
+Mississippi State, MS 39762, USA\\
+\href{mailto:mm4922@msstate.edu}{mm4922@msstate.edu}
+\end{document}

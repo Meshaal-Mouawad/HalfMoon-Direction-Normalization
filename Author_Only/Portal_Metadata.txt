@@ -1,0 +1,42 @@
+Title
+Exact radial coding and feedback limits for direction-normalized half-moons
+
+Author
+Meshaal Mouawad
+
+Affiliation
+Department of Electrical and Computer Engineering, Mississippi State University, 216 Simrall Hall, 406 Hardy Road, Mississippi State, MS 39762, USA
+
+Corresponding author email
+mm4922@msstate.edu
+
+Abstract
+Discarding distance can map two classes to the same direction. We determine the minimum communication needed to recover their labels when a classifier knows the direction and a separate sensor measures radius. A sufficient condition for an exact budget combines two geometric properties. A common list of cutoffs separates the classes along every ambiguous direction, and each successive radial interval conflicts with all preceding intervals over a set of directions of positive measure. Grouping the cutoffs attains the budget. The conflicts give a positive population error floor for every smaller budget, including for encoders with disconnected cells. For reflected half-annuli, a geometric recurrence gives the minimum one-way radial alphabet M, which grows logarithmically in the reciprocal of the normalized distance to contact. With a one-bit radial reply, exact classification before contact requires M−1 direction hints. A population that presents one pair of radial bands per direction needs only ⌈log₂ M⌉ hints for the same one-way minimum. At M = 13, the respective requirements are twelve and four hint values. At contact, countably many threshold choices suffice for the half-annuli, and every finite choice set incurs error.
+
+Keywords
+Zero-error coding; Decoder side information; Scalar quantization; Bayes risk; Directional normalization; Half-moon classification
+
+Highlights
+Positive-mass conflicts give lower bounds for every measurable radial encoder.
+Cutoffs and ordered conflicts give exact tradeoffs between hint and reply sizes.
+Precontact half-annuli with one-way minimum M need ⌈log₂ M⌉ total fixed-length bits.
+With one reply bit, half-annuli need M−1 hints and pair-specific sectors ⌈log₂ M⌉.
+Width ratio sets the coefficient of logarithmic radial alphabet growth near contact.
+
+Novelty statement
+The paper proves a sufficient condition for an exact communication tradeoff in continuous classification from a single observation. The condition combines cutoffs separating the classes along ambiguous rays with an ordered sequence of positive-mass radial conflicts. It yields matching constructions and lower bounds over all measurable radial encoders. For populations meeting the condition, if M radial symbols are needed without feedback, exact recovery with K hints and reply alphabet sizes m₁, …, mₖ is possible exactly when Σⱼ(mⱼ−1) ≥ M−1. Before contact the half-annuli satisfy the condition. With f feedback bits and b radial reply bits, feasibility is 2^f(2^b−1) ≥ M−1. The minimum total fixed-length budget for the half-annuli is ⌈log₂ M⌉ bits, and feedback can shift bits from the reply to the reverse link.
+A matched comparison shows how the simultaneous conflicts govern communication. For a one-bit radial reply, half-annuli need M−1 hint values, and a population whose radial band pairs conflict on separate direction sectors needs ⌈log₂ M⌉. At displacement 0.77 the half-annuli need 13 one-way radial symbols. The two populations with that one-way minimum need 12 and 4 hint values, respectively, taking 4 and 2 fixed-length feedback bits. Optimizing the reply width as well gives minimum total costs of 4 bits for the half-annuli and 3 bits for the pair-specific population. At first contact, every fixed finite hint and reply budget leaves positive population error, and a countable threshold list attains exact recovery with one radial bit.
+These results quantify decision-preserving compression of a continuous feature when the decoder has side information. Hanna et al. studied classification error on finite data with quantized features. Misra et al. studied quantizer selection by a side message for functional mean-squared error. Charpenay et al. established how answer vectors govern zero-error block coding with finite alphabets in their full-support case. The present proof uses positive-mass conflicts in continuous radius and direction to obtain exact budgets for a single observation. The V11 archive documents the earlier fixed-threshold result and neural experiments. The V18 deposit documents the one-way recurrence and numerical verification of 14 benchmark alphabet sizes.
+
+Research funding
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+Competing interests
+The author declares no competing financial or non-financial interests relevant to the research.
+
+Article type
+Original research article (theoretical). Select the corresponding category offered in the transferred record.
+
+Data availability (versioned repository)
+Supporting research data for Exact radial coding limits for direction-normalized half-moons, V18. https://github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/tree/bb7a3992642fe1f88b185642858d3ed3ffe8e478/research/radial-coding-v18
+Original research package (V11). https://github.com/Meshaal-Mouawad/HalfMoon-Direction-Normalization/releases/tag/v11-submission

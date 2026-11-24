@@ -1,7 +1,0 @@
-Clean extracted-source rebuild: PASS
-Independent extraction under temporary root: PASS
-Supplement and long-form LaTeX compilation: PASS
-Rebuilt page count: 31
-Pages match published PDF: PASS
-pdftotext -layout identical to published PDF: PASS
-Source ZIP verified: Full_Article_Source.zip

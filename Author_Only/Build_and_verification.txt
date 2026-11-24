@@ -1,0 +1,29 @@
+Main article
+29 A4 pages in the 12-point Elsevier single-column review layout.
+The source includes four vector figures, 4 editable tables, class and bibliography
+styles, the bibliography database and the generated reference list. Extract the source
+archive into an empty folder, then run the following commands with TeX Live.
+
+pdflatex Manuscript
+bibtex Manuscript
+pdflatex Manuscript
+pdflatex Manuscript
+
+Supplement
+The 24-page supplement uses the V20 material. Its title matches
+the revised V24 article. The proofs, data, figures, and references come from V23.
+Extract the supplement source into another empty folder and substitute Supplement
+for Manuscript in the commands above. Section S17 and Table S7 give the four width
+checks. The source archive includes its existing supplementary references.
+
+Highlights
+The five bullets contain 78, 80, 84, 82, 84 characters
+including spaces and punctuation.
+
+Research data
+The V18 archive contains the independent alphabet-size calculations, numerical
+integrations, plot scripts and frozen one-bit test counts. Its README gives the
+execution commands. The V20 width-check ZIP reproduces its supplementary table.
+The V22 feedback-check ZIP contains code and reference outputs for the finite
+direction feedback calculation and the source for the accessibility rendering
+of Figure 4. Follow the README in that archive to reproduce the checks and figure.
